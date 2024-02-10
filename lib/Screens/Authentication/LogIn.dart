@@ -123,10 +123,8 @@ class _LoginState extends State<Login> {
                               .get()
                               .then((value) {
                             Navigator.pop(context);
-                            value.docs.forEach((element) {
-                              print('respoms is: $v');
-                              print('name is: ${element.data()['name']}');
-                              print('type is: ${element.data()['type']}');
+                            for (var element in value.docs) {
+                              print('responses is: $v');
                               if (element.data()['type'] ==
                                   AppConstants.employ) {
                                 AppRoutes.pushReplacementTo(
@@ -143,7 +141,7 @@ class _LoginState extends State<Login> {
                                 AppLoading.show(context, AppMessage.loginTx,
                                     AppMessage.serverText);
                               }
-                            });
+                            }
                           });
                         }
                       });

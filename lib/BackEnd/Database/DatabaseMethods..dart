@@ -14,6 +14,8 @@ class Database {
     required String empId,
     required String section,
     required String phone,
+    required double salary,
+    required String contract,
   }) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -28,6 +30,8 @@ class Database {
           'empId': empId,
           'section': section,
           'phone': phone,
+          'salary': salary,
+          'contract':contract,
           'type':'employ'
         });
         return 'done';
@@ -45,7 +49,7 @@ class Database {
     return 'error';
   }
 
-//student Update Profile============================================================================================
+//employ Update Profile============================================================================================
   static Future<String> updateEmploy({
     required String name,
     required String empId,

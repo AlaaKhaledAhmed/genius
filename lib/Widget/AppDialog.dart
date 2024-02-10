@@ -121,7 +121,7 @@ class AppLoading {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Lottie.asset(
-                  "assets/Lottie/lode.json",
+                  "assets/lottie/lode.json",
                   fit: BoxFit.contain,
                 ),
               ),
