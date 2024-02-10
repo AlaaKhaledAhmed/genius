@@ -1,0 +1,19 @@
+{
+  "selectLocation": "Choose location",
+  "appName": "Haram maps",
+  "distancenation": "Your destination",
+  "saveFirest": "You must save your tent information first",
+  "messageSend": "The sender of the message is ill. Please follow the website to treat him as soon as possible",
+  "campInfo": "Camp information",
+  "youWont": "to be reached",
+  "totalDistance": "Total distance",
+  "time": "Time",
+  "enableLocation": "For a better user experience, please activate permission to access location",
+  "active": "activation",
+  "clickSaveLocation": "Click on the link to save the site",
+  "canSaveLocation": "You can save your campsite",
+  "done": "The location has been saved successfully",
+  "me": "me",
+  "selectLang": "choose the language",
+  "setting": "Location settings"
+}

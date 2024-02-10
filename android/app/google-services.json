@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "692686355338",
+    "project_id": "genius-9c753",
+    "storage_bucket": "genius-9c753.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692686355338:android:e0ec6a279852120612e673",
+        "android_client_info": {
+          "package_name": "com.example.genius"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_3Sj7OQ6dromqL94IJCardBHbxmfbZNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
