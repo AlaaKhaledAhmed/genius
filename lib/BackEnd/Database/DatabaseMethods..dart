@@ -97,18 +97,4 @@ class Database {
     return 'error';
   }
 
-//===================================================================
-  static Future<String> resetPassword({required String email}) async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.trim());
-      return 'done';
-    } on FirebaseException catch (e) {
-      if (e.code == 'user-not-found') {
-        return 'user-not-found';
-      }
-    } catch (e) {
-      return 'error';
-    }
-    return 'error';
-  }
 }

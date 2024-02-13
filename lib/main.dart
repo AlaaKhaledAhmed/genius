@@ -2,9 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genius/Screens/Authentication/LogIn.dart';
-import 'package:genius/translations/codegen_loader.g.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'ErrorWidget/ErrorWidgetClass.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Widget/AppColor.dart';
 import 'firebase_options.dart';
@@ -19,7 +17,6 @@ Future<void> main() async {
   return runApp(EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
-      assetLoader: const CodegenLoader(),
       fallbackLocale: const Locale('ar'),
       child: const MyApp()));
 }
@@ -50,18 +47,6 @@ class _MyAppState extends State<MyApp> {
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
               locale: const Locale('ar'),
-              builder: (context, widget) {
-                ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-                  return MediaQuery(
-                    data: MediaQuery.of(context)
-                        .copyWith(textScaler: const TextScaler.linear(1.0)),
-                    child: SizedBox(
-                        height: MediaQuery.of(context).size.height / 3,
-                        child: ErrorWidgetClass(errorDetails)),
-                  );
-                };
-                return widget!;
-              },
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
                   scaffoldBackgroundColor: AppColor.inputBG,

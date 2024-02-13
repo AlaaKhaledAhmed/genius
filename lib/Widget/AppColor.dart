@@ -16,6 +16,5 @@ class AppColor {
   static Color errorColor =Color(0xffD32F2F);
   static Color successColor = Color(0xff4CAF50);
   static Color noColor = Colors.transparent;
-  static Color starColor =const Color.fromRGBO(255, 212, 59, 1);
 
 }

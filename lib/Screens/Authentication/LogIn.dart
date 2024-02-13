@@ -17,7 +17,7 @@ import '../../Widget/AppTextFields.dart';
 import '../../Widget/AppValidator.dart';
 import '../Admin/AdminHome.dart';
 import '../Employ/EmployHome.dart';
-import '../Sppurt.dart';
+import '../Sppurt/Sppurt.dart';
 
 class Login extends StatefulWidget {
   static String route = '/login';
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
                 AppTextFields(
                   controller: emailController,
                   labelText: AppMessage.email,
-                  validator: (v) => AppValidator.validatorEmail(v),
+                  validator: (v) => AppValidator.validatorEmpty(v),
                   obscureText: false,
                 ),
                 SizedBox(
@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                 AppTextFields(
                   controller: passwordController,
                   labelText: AppMessage.passwordTx,
-                  validator: (v) => AppValidator.validatorPassword(v),
+                  validator: (v) => AppValidator.validatorEmpty(v),
                   obscureText: true,
                 ),
                 SizedBox(
