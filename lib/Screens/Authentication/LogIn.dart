@@ -9,8 +9,6 @@ import '../../BackEnd/Database/DatabaseMethods..dart';
 import '../../Widget/AppButtons.dart';
 import '../../Widget/AppColor.dart';
 import '../../Widget/AppConstants.dart';
-import '../../Widget/AppDropList.dart';
-import '../../Widget/AppImage.dart';
 import '../../Widget/AppMessage.dart';
 import '../../Widget/AppRoutes.dart';
 import '../../Widget/AppTextFields.dart';
