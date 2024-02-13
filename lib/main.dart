@@ -20,7 +20,7 @@ Future<void> main() async {
       fallbackLocale: const Locale('ar'),
       child: const MyApp()));
 }
-////teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesr
+
 class MyApp extends StatefulWidget {
   ///using this key to navigate to screen when notifications comes
   const MyApp({
