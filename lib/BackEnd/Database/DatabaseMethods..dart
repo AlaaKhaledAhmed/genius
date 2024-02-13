@@ -10,28 +10,26 @@ class Database {
   static Future<String> addEmploy({
     required String name,
     required String email,
-    required String password,
-    required String empId,
     required String section,
     required String phone,
     required double salary,
     required String contract,
+    required String employNaId,
   }) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: email.trim(), password: password);
+              email: email.trim(), password: employNaId);
       if (userCredential.user != null) {
         await AppConstants.userCollection.add({
           'name': name,
           'userId': userCredential.user?.uid,
-          'password': password,
           'email': email,
-          'empId': empId,
           'section': section,
           'phone': phone,
           'salary': salary,
           'contract':contract,
+          'employNaId':employNaId,
           'type':'employ'
         });
         return 'done';
@@ -52,14 +50,23 @@ class Database {
 //employ Update Profile============================================================================================
   static Future<String> updateEmploy({
     required String name,
-    required String empId,
     required String section,
     required String phone,
+    required double salary,
+    required String contract,
+    required String employNaId,
     required String docId,
   }) async {
     try {
       await AppConstants.userCollection.doc(docId).update(
-          {'name': name, 'empId': empId, 'section': section, 'phone': phone});
+          {
+            'name': name,
+            'section': section,
+            'phone': phone,
+            'salary': salary,
+            'contract':contract,
+            'employNaId':employNaId,
+          });
       return 'done';
     } catch (e) {
       return 'error';

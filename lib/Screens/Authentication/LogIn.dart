@@ -115,7 +115,7 @@ class _LoginState extends State<Login> {
                               AppMessage.serverText);
                         } else if (v == 'user-not-found') {
                           AppLoading.show(context, AppMessage.loginTx,
-                              AppMessage.invalidEmail);
+                              AppMessage.userNotFound);
                         } else {
                           FirebaseFirestore.instance
                               .collection('users')
@@ -139,7 +139,7 @@ class _LoginState extends State<Login> {
                                     context, const AdminHome());
                               } else {
                                 AppLoading.show(context, AppMessage.loginTx,
-                                    AppMessage.serverText);
+                                    AppMessage.userNotFound);
                               }
                             }
                           });
