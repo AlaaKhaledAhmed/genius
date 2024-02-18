@@ -211,6 +211,8 @@ class _ManageEmployState extends State<ManageEmploy> {
                                                     AppRoutes.pushTo(
                                                         context,
                                                         UpdateEmployee(
+                                                            docId: snapshot.data
+                                                                .docs[index].id,
                                                             data: data[index]
                                                                 .data()));
                                                   },

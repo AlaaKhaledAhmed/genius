@@ -36,6 +36,7 @@ class AppTextFields extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final double? hintStyleHeight;
   final FocusNode? focusNode;
+  final bool? readOnly;
   const AppTextFields(
       {Key? key,
       required this.validator,
@@ -66,12 +67,14 @@ class AppTextFields extends StatelessWidget {
       this.width,
       this.contentPadding,
       this.hintStyleHeight,
-      this.focusNode})
+      this.focusNode,
+      this.readOnly})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly == null ? false : true,
       enabled: enable ?? true,
       minLines: minLines ?? 1,
       maxLines: maxLines ?? 1,

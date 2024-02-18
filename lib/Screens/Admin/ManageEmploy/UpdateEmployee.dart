@@ -26,7 +26,8 @@ import '../../../Widget/GeneralWidget.dart';
 
 class UpdateEmployee extends StatefulWidget {
   var data;
-  UpdateEmployee({super.key, required this.data});
+  String docId;
+  UpdateEmployee({super.key, required this.data, required this.docId});
 
   @override
   State<UpdateEmployee> createState() => _UpdateEmployeeState();
@@ -115,7 +116,7 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                         listItem: context.locale.toString() == 'ar'
                             ? AppConstants.sectionListAr
                             : AppConstants.sectionListEn,
-                        validator: (v) => AppValidator.validatorEmpty(v),
+                        validator: (v) {},
                         hintText: AppMessage.section,
                         onChanged: (v) {
                           section = v;
@@ -125,53 +126,24 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                     SizedBox(
                       height: 10.h,
                     ),
-//email=============================================================================
-                    AppTextFields(
-                      key: _key3,
-                      onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key3);
-                      },
-                      validator: (v) => AppValidator.validatorEmail(v),
-                      controller: emailController,
-                      labelText: AppMessage.email,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
+
 //file=============================================================================
                     AppTextFields(
-                        key: _key4,
-                        onTap: () {
-                          GeneralWidget.ensureVisibleOnTextArea(key: _key4);
-                          setState(() {
-                            getFile(context).whenComplete(() {
-                              print('fillllllllllllle:${file!.path}');
-                              fileController.text = path.basename(file!.path);
-                            });
+                      key: _key4,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key4);
+                        setState(() {
+                          getFile(context).whenComplete(() {
+                            print('fillllllllllllle:${file!.path}');
+                            fileController.text = path.basename(file!.path);
                           });
-                        },
-                        validator: (v) => AppValidator.validatorEmpty(v),
-                        controller: fileController,
-                        labelText: AppMessage.contract,
-                        suffixIcon: Container(
-                          width: 55.w,
-                          decoration: GeneralWidget.decoration(
-                              shadow: false,
-                              color: AppColor.subColor,
-                              radius: AppSize.radius),
-                          child: Center(
-                            child: IconButton(
-                              icon: Icon(
-                                AppIcons.view,
-                                color: AppColor.white,
-                              ),
-                              onPressed: () async {
-                                await launchUrl(
-                                    Uri.parse(widget.data['contract']));
-                              },
-                            ),
-                          ),
-                        )),
+                        });
+                      },
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      controller: fileController,
+                      readOnly: true,
+                      labelText: AppMessage.contract,
+                    ),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -225,43 +197,75 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                     ),
 //save buttons=============================================================================
                     AppButtons(
-                      text: AppMessage.add,
+                      text: AppMessage.update,
                       width: double.maxFinite,
                       onPressed: () async {
                         FocusManager.instance.primaryFocus?.unfocus();
                         if (formKey.currentState?.validate() == true) {
                           AppLoading.show(context, '', 'lode');
-                          fileRef = FirebaseStorage.instance
-                              .ref('project')
-                              .child(fileController.text);
-                          await fileRef?.putFile(file!).then((getValue) async {
-                            fileURL = await fileRef!.getDownloadURL();
-                            Database.addEmploy(
-                              name: nameController.text,
-                              contract: fileURL!,
-                              email: emailController.text,
-                              employNaId: idController.text,
-                              phone: phoneController.text,
-                              salary: salaryController.text,
-                              section: section.toString(),
-                            ).then((v) {
-                              print('================$v');
-                              if (v == "done") {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                                AppLoading.show(context, AppMessage.addUser,
-                                    AppMessage.done);
-                              } else if (v == "email-already-in-use") {
-                                Navigator.pop(context);
-                                AppLoading.show(context, AppMessage.addUser,
-                                    AppMessage.emailAlreadyInUse);
-                              } else {
-                                Navigator.pop(context);
-                                AppLoading.show(context, AppMessage.addUser,
-                                    AppMessage.serverText);
-                              }
-                            });
-                          });
+
+                          ///if chang file
+                          file != null
+                              ? {
+                                  fileRef = FirebaseStorage.instance
+                                      .ref('project')
+                                      .child(fileController.text),
+                                  await fileRef
+                                      ?.putFile(file!)
+                                      .then((getValue) async {
+                                    fileURL = await fileRef!.getDownloadURL();
+                                    Database.updateEmploy(
+                                      name: nameController.text,
+                                      contract: fileURL!,
+                                      employNaId: idController.text,
+                                      phone: phoneController.text,
+                                      salary: salaryController.text,
+                                      section: section.toString(),
+                                      docId: widget.docId,
+                                    ).then((v) {
+                                      print('================$v');
+                                      if (v == "done") {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                        AppLoading.show(
+                                            context,
+                                            AppMessage.addUser,
+                                            AppMessage.done);
+                                      } else {
+                                        Navigator.pop(context);
+                                        AppLoading.show(
+                                            context,
+                                            AppMessage.addUser,
+                                            AppMessage.serverText);
+                                      }
+                                    });
+                                  }),
+                                }
+                              : {
+                                  Database.updateEmploy(
+                                    name: nameController.text,
+                                    contract: fileController.text,
+                                    employNaId: idController.text,
+                                    phone: phoneController.text,
+                                    salary: salaryController.text,
+                                    section: section.toString(),
+                                    docId: widget.docId,
+                                  ).then((v) {
+                                    print('================$v');
+                                    if (v == "done") {
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                      AppLoading.show(context,
+                                          AppMessage.addUser, AppMessage.done);
+                                    } else {
+                                      Navigator.pop(context);
+                                      AppLoading.show(
+                                          context,
+                                          AppMessage.addUser,
+                                          AppMessage.serverText);
+                                    }
+                                  }),
+                                };
                         }
                       },
                     )
