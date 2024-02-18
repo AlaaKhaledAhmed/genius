@@ -115,6 +115,12 @@ class DrawerItem {
 ///=====================================================================================
 class DrawerItems {
 //task
+  static DrawerItem manageUsers = DrawerItem(
+    itemIndex: AppConstants.manageUsersId,
+    title: AppMessage.manageUsers,
+    icon: AppIcons.manageUsers,
+  );
+//task
   static DrawerItem task = DrawerItem(
     itemIndex: AppConstants.taskId,
     title: AppMessage.task,
@@ -161,6 +167,7 @@ class DrawerItems {
 
   ///=====================================================================================
   static final List<DrawerItem> allListItem = [
+   manageUsers,
     task,
     audience,
     elevateEmploy,

@@ -27,5 +27,5 @@ class AppMessage {
   static String status = "الحالة";
   static String action = "الاجراء";
   static String addTask = "اضافة مهمة";
-
+  static String manageUsers = "ادارة الموظفين";
 }

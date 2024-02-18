@@ -4,6 +4,7 @@ import 'package:genius/Screens/Admin/AdministrativeRequests/AdministrativeReques
 import 'package:genius/Screens/Admin/Audience/AdminAudience.dart';
 import 'package:genius/Screens/Admin/Complaints/Complaints.dart';
 import 'package:genius/Screens/Admin/ElevateEmploy/ElevateEmploy.dart';
+import 'package:genius/Screens/Admin/ManageUsers/ManageUsers.dart';
 import 'package:genius/Screens/Admin/Tasks/AdminTask.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,7 @@ class NavBarAdmin extends StatefulWidget {
 
 class _NavBarAdminState extends State<NavBarAdmin> {
   List<Widget> pages = [
+    const ManageUsers(),
     const AdminTask(),
     const AdminAudience(),
     const ElevateEmploy(),
