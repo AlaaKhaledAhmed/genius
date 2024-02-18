@@ -109,7 +109,8 @@ class AppTextFields extends StatelessWidget {
           filled: true,
           errorStyle: TextStyle(
             color: AppColor.errorColor,
-            fontSize: AppSize.textFieldsSize,
+            fontSize: AppSize.smallSubText,
+            fontFamily: GoogleFonts.tajawal().fontFamily,
           ),
           fillColor: fillColor ?? AppColor.white,
           border: GeneralWidget.outlineInBorderStyle(),

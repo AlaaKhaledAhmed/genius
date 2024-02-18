@@ -59,11 +59,11 @@ class AppDropList extends StatelessWidget {
       onChanged: onChanged,
       iconDisabledColor: AppColor.highlightColor,
       iconEnabledColor: AppColor.highlightColor,
-
+      itemPadding: EdgeInsets.zero,
       items: listItem
           .map((item) => DropdownMenuItem(
                 value: item,
-                child: AppText(
+                child:AppText(
                   fontSize: AppSize.textFieldsSize,
                   text: item,
                   color: AppColor.textColor,
