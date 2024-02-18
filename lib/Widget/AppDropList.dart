@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'AppColor.dart';
 import 'AppIcons.dart';
 import 'AppSize.dart';
@@ -43,6 +44,7 @@ class AppDropList extends StatelessWidget {
           fontSize: AppSize.smallSubText,
           fontWeight: FontWeight.normal,
           color: AppColor.textColor,
+          fontFamily: GoogleFonts.tajawal().fontFamily,
         ),
         hintText: hintText,
         filled: true,

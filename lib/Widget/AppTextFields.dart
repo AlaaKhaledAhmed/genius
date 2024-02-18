@@ -97,6 +97,7 @@ class AppTextFields extends StatelessWidget {
             fontSize: AppSize.smallSubText,
             fontWeight: FontWeight.normal,
             color: AppColor.textColor,
+            fontFamily: GoogleFonts.tajawal().fontFamily,
           ),
           helperText: helperText,
           filled: true,
