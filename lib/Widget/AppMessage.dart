@@ -39,6 +39,7 @@ class AppMessage {
   static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';
   static String startWith5 = 'يجب ان يبدأ رقم الجوال بالرقم 5';
   static String noLessThan9 = "يجب ان يكون رقم الجوال 9 خانات";
+  static String noLessThan10 = "يجب ان يكون رقم الموظف 10 خانات";
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String done = "تمت العملية بنجاح";
 }

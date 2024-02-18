@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../Widget/AppConstants.dart';
 
@@ -28,7 +29,8 @@ class Database {
           'salary': salary,
           'contract':contract,
           'employNaId':employNaId,
-          'type':'employ'
+          'type':'employ',
+          'createdOn': FieldValue.serverTimestamp(),
         });
         return 'done';
       }

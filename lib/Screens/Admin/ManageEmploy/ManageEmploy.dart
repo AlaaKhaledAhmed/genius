@@ -61,6 +61,7 @@ class _ManageEmployState extends State<ManageEmploy> {
                 child: StreamBuilder(
                   stream: AppConstants.userCollection
                       .where('type', isEqualTo: AppConstants.employ)
+                      .orderBy('createdOn', descending: true)
                       .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasError) {

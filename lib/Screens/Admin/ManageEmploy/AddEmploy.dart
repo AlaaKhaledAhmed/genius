@@ -73,7 +73,7 @@ class _AddEmployState extends State<AddEmploy> {
                       onTap: () {
                         GeneralWidget.ensureVisibleOnTextArea(key: _key1);
                       },
-                      validator: (v) => AppValidator.validatorEmpty(v),
+                      validator: (v) => AppValidator.validatorId(v),
                       controller: idController,
                       labelText: AppMessage.employId,
                     ),
