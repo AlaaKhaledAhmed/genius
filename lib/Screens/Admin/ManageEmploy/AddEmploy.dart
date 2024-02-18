@@ -1,15 +1,19 @@
+import 'dart:io';
 import 'dart:math';
-
+import 'package:path/path.dart' as path;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genius/Widget/AppConstants.dart';
 import 'package:genius/Widget/AppDropList.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
+import '../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppButtons.dart';
 import '../../../Widget/AppColor.dart';
+import '../../../Widget/AppDialog.dart';
 import '../../../Widget/AppMessage.dart';
 import '../../../Widget/AppRoutes.dart';
 import '../../../Widget/AppSize.dart';
@@ -40,6 +44,9 @@ class _AddEmployState extends State<AddEmploy> {
   final _key6 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
   String? section;
+  Reference? fileRef;
+  String? fileURL;
+  File? file;
   @override
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
@@ -119,6 +126,12 @@ class _AddEmployState extends State<AddEmploy> {
                       key: _key4,
                       onTap: () {
                         GeneralWidget.ensureVisibleOnTextArea(key: _key4);
+                        setState(() {
+                          getFile(context).whenComplete(() {
+                            print('fillllllllllllle:${file!.path}');
+                            fileController.text = path.basename(file!.path);
+                          });
+                        });
                       },
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: fileController,
@@ -177,12 +190,41 @@ class _AddEmployState extends State<AddEmploy> {
                     ),
 //save buttons=============================================================================
                     AppButtons(
+                      text: AppMessage.add,
                       width: double.maxFinite,
                       onPressed: () async {
-                        if (formKey.currentState!.validate()) {}
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        if (formKey.currentState?.validate() == true) {
+                          AppLoading.show(context, '', 'lode');
+                          fileRef = FirebaseStorage.instance
+                              .ref('project')
+                              .child(fileController.text);
+                          await fileRef?.putFile(file!).then((getValue) async {
+                            fileURL = await fileRef!.getDownloadURL();
+                            Database.addEmploy(
+                              name: nameController.text,
+                              contract: fileURL!,
+                              email: emailController.text,
+                              employNaId: idController.text,
+                              phone: phoneController.text,
+                              salary: salaryController.text,
+                              section: section.toString(),
+                            ).then((v) {
+                              print('================$v');
+                              if (v == "done") {
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                                AppLoading.show(context, AppMessage.addUser,
+                                    AppMessage.done);
+                              } else {
+                                Navigator.pop(context);
+                                AppLoading.show(context, AppMessage.addUser,
+                                    AppMessage.serverText);
+                              }
+                            });
+                          });
+                        }
                       },
-                      text: AppMessage.add,
-                      backgroundColor: AppColor.mainColor,
                     )
                   ],
                 ),
@@ -190,5 +232,19 @@ class _AddEmployState extends State<AddEmploy> {
             ),
           ),
         ));
+  }
+
+  //show file picker=========================================
+  Future getFile(context) async {
+    FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowMultiple: false,
+        allowedExtensions: ['pdf']);
+    if (pickedFile == null) {
+      return null;
+    }
+    setState(() {
+      file = File(pickedFile.paths.first!);
+    });
   }
 }

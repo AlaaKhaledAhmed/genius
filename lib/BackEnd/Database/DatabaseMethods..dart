@@ -10,7 +10,7 @@ class Database {
     required String email,
     required String section,
     required String phone,
-    required double salary,
+    required String salary,
     required String contract,
     required String employNaId,
   }) async {
