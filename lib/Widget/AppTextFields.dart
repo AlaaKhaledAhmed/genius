@@ -93,24 +93,24 @@ class AppTextFields extends StatelessWidget {
       focusNode: focusNode,
       style: TextStyle(
         color: AppColor.textColor,
-        fontSize: labelSize ?? AppSize.textFieldsSize,
+        fontSize: labelSize ?? AppSize.smallSubText,
       ),
       decoration: InputDecoration(
           helperText: helperText,
           filled: true,
           errorStyle: TextStyle(
               color: AppColor.errorColor,
-              fontSize: AppSize.textFieldsSize,
+              fontSize: AppSize.smallSubText,
               fontFamily: GoogleFonts.tajawal().fontFamily),
           hintStyle: TextStyle(
             color: AppColor.textColor,
-            fontSize: AppSize.textFieldsSize,
+            fontSize: AppSize.smallSubText,
             height: hintStyleHeight,
           ),
           fillColor: fillColor ?? AppColor.inputBG,
           labelStyle: TextStyle(
               color: AppColor.textColor,
-              fontSize: AppSize.textFieldsSize),
+              fontSize: AppSize.smallSubText),
           border: OutlineInputBorder(
             borderRadius:
                 BorderRadius.circular(radius ?? AppSize.radius),

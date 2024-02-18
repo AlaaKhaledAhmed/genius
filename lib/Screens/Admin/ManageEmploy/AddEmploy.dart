@@ -55,7 +55,7 @@ class _AddEmployState extends State<AddEmploy> {
                 padding: EdgeInsets.only(bottom: bottom),
                 child: Column(
                   children: [
-                    //employee id=============================================================================
+//employee id=============================================================================
                     AppTextFields(
                       key: _key1,
                       onTap: () {
@@ -68,7 +68,7 @@ class _AddEmployState extends State<AddEmploy> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    //name=============================================================================
+//name=============================================================================
                     AppTextFields(
                       key: _key2,
                       onTap: () {
@@ -81,7 +81,7 @@ class _AddEmployState extends State<AddEmploy> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    //email=============================================================================
+//email=============================================================================
                     AppTextFields(
                       key: _key3,
                       onTap: () {
@@ -94,7 +94,7 @@ class _AddEmployState extends State<AddEmploy> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    //salary=============================================================================
+//salary=============================================================================
                     AppTextFields(
                       key: _key4,
                       onTap: () {
@@ -107,7 +107,7 @@ class _AddEmployState extends State<AddEmploy> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    //phone=============================================================================
+//phone=============================================================================
                     AppTextFields(
                         key: _key5,
                         onTap: () {
@@ -127,8 +127,8 @@ class _AddEmployState extends State<AddEmploy> {
                           width: 55.w,
                           decoration: BoxDecoration(
                               border: Border(
-                                  right: BorderSide(
-                                      color: AppColor.deepLightGrey))),
+                                  right:
+                                      BorderSide(color: AppColor.deepLightGrey))),
                           child: Center(
                             child: AppText(
                               text: AppMessage.phoneKey,
@@ -139,7 +139,7 @@ class _AddEmployState extends State<AddEmploy> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    //save buttons=============================================================================
+//save buttons=============================================================================
                     AppButtons(
                       width: double.maxFinite,
                       onPressed: () async {
