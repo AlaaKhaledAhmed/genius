@@ -15,7 +15,7 @@ class ProviderClass extends ChangeNotifier {
     currentPageIndex = index;
     notifyListeners();
     pageController?.animateToPage(currentPageIndex,
-        duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
+        duration: const Duration(milliseconds: 100), curve: Curves.ease);
     print('index is: $currentPageIndex');
   }
 
