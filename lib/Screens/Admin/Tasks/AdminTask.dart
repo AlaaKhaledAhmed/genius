@@ -13,7 +13,7 @@ class _AdminTaskState extends State<AdminTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(text: AppMessage.home,),
+      appBar: AppBarWidget(text: AppMessage.task,),
       body: Column(),
     );
   }

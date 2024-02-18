@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../Widget/AppBar.dart';
+import '../../../Widget/AppMessage.dart';
+
 class AdministrativeRequests extends StatefulWidget {
   const AdministrativeRequests({Key? key}) : super(key: key);
 
@@ -10,6 +13,10 @@ class AdministrativeRequests extends StatefulWidget {
 class _AdministrativeRequestsState extends State<AdministrativeRequests> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBarWidget(
+        text: AppMessage.administrativeRequests,
+      ),
+    );
   }
 }

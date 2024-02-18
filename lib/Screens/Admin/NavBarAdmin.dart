@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:genius/Screens/Admin/AdministrativeCircular/AdministrativeCircular.dart';
+import 'package:genius/Screens/Admin/AdministrativeRequests/AdministrativeRequests.dart';
+import 'package:genius/Screens/Admin/Audience/AdminAudience.dart';
+import 'package:genius/Screens/Admin/Complaints/Complaints.dart';
+import 'package:genius/Screens/Admin/ElevateEmploy/ElevateEmploy.dart';
 import 'package:genius/Screens/Admin/Tasks/AdminTask.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +19,12 @@ class NavBarAdmin extends StatefulWidget {
 
 class _NavBarAdminState extends State<NavBarAdmin> {
   List<Widget> pages = [
-    AdminTask(),
+    const AdminTask(),
+    const AdminAudience(),
+    const ElevateEmploy(),
+    const AdministrativeCircular(),
+    const AdministrativeRequests(),
+    const Complaints(),
   ];
 
   @override

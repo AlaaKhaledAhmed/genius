@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../Widget/AppBar.dart';
+import '../../../Widget/AppMessage.dart';
+
 class AdministrativeCircular extends StatefulWidget {
   const AdministrativeCircular({Key? key}) : super(key: key);
 
@@ -10,6 +13,10 @@ class AdministrativeCircular extends StatefulWidget {
 class _AdministrativeCircularState extends State<AdministrativeCircular> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBarWidget(
+        text: AppMessage.administrativeCircular,
+      ),
+    );
   }
 }
