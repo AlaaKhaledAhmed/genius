@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:genius/Widget/AppMessage.dart';
 
 class AppConstants {
   static String employ = 'employ';
@@ -19,4 +20,20 @@ class AppConstants {
   static const int logOutId = 7;
   static CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
+  static List<String> sectionListAr = [
+    'Personnel Department',
+    'Employee Relations',
+    'Organizational Development',
+    'Workforce Management',
+    'Employee Services',
+    'HR Administration',
+  ];
+  static List<String> sectionListEn = [
+    'إدارة شؤون الموظفين',
+    'علاقات الموظفين',
+    'التطوير التنظيمي',
+    'إدارة القوى العاملة',
+    'خدمات الموظفين',
+    'الموارد البشرية والإدارة',
+  ];
 }

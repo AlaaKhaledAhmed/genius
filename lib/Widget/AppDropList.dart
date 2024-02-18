@@ -56,9 +56,10 @@ class AppDropList extends StatelessWidget {
       dropdownDecoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.all(Radius.circular(AppSize.radius))),
-      onChanged: friezeText == true ? null : onChanged,
+      onChanged: onChanged,
       iconDisabledColor: AppColor.highlightColor,
       iconEnabledColor: AppColor.highlightColor,
+
       items: listItem
           .map((item) => DropdownMenuItem(
                 value: item,

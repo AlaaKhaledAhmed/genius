@@ -92,6 +92,12 @@ class AppTextFields extends StatelessWidget {
       onFieldSubmitted: onSubmit,
       textDirection: textDirection,
       focusNode: focusNode,
+      style: TextStyle(
+        fontSize: AppSize.smallSubText,
+        fontWeight: FontWeight.normal,
+        color: AppColor.textColor,
+        fontFamily: GoogleFonts.tajawal().fontFamily,
+      ),
       decoration: InputDecoration(
           labelStyle: TextStyle(
             fontSize: AppSize.smallSubText,

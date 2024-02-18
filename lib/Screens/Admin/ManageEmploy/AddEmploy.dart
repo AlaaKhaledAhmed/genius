@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:genius/Widget/AppConstants.dart';
 import 'package:genius/Widget/AppDropList.dart';
 
 import '../../../Widget/AppBar.dart';
@@ -84,10 +86,11 @@ class _AddEmployState extends State<AddEmploy> {
                     ),
 //section=============================================================================
                     AppDropList(
-                        listItem: ['hh','huh'],
+                        listItem: context.locale.toString() == 'ar'
+                            ? AppConstants.sectionListAr
+                            : AppConstants.sectionListEn,
                         validator: (v) => AppValidator.validatorEmpty(v),
                         hintText: AppMessage.section,
-
                         onChanged: (v) {
                           section = v;
                           setState(() {});
@@ -118,6 +121,10 @@ class _AddEmployState extends State<AddEmploy> {
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: salaryController,
                       labelText: AppMessage.salary,
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
                     ),
                     SizedBox(
                       height: 10.h,
@@ -132,7 +139,6 @@ class _AddEmployState extends State<AddEmploy> {
                         controller: phoneController,
                         keyboardType: TextInputType.phone,
                         labelText: AppMessage.phone,
-                        textDirection: TextDirection.ltr,
                         textAlignment: TextAlign.start,
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
