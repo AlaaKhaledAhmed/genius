@@ -33,5 +33,10 @@ class AppMessage {
   static String salary = "الراتب";
   static String contract = "العقد";
   static String addUser = "اضافة مستخدم";
-
+  static String add = "اضافة";
+  static String phoneKey = '966+';
+  static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';
+  static String startWith5 = 'يجب ان يبدأ رقم الجوال بالرقم 5';
+  static String noLessThan9 = "يجب ان يكون رقم الجوال 9 خانات";
+  static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
 }
