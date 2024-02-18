@@ -5,6 +5,7 @@ class AppMessage {
 
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';
+  static String RSA = 'ريال';
   static String no = 'لا';
   static String invalidEmail = 'البريد الالكتروني غير صالح';
   static String email = 'البريد الالكتروني';
@@ -40,5 +41,4 @@ class AppMessage {
   static String noLessThan9 = "يجب ان يكون رقم الجوال 9 خانات";
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String done = "تمت العملية بنجاح";
-
 }

@@ -12,6 +12,7 @@ class AppText extends StatelessWidget {
   final TextDecoration? textDecoration;
   final double? textHeight;
   final List<Shadow>? shadow;
+  final TextDirection? textDirection;
   const AppText(
       {Key? key,
       required this.text,
@@ -23,7 +24,7 @@ class AppText extends StatelessWidget {
       this.fontWeight,
       this.textDecoration,
       this.textHeight,
-      this.shadow})
+      this.shadow, this.textDirection})
       : super(key: key);
 
   @override
@@ -31,6 +32,7 @@ class AppText extends StatelessWidget {
     return Text(
       text,
       textAlign: align,
+      textDirection:textDirection ,
       style: TextStyle(
           color: color,
           overflow: overflow ?? TextOverflow.clip,

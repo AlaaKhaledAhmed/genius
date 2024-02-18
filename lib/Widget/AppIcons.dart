@@ -8,6 +8,8 @@ class AppIcons {
   static IconData back = FluentIcons.archive_arrow_back_16_regular;
   static IconData arrowUp = FluentIcons.arrow_up_12_regular;
   static IconData arrowDawn = FluentIcons.arrow_down_12_regular;
+  static IconData delete = FluentIcons.delete_32_regular;
+  static IconData update = FluentIcons.edit_32_regular;
 
   static IconData task = FluentIcons.task_list_add_24_regular;
   static IconData audience = FluentIcons.people_audience_32_regular;
@@ -18,6 +20,5 @@ class AppIcons {
   static IconData logOut = FluentIcons.arrow_exit_20_regular;
   static IconData add = FluentIcons.add_circle_32_regular;
   static IconData manageUsers = FluentIcons.person_accounts_24_regular;
-
-
+  static IconData file = FluentIcons.document_32_regular;
 }

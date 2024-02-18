@@ -46,7 +46,11 @@ class AppDropList extends StatelessWidget {
           color: AppColor.textColor,
           fontFamily: GoogleFonts.tajawal().fontFamily,
         ),
-
+        errorStyle: TextStyle(
+          color: AppColor.errorColor,
+          fontSize: AppSize.smallSubText,
+          fontFamily: GoogleFonts.tajawal().fontFamily,
+        ),
         labelText: hintText,
         filled: true,
         fillColor: fillColor ?? AppColor.white,
@@ -61,12 +65,11 @@ class AppDropList extends StatelessWidget {
       iconDisabledColor: AppColor.highlightColor,
       iconEnabledColor: AppColor.highlightColor,
       itemPadding: EdgeInsets.zero,
-
       items: listItem
           .map((item) => DropdownMenuItem(
-        alignment: AlignmentDirectional.center,
+                alignment: AlignmentDirectional.center,
                 value: item,
-                child:AppText(
+                child: AppText(
                   fontSize: AppSize.textFieldsSize,
                   text: item,
                   color: AppColor.textColor,
