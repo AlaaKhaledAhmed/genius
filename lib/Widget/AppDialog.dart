@@ -89,6 +89,7 @@ class AppLoading {
                                   // yes bottoms-------------------------------------------------------------------
                                   Expanded(
                                       child: AppButtons(
+                                        height: 30.h,
                                     onPressed: yesFunction,
                                     text: AppMessage.yes,
                                     backgroundColor: AppColor.subColor,
@@ -98,6 +99,7 @@ class AppLoading {
                                   //no button-------------------------------------------------------------------
                                   Expanded(
                                     child: AppButtons(
+                                      height: 30.h,
                                       onPressed: noFunction,
                                       text: AppMessage.no,
                                       backgroundColor: AppColor.subColor,

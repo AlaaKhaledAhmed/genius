@@ -20,5 +20,5 @@ class AppIcons {
   static IconData logOut = FluentIcons.arrow_exit_20_regular;
   static IconData add = FluentIcons.add_circle_32_regular;
   static IconData manageUsers = FluentIcons.person_accounts_24_regular;
-  static IconData file = FluentIcons.document_32_regular;
+  static IconData file = FluentIcons.document_32_regular;static IconData view = FluentIcons.eye_12_regular;
 }

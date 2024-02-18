@@ -17,6 +17,7 @@ import '../../../Widget/AppSize.dart';
 import '../../../Widget/AppText.dart';
 import '../../../Widget/GeneralWidget.dart';
 import 'AddEmploy.dart';
+import 'UpdateEmployee.dart';
 
 class ManageEmploy extends StatefulWidget {
   const ManageEmploy({Key? key}) : super(key: key);
@@ -183,7 +184,7 @@ class _ManageEmployState extends State<ManageEmploy> {
                                                         context,
                                                         AppMessage
                                                             .deleteEmployee,
-                                                        'AppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirm',
+                                                        AppMessage.confirm,
                                                         showButtom: true,
                                                         noFunction: () {
                                                       Navigator.pop(context);
@@ -206,7 +207,13 @@ class _ManageEmployState extends State<ManageEmploy> {
                                               ),
 //update============================================================================================================================================================
                                               IconButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    AppRoutes.pushTo(
+                                                        context,
+                                                        UpdateEmployee(
+                                                            data: data[index]
+                                                                .data()));
+                                                  },
                                                   icon: Icon(
                                                     AppIcons.update,
                                                     size:
