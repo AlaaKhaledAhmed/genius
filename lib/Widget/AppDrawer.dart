@@ -31,19 +31,19 @@ class _AppDrawerState extends State<AppDrawer> {
     return Drawer(
       child: Column(
         children: [
-          //text===================================================================================
+//text===================================================================================
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(20.spMin),
             alignment: AlignmentDirectional.center,
-            height: 100.w,
+            height: 120.w,
             decoration: GeneralWidget.decoration(
                 shadow: false,
                 color: AppColor.white,
                 radius: 0,
                 image: const AssetImage(Assets.imageLogoRemoveBg)),
           ),
-          //items===================================================================================
+//items===================================================================================
           Flexible(
             child: Scrollbar(
               thickness: 4,
