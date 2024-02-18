@@ -216,6 +216,10 @@ class _AddEmployState extends State<AddEmploy> {
                                 Navigator.pop(context);
                                 AppLoading.show(context, AppMessage.addUser,
                                     AppMessage.done);
+                              } else if (v == "email-already-in-use") {
+                                Navigator.pop(context);
+                                AppLoading.show(context, AppMessage.addUser,
+                                    AppMessage.emailAlreadyInUse);
                               } else {
                                 Navigator.pop(context);
                                 AppLoading.show(context, AppMessage.addUser,

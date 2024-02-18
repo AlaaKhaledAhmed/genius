@@ -9,6 +9,7 @@ import 'package:genius/Widget/AppRoutes.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../Widget/AppColor.dart';
 import '../../../Widget/AppConstants.dart';
 import '../../../Widget/AppIcons.dart';
@@ -165,8 +166,7 @@ class _ManageEmployState extends State<ManageEmploy> {
                                                 AppIcons.file,
                                                 color: Colors.black
                                                     .withOpacity(0.16),
-                                                size:
-                                                    AppSize.appBarIconsSize + 5,
+                                                size: AppSize.iconsSize + 10,
                                               ))),
 //action======================================================================================================================================================
                                       TableViewCell(
@@ -178,7 +178,23 @@ class _ManageEmployState extends State<ManageEmploy> {
                                             children: [
 //delete======================================================================================================================================================
                                               IconButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    AppLoading.show(
+                                                        context,
+                                                        AppMessage
+                                                            .deleteEmployee,
+                                                        'AppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirmAppMessage.confirm',
+                                                        showButtom: true,
+                                                        noFunction: () {
+                                                      Navigator.pop(context);
+                                                    }, yesFunction: () async {
+                                                      Navigator.pop(context);
+                                                      await Database.delete(
+                                                          collection: 'users',
+                                                          docId: snapshot.data
+                                                              .docs[index].id);
+                                                    });
+                                                  },
                                                   icon: Icon(
                                                     AppIcons.delete,
                                                     size:

@@ -4,6 +4,7 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import '../generated/assets.dart';
 import 'AppColor.dart';
 import 'AppIcons.dart';
@@ -229,17 +230,16 @@ class GeneralWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppSvg(
-            path: Assets.lottieEmpty,
-            height: 200.h,
-          ),
-          SizedBox(
-            height: 50.h,
-          ),
-          Transform.translate(
-              offset: Offset(0, -40.h),
-              child:
-                  AppText(text: AppMessage.noData, fontSize: AppSize.labelSize))
+          Flexible(
+              child: Lottie.asset(
+            Assets.lottieEmpty,
+          )),
+          Flexible(
+            child: Transform.translate(
+                offset: Offset(0, -40.h),
+                child: AppText(
+                    text: AppMessage.noData, fontSize: AppSize.labelSize)),
+          )
         ],
       ),
     );

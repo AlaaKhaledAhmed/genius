@@ -42,4 +42,7 @@ class AppMessage {
   static String noLessThan10 = "يجب ان يكون رقم الموظف 10 خانات";
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String done = "تمت العملية بنجاح";
+  static String emailAlreadyInUse = "البريد الالكتروني مستخدم مسبقا";
+  static String deleteEmployee ="حذف";
+  static String confirm ="هل انت متاكد من اكمال العملية؟";
 }

@@ -27,9 +27,9 @@ class Database {
           'section': section,
           'phone': phone,
           'salary': salary,
-          'contract':contract,
-          'employNaId':employNaId,
-          'type':'employ',
+          'contract': contract,
+          'employNaId': employNaId,
+          'type': 'employ',
           'createdOn': FieldValue.serverTimestamp(),
         });
         return 'done';
@@ -58,15 +58,14 @@ class Database {
     required String docId,
   }) async {
     try {
-      await AppConstants.userCollection.doc(docId).update(
-          {
-            'name': name,
-            'section': section,
-            'phone': phone,
-            'salary': salary,
-            'contract':contract,
-            'employNaId':employNaId,
-          });
+      await AppConstants.userCollection.doc(docId).update({
+        'name': name,
+        'section': section,
+        'phone': phone,
+        'salary': salary,
+        'contract': contract,
+        'employNaId': employNaId,
+      });
       return 'done';
     } catch (e) {
       return 'error';
@@ -97,4 +96,36 @@ class Database {
     return 'error';
   }
 
+  //changPassword===================================================================================
+  static Future<String> changPassword(
+      {currentUser,
+      required String email,
+      required String oldPass,
+      required String newPassword}) async {
+    try {
+      var cred = EmailAuthProvider.credential(email: email, password: oldPass);
+      await currentUser!.reauthenticateWithCredential(cred).then((value) {
+        currentUser!.updatePassword(newPassword);
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  //=======================Delete  method======================================
+  static Future<String> delete({
+    required String docId,
+    required String collection,
+  }) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(collection)
+          .doc(docId)
+          .delete();
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }

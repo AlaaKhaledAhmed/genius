@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class _AppDrawerState extends State<AppDrawer> {
     return Drawer(
       child: Column(
         children: [
-    //text===================================================================================
+          //text===================================================================================
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(20.spMin),
@@ -42,7 +43,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 radius: 0,
                 image: const AssetImage(Assets.imageLogoRemoveBg)),
           ),
-    //items===================================================================================
+          //items===================================================================================
           Flexible(
             child: Scrollbar(
               thickness: 4,
@@ -69,14 +70,12 @@ class _AppDrawerState extends State<AppDrawer> {
                                 color: AppColor.white,
                                 size: AppSize.iconsSize,
                               ),
-                              onTap: () {
+                              onTap: () async {
                                 ///close drawer
                                 Navigator.pop(context);
                                 item.itemIndex == AppConstants.logOutId
                                     ? {
-                                        context
-                                            .read<ProviderClass>()
-                                            .emptyProviderData(),
+                                        await FirebaseAuth.instance.signOut(),
                                         AppRoutes.pushAndRemoveAllPageTo(
                                             context, const Login(),
                                             removeProviderData: true)
@@ -167,7 +166,7 @@ class DrawerItems {
 
   ///=====================================================================================
   static final List<DrawerItem> allListItem = [
-   manageUsers,
+    manageUsers,
     task,
     audience,
     elevateEmploy,
