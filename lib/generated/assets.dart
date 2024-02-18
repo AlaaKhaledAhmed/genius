@@ -3,6 +3,9 @@ class Assets {
   Assets._();
 
   static const String imageBack = 'assets/image/back.jpg';
+  static const String imageLogo = 'assets/image/logo.jpeg';
+  static const String imageLogoRemoveBg = 'assets/image/logo_removebg.png';
+  static const String lottieEmpty = 'assets/lottie/empty.json';
   static const String lottieLode = 'assets/lottie/lode.json';
   static const String translationsAr = 'assets/translations/ar.json';
   static const String translationsEn = 'assets/translations/en.json';

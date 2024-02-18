@@ -4,12 +4,11 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import '../generated/assets.dart';
 import 'AppColor.dart';
 import 'AppIcons.dart';
 import 'AppMessage.dart';
-import 'AppPath.dart';
+
 import 'AppSize.dart';
 import 'AppSvg.dart';
 import 'AppText.dart';
@@ -157,12 +156,12 @@ class GeneralWidget {
 
   //==============================================================
   static imageError() {
-    return Image.asset(AppPath.logo);
+    return Image.asset(Assets.imageLogoRemoveBg);
   }
 
 //==============================================================
   static AssetImage placeholderImage({image}) {
-    return AssetImage(image ?? AppPath.logo);
+    return AssetImage(image ?? Assets.imageLogoRemoveBg);
   }
 
 //auto Scroll list============================================================
@@ -221,7 +220,7 @@ class GeneralWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AppSvg(
-            path: AppPath.empty,
+            path: Assets.lottieEmpty,
             height: 200.h,
           ),
           SizedBox(
