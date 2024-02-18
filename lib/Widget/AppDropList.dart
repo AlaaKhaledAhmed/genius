@@ -40,13 +40,14 @@ class AppDropList extends StatelessWidget {
       value: dropValue,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(AppSize.contentPadding),
-        hintStyle: TextStyle(
+        labelStyle: TextStyle(
           fontSize: AppSize.smallSubText,
           fontWeight: FontWeight.normal,
           color: AppColor.textColor,
           fontFamily: GoogleFonts.tajawal().fontFamily,
         ),
-        hintText: hintText,
+
+        labelText: hintText,
         filled: true,
         fillColor: fillColor ?? AppColor.white,
         border: GeneralWidget.outlineInBorderStyle(),
