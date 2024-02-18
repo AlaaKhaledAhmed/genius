@@ -28,4 +28,10 @@ class AppMessage {
   static String action = "الاجراء";
   static String addTask = "اضافة مهمة";
   static String manageUsers = "ادارة الموظفين";
+  static String section = "القسم";
+  static String phone = "رقم الجوال";
+  static String salary = "الراتب";
+  static String contract = "العقد";
+  static String addUser = "اضافة مستخدم";
+
 }

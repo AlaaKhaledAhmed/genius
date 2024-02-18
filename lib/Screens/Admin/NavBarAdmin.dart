@@ -4,12 +4,12 @@ import 'package:genius/Screens/Admin/AdministrativeRequests/AdministrativeReques
 import 'package:genius/Screens/Admin/Audience/AdminAudience.dart';
 import 'package:genius/Screens/Admin/Complaints/Complaints.dart';
 import 'package:genius/Screens/Admin/ElevateEmploy/ElevateEmploy.dart';
-import 'package:genius/Screens/Admin/ManageUsers/ManageUsers.dart';
-import 'package:genius/Screens/Admin/Tasks/AdminTask.dart';
+ import 'package:genius/Screens/Admin/Tasks/AdminTask.dart';
 import 'package:provider/provider.dart';
 
 import '../../BackEnd/provider_class.dart';
 import '../../Widget/AppDrawer.dart';
+import 'ManageEmploy/ManageEmploy.dart';
 
 class NavBarAdmin extends StatefulWidget {
   const NavBarAdmin({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class NavBarAdmin extends StatefulWidget {
 
 class _NavBarAdminState extends State<NavBarAdmin> {
   List<Widget> pages = [
-    const ManageUsers(),
+    const ManageEmploy(),
     const AdminTask(),
     const AdminAudience(),
     const ElevateEmploy(),
