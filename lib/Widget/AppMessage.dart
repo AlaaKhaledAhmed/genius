@@ -11,4 +11,5 @@ class AppMessage {
   static String passwordTx = 'كلمة المرور';
   static String loginTx = "تسجيل الدخول";
   static String userNotFound="المستخدم غير وجود";
+  static String home="الرئيسية";
 }
