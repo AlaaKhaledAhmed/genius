@@ -31,11 +31,13 @@ class _AddEmployState extends State<AddEmploy> {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController salaryController = TextEditingController();
+  TextEditingController fileController = TextEditingController();
   final _key1 = GlobalKey<State<StatefulWidget>>();
   final _key2 = GlobalKey<State<StatefulWidget>>();
   final _key3 = GlobalKey<State<StatefulWidget>>();
   final _key4 = GlobalKey<State<StatefulWidget>>();
   final _key5 = GlobalKey<State<StatefulWidget>>();
+  final _key6 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
   String? section;
   @override
@@ -75,7 +77,7 @@ class _AddEmployState extends State<AddEmploy> {
                     AppTextFields(
                       key: _key2,
                       onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key1);
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key2);
                       },
                       validator: (v) => AppValidator.validatorName(v),
                       controller: nameController,
@@ -103,7 +105,7 @@ class _AddEmployState extends State<AddEmploy> {
                     AppTextFields(
                       key: _key3,
                       onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key1);
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key3);
                       },
                       validator: (v) => AppValidator.validatorEmail(v),
                       controller: emailController,
@@ -112,11 +114,24 @@ class _AddEmployState extends State<AddEmploy> {
                     SizedBox(
                       height: 10.h,
                     ),
-//salary=============================================================================
+//file=============================================================================
                     AppTextFields(
                       key: _key4,
                       onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key1);
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key4);
+                      },
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      controller: fileController,
+                      labelText: AppMessage.contract,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+//salary=============================================================================
+                    AppTextFields(
+                      key: _key5,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key5);
                       },
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: salaryController,
@@ -131,9 +146,9 @@ class _AddEmployState extends State<AddEmploy> {
                     ),
 //phone=============================================================================
                     AppTextFields(
-                        key: _key5,
+                        key: _key6,
                         onTap: () {
-                          GeneralWidget.ensureVisibleOnTextArea(key: _key5);
+                          GeneralWidget.ensureVisibleOnTextArea(key: _key6);
                         },
                         validator: (v) => AppValidator.validatorPhone(v),
                         controller: phoneController,

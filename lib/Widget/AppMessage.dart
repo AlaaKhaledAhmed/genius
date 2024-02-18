@@ -31,7 +31,7 @@ class AppMessage {
   static String section = "القسم";
   static String phone = "رقم الجوال";
   static String salary = "الراتب";
-  static String contract = "العقد";
+  static String contract = "ملف العقد";
   static String addUser = "اضافة مستخدم";
   static String add = "اضافة";
   static String phoneKey = '966+';
