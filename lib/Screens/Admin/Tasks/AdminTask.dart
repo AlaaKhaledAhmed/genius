@@ -5,6 +5,7 @@ import 'package:genius/Widget/AppBar.dart';
 import 'package:genius/Widget/AppButtons.dart';
 import 'package:genius/Widget/AppDialog.dart';
 import 'package:genius/Widget/AppMessage.dart';
+import 'package:genius/Widget/AppRoutes.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,6 +15,7 @@ import '../../../Widget/AppIcons.dart';
 import '../../../Widget/AppSize.dart';
 import '../../../Widget/AppText.dart';
 import '../../../Widget/GeneralWidget.dart';
+import 'AddTask.dart';
 
 class AdminTask extends StatefulWidget {
   const AdminTask({super.key});
@@ -46,7 +48,9 @@ class _AdminTaskState extends State<AdminTask> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
               child: AppButtons(
-                onPressed: () {},
+                onPressed: () {
+                  AppRoutes.pushTo(context, const AddTask());
+                },
                 text: AppMessage.addTask,
                 icon: AppIcons.add,
               ),
@@ -73,7 +77,7 @@ class _AdminTaskState extends State<AdminTask> {
                                 rowDividerHeight: 0.5.spMin,
                                 headerHeight: 40.h,
                                 headerBackgroundColor: AppColor.deepLightGrey,
-                                //headers======================================================================================================================================================
+//headers======================================================================================================================================================
                                 headers: header
                                     .map((e) => TableViewHeader(
                                           label: e,
@@ -113,7 +117,7 @@ class _AdminTaskState extends State<AdminTask> {
                                         //   overflow: TextOverflow.ellipsis,
                                         // )
                                       ),
-                                      //date======================================================================================================================================================
+//date======================================================================================================================================================
                                       TableViewCell(
                                         alignment: Alignment.center,
                                         // child: AppText(
@@ -123,7 +127,7 @@ class _AdminTaskState extends State<AdminTask> {
                                         //   overflow: TextOverflow.ellipsis,
                                         // )
                                       ),
-                                      //status======================================================================================================================================================
+//status======================================================================================================================================================
                                       TableViewCell(
                                         alignment: Alignment.center,
                                         // child: AppText(
@@ -132,7 +136,7 @@ class _AdminTaskState extends State<AdminTask> {
                                         //   overflow: TextOverflow.ellipsis,
                                         // )
                                       ),
-                                      //file======================================================================================================================================================
+//file======================================================================================================================================================
                                       TableViewCell(
                                         alignment: Alignment.center,
                                         // child: IconButton(
@@ -148,7 +152,7 @@ class _AdminTaskState extends State<AdminTask> {
                                         //       size: AppSize.appBarIconsSize + 5,
                                         //     ))
                                       ),
-                                      //action======================================================================================================================================================
+//action======================================================================================================================================================
                                       TableViewCell(
                                         padding: EdgeInsets.only(left: 10.w),
                                         alignment: Alignment.center,

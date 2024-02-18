@@ -33,7 +33,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
         ///stop leading ico generate
         automaticallyImplyLeading: false,
-        centerTitle: true,
+        centerTitle: isBasics == true ? false : true,
         surfaceTintColor: AppColor.white,
         backgroundColor: isBasics == true
             ? AppColor.noColor
@@ -41,25 +41,28 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         title: AppText(
           text: text,
           fontSize: AppSize.labelSize,
-          color: AppColor.white,
+          color: isBasics == true ? AppColor.textColor : AppColor.white,
+          fontWeight: FontWeight.bold,
         ),
         //-----------------------------------------------------------------------------------
-        leading: leading ??
-            IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: AppColor.white,
-              ),
-              onPressed: context.read<ProviderClass>().controlMenu,
-            ),
+        leading: isBasics == true
+            ? null
+            : (leading ??
+                IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: AppColor.white,
+                  ),
+                  onPressed: context.read<ProviderClass>().controlMenu,
+                )),
         //-----------------------------------------------------------------------------------
         actions: isBasics == true
             ? [
                 IconButton(
                   icon: Icon(
-                    AppIcons.back,
-                    color: AppColor.mainColor,
-                    size: AppSize.appBarIconsSize + 5,
+                    Icons.arrow_forward_ios_rounded,
+                    color: AppColor.textColor,
+                    size: AppSize.iconsSize+6,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
