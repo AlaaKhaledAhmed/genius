@@ -8,13 +8,14 @@ class AppIcons {
   static IconData back = FluentIcons.arrow_step_back_16_regular;
   static IconData arrowUp = FluentIcons.arrow_up_12_regular;
   static IconData arrowDawn = FluentIcons.arrow_down_12_regular;
-  static IconData task = FluentIcons.task_list_add_20_regular;
-  static IconData audience = FluentIcons.people_audience_20_regular;
-  static IconData elevateEmploy = FluentIcons.elevator_20_regular;
-  static IconData administrativeCircular = FluentIcons.brain_circuit_20_regular;
-  static IconData administrativeRequests = FluentIcons.branch_request_16_regular;
-  static IconData complaints = FluentIcons.arrow_down_12_regular;
+
+  static IconData task = FluentIcons.task_list_add_24_regular;
+  static IconData audience = FluentIcons.people_audience_32_regular;
+  static IconData elevateEmploy = FluentIcons.organization_32_regular;
+  static IconData administrativeCircular = FluentIcons.feed_32_regular;
+  static IconData administrativeRequests = FluentIcons.elevator_32_regular;
+  static IconData complaints = FluentIcons.warning_32_regular;
   static IconData logOut = FluentIcons.arrow_exit_20_regular;
-  static IconData menu = FluentIcons.align_bottom_16_regular;
+
 
 }

@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -40,12 +41,6 @@ class _AppDrawerState extends State<AppDrawer> {
               alignment: AlignmentDirectional.center,
               decoration: GeneralWidget.decoration(
                   shadow: false, color: AppColor.mainColor, radius: 0),
-              // child: AppText(
-              //   text: AppMessage.adminPanel,
-              //   fontSize: AppSize.labelSize,
-              //   color: AppColor.white,
-              //   fontWeight: FontWeight.bold,
-              // ),
             ),
 //items===================================================================================
             Flexible(
