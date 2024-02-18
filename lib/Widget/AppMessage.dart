@@ -33,7 +33,7 @@ class AppMessage {
   static String phone = "رقم الجوال";
   static String salary = "الراتب";
   static String contract = "ملف العقد";
-  static String addUser = "اضافة مستخدم";
+  static String addUser = "اضافة موظف";
   static String add = "اضافة";
   static String phoneKey = '966+';
   static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';

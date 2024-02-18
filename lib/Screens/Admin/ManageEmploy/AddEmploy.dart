@@ -128,8 +128,8 @@ class _AddEmployState extends State<AddEmploy> {
                         GeneralWidget.ensureVisibleOnTextArea(key: _key4);
                         setState(() {
                           getFile(context).whenComplete(() {
-                            print('fillllllllllllle:${file!.path}');
-                            fileController.text = path.basename(file!.path);
+                            fileController.text =
+                                (file == null ? fileController.text : path.basename(file!.path));
                           });
                         });
                       },
@@ -245,7 +245,7 @@ class _AddEmployState extends State<AddEmploy> {
         allowMultiple: false,
         allowedExtensions: ['pdf']);
     if (pickedFile == null) {
-      return null;
+      return;
     }
     setState(() {
       file = File(pickedFile.paths.first!);
