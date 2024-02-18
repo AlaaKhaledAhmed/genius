@@ -39,16 +39,17 @@ class GeneralWidget {
 // AppText(text: LocaleKeys.myTeam.tr(), fontSize: WidgetSize.titleTextSize);
     }));
   }
+
 //borderStyle===============================================================================================
   static outlineInBorderStyle({bool? isFocus}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppSize.radius),
-      borderSide: BorderSide(
-        color: isFocus == true ? AppColor.subColor : AppColor.deepLightGrey,
-        width: 0.5,
-      ),
+      borderSide: BorderSide(color: AppColor.darkGrey, width: 0.5
+          //AppSize.textFieldsBorderWidth,
+          ),
     );
   }
+
   //======================random number=======================================
   static String randomNumber(int length) {
     const characters = '0123456789';
@@ -354,7 +355,6 @@ class GeneralWidget {
       fit: BoxFit.contain,
     ).image;
   }
-
 
   /// ==============================================================================================================================================================
 }

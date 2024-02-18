@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:genius/Widget/AppDropList.dart';
 
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppButtons.dart';
@@ -33,8 +34,8 @@ class _AddEmployState extends State<AddEmploy> {
   final _key3 = GlobalKey<State<StatefulWidget>>();
   final _key4 = GlobalKey<State<StatefulWidget>>();
   final _key5 = GlobalKey<State<StatefulWidget>>();
-
   final formKey = GlobalKey<FormState>();
+  String? section;
   @override
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
@@ -78,6 +79,20 @@ class _AddEmployState extends State<AddEmploy> {
                       controller: nameController,
                       labelText: AppMessage.employName,
                     ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+//section=============================================================================
+                    AppDropList(
+                        listItem: ['hh','huh'],
+                        validator: (v) => AppValidator.validatorEmpty(v),
+                        hintText: AppMessage.section,
+
+                        onChanged: (v) {
+                          section = v;
+                          setState(() {});
+                        },
+                        dropValue: section),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -127,8 +142,8 @@ class _AddEmployState extends State<AddEmploy> {
                           width: 55.w,
                           decoration: BoxDecoration(
                               border: Border(
-                                  right:
-                                      BorderSide(color: AppColor.deepLightGrey))),
+                                  right: BorderSide(
+                                      color: AppColor.deepLightGrey))),
                           child: Center(
                             child: AppText(
                               text: AppMessage.phoneKey,

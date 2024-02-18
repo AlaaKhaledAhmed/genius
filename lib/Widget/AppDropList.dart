@@ -37,45 +37,26 @@ class AppDropList extends StatelessWidget {
       scrollbarAlwaysShow: true,
       alignment: Alignment.centerRight,
       value: dropValue,
-      icon: Icon(
-        AppIcons.arrowDawn,
-        size: AppSize.iconsSize,
-        color: AppColor.textColor,
-      ),
       decoration: InputDecoration(
-          filled: true,
-          fillColor: fillColor ?? AppColor.white,
-          border: GeneralWidget.outlineInBorderStyle(),
-          focusedBorder: GeneralWidget.outlineInBorderStyle(isFocus: true),
-          enabledBorder: GeneralWidget.outlineInBorderStyle(),
-          contentPadding: EdgeInsets.only(bottom: 13.h, left: 0.w)),
+        contentPadding: EdgeInsets.all(AppSize.contentPadding),
+        hintStyle: TextStyle(
+          fontSize: AppSize.smallSubText,
+          fontWeight: FontWeight.normal,
+          color: AppColor.textColor,
+        ),
+        hintText: hintText,
+        filled: true,
+        fillColor: fillColor ?? AppColor.white,
+        border: GeneralWidget.outlineInBorderStyle(),
+        focusedBorder: GeneralWidget.outlineInBorderStyle(isFocus: true),
+        enabledBorder: GeneralWidget.outlineInBorderStyle(),
+      ),
       dropdownDecoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.all(Radius.circular(AppSize.radius))),
       onChanged: friezeText == true ? null : onChanged,
       iconDisabledColor: AppColor.highlightColor,
       iconEnabledColor: AppColor.highlightColor,
-      buttonWidth: 10,
-      buttonPadding: EdgeInsets.only(left: 14.w, right: 14.w),
-      hint: prefixIcon != null
-          ? Row(
-              children: [
-                prefixIcon!,
-                SizedBox(
-                  width: 10.w,
-                ),
-                AppText(
-                  fontSize: AppSize.textFieldsSize,
-                  text: hintText ?? '',
-                  color: AppColor.textColor,
-                )
-              ],
-            )
-          : AppText(
-              fontSize: AppSize.textFieldsSize,
-              text: hintText ?? '',
-              color: AppColor.textColor,
-            ),
       items: listItem
           .map((item) => DropdownMenuItem(
                 value: item,

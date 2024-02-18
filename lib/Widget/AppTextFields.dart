@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'AppColor.dart';
 import 'AppSize.dart';
+import 'GeneralWidget.dart';
 
 class AppTextFields extends StatelessWidget {
   final bool? obscureText;
@@ -91,61 +92,27 @@ class AppTextFields extends StatelessWidget {
       onFieldSubmitted: onSubmit,
       textDirection: textDirection,
       focusNode: focusNode,
-      style: TextStyle(
-        color: AppColor.textColor,
-        fontSize: labelSize ?? AppSize.smallSubText,
-      ),
       decoration: InputDecoration(
+          labelStyle: TextStyle(
+            fontSize: AppSize.smallSubText,
+            fontWeight: FontWeight.normal,
+            color: AppColor.textColor,
+          ),
           helperText: helperText,
           filled: true,
           errorStyle: TextStyle(
-              color: AppColor.errorColor,
-              fontSize: AppSize.smallSubText,
-              fontFamily: GoogleFonts.tajawal().fontFamily),
-          hintStyle: TextStyle(
-            color: AppColor.textColor,
-            fontSize: AppSize.smallSubText,
-            height: hintStyleHeight,
+            color: AppColor.errorColor,
+            fontSize: AppSize.textFieldsSize,
           ),
-          fillColor: fillColor ?? AppColor.inputBG,
-          labelStyle: TextStyle(
-              color: AppColor.textColor,
-              fontSize: AppSize.smallSubText),
-          border: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(radius ?? AppSize.radius),
-            borderSide: BorderSide(
-                color: borderColor ?? AppColor.darkGrey,
-                width: borderThickness ?? 0.5
-                //AppSize.textFieldsBorderWidth,
-                ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(radius ?? AppSize.radius),
-            borderSide: BorderSide(
-                color: borderColor ?? AppColor.darkGrey,
-                width: borderThickness ?? 0.5),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(radius ?? AppSize.radius),
-            borderSide: BorderSide(
-                color: borderColor ?? AppColor.darkGrey,
-                width: borderThickness ?? 0.5),
-          ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(radius ?? AppSize.radius),
-              borderSide: BorderSide(
-                  color: focusedColor ?? AppColor.subColor,
-                  width: borderThickness ?? 0.5)),
+          fillColor: fillColor ?? AppColor.white,
+          border: GeneralWidget.outlineInBorderStyle(),
+          enabledBorder: GeneralWidget.outlineInBorderStyle(),
+          disabledBorder: GeneralWidget.outlineInBorderStyle(),
+          focusedBorder: GeneralWidget.outlineInBorderStyle(),
           errorBorder: OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(radius ?? AppSize.radius),
+              borderRadius: BorderRadius.circular(radius ?? AppSize.radius),
               borderSide: BorderSide(color: AppColor.errorColor, width: 0.5)),
-          hintText: labelText,
-          //errorStyle: TextStyle(color: AppColor.errorColor, fontSize: WidgetSize.errorSize),
+          labelText: labelText,
           contentPadding:
               contentPadding ?? EdgeInsets.all(AppSize.contentPadding),
           suffixIcon: suffixIcon,
