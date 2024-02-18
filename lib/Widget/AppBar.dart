@@ -1,5 +1,10 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
+import '../BackEnd/provider_class.dart';
 import 'AppColor.dart';
 import 'AppIcons.dart';
 import 'AppSize.dart';
@@ -39,7 +44,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           color: AppColor.white,
         ),
         //-----------------------------------------------------------------------------------
-        leading: leading,
+        leading: leading ??
+            IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: AppColor.white,
+              ),
+              onPressed: context.read<ProviderClass>().controlMenu,
+            ),
         //-----------------------------------------------------------------------------------
         actions: isBasics == true
             ? [

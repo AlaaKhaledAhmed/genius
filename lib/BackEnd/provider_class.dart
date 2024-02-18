@@ -25,4 +25,7 @@ class ProviderClass extends ChangeNotifier {
       scaffoldKey.currentState!.openDrawer();
     }
   }
+  emptyProviderData() {
+
+  }
 }

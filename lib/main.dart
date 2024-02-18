@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:genius/Screens/Admin/NavBarAdmin.dart';
 import 'package:genius/Screens/Authentication/LogIn.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'BackEnd/provider_class.dart';
 import 'Screens/Admin/AdminHome.dart';
 import 'Widget/AppColor.dart';
 import 'firebase_options.dart';
@@ -37,31 +40,38 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (_, __) => MaterialApp(
-              initialRoute: initialRoute,
-              routes: <String, WidgetBuilder>{
-                Login.route: (_) => const AdminHome(),
-              },
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: const Locale('ar'),
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                  scaffoldBackgroundColor: AppColor.inputBG,
-                  // useMaterial3: true,
-                  fontFamily: GoogleFonts.readexPro().fontFamily,
-                  textSelectionTheme: TextSelectionThemeData(
-                      cursorColor: AppColor.mainColor,
-                      selectionHandleColor: AppColor.mainColor,
-                      selectionColor: AppColor.darkGrey)),
-            )
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ProviderClass(),
+        )
+      ],
+      child: ScreenUtilInit(
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (_, __) => MaterialApp(
+                initialRoute: initialRoute,
+                routes: <String, WidgetBuilder>{
+                  Login.route: (_) => const NavBarAdmin(),
+                },
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: const Locale('ar'),
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                    scaffoldBackgroundColor: AppColor.inputBG,
+                    // useMaterial3: true,
+                    fontFamily: GoogleFonts.readexPro().fontFamily,
+                    textSelectionTheme: TextSelectionThemeData(
+                        cursorColor: AppColor.mainColor,
+                        selectionHandleColor: AppColor.mainColor,
+                        selectionColor: AppColor.darkGrey)),
+              )
 
-        //SplashScreen()
+          //SplashScreen()
 
-        );
+          ),
+    );
   }
 
 //====================================================================

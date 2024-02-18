@@ -10,6 +10,13 @@ class AppMessage {
   static String email = 'البريد الالكتروني';
   static String passwordTx = 'كلمة المرور';
   static String loginTx = "تسجيل الدخول";
-  static String userNotFound="المستخدم غير وجود";
-  static String home="الرئيسية";
+  static String userNotFound = "المستخدم غير وجود";
+  static String home = "الرئيسية";
+  static String task = "المهام";
+  static String audience = "الحضور";
+  static String elevateEmploy = "تقييم الموظفين";
+  static String administrativeCircular = "تعميم اداري";
+  static String administrativeRequests = "طلبات اداراية";
+  static String complaints = "الشكاوى";
+  static String logOut = "تسجيل الخروج";
 }

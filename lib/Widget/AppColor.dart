@@ -17,4 +17,5 @@ class AppColor {
   static Color successColor = Color(0xff4CAF50);
   static Color noColor = Colors.transparent;
   static Color scaffoldColor = white;
+  static Color deepLightGrey = Colors.grey.shade300;
 }

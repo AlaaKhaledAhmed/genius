@@ -51,6 +51,7 @@ dependencies:
   cloud_firestore: ^4.15.4
   firebase_auth: ^4.17.4
   provider: ^6.1.1
+  calendar_date_picker2: ^0.5.3
   #flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations"
   #flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations" -o "locale_keys.g.dart" -f keys
 
