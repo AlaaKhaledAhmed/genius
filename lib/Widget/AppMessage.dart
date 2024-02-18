@@ -19,4 +19,13 @@ class AppMessage {
   static String administrativeRequests = "طلبات اداراية";
   static String complaints = "الشكاوى";
   static String logOut = "تسجيل الخروج";
+  static String employId = "رقم الموظف";
+  static String employName = "اسم الموظف";
+  static String taskText = "المهمة";
+  static String starDate = "تاريخ البداية";
+  static String endDate = "تاريخ النهاية";
+  static String status = "الحالة";
+  static String action = "الاجراء";
+  static String addTask = "اضافة مهمة";
+
 }

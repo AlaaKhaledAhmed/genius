@@ -40,18 +40,18 @@ class AppButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? double.infinity,
+      width: width,
       height: height ?? 45.h,
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-          alignment: alignment,
+          alignment: alignment??AlignmentDirectional.center,
           shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(radius ?? AppSize.radius),
+            borderRadius: BorderRadius.circular(radius ?? AppSize.radius),
           ),
           backgroundColor: backgroundColor ?? AppColor.mainColor,
           elevation: elevation ?? 1.0,
           textStyle: TextStyle(
+
               fontFamily: GoogleFonts.tajawal().fontFamily,
               color: textStyleColor ?? AppColor.textColor,
               fontSize: AppSize.buttonSize,
@@ -63,6 +63,7 @@ class AppButtons extends StatelessWidget {
                 icon,
                 size: AppSize.iconsSize,
                 color: AppColor.white,
+
               )
             : Icon(
                 icon,
@@ -72,6 +73,7 @@ class AppButtons extends StatelessWidget {
         label: AppText(
             fontSize: textSize ?? AppSize.buttonSize,
             text: text,
+            align: TextAlign.center,
             color: textStyleColor ?? AppColor.white,
             fontWeight: textStyleWeight ?? FontWeight.normal,
             fontFamily: GoogleFonts.tajawal().fontFamily),

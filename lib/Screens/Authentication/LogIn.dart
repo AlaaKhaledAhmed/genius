@@ -97,6 +97,7 @@ class _LoginState extends State<Login> {
                 ),
 //===============================Add Button===============================================================
                 AppButtons(
+                  width: double.maxFinite,
                   text: AppMessage.loginTx,
                   backgroundColor: AppColor.mainColor,
                   onPressed: () {

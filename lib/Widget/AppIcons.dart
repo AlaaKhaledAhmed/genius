@@ -16,6 +16,7 @@ class AppIcons {
   static IconData administrativeRequests = FluentIcons.elevator_32_regular;
   static IconData complaints = FluentIcons.warning_32_regular;
   static IconData logOut = FluentIcons.arrow_exit_20_regular;
+  static IconData add = FluentIcons.add_circle_32_regular;
 
 
 }
