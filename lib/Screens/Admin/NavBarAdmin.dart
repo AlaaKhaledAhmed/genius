@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:genius/Screens/Admin/AdminHome.dart';
+import 'package:genius/Screens/Admin/Tasks/AdminTask.dart';
 import 'package:provider/provider.dart';
 
 import '../../BackEnd/provider_class.dart';
@@ -13,7 +13,9 @@ class NavBarAdmin extends StatefulWidget {
 }
 
 class _NavBarAdminState extends State<NavBarAdmin> {
-  List<Widget> pages = [AdminHome()];
+  List<Widget> pages = [
+    AdminTask(),
+  ];
 
   @override
   void initState() {

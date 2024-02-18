@@ -13,7 +13,8 @@ import '../../Widget/AppMessage.dart';
 import '../../Widget/AppRoutes.dart';
 import '../../Widget/AppTextFields.dart';
 import '../../Widget/AppValidator.dart';
-import '../Admin/AdminHome.dart';
+
+import '../Admin/NavBarAdmin.dart';
 import '../Employ/EmployHome.dart';
 import '../Sppurt/Sppurt.dart';
 
@@ -134,7 +135,7 @@ class _LoginState extends State<Login> {
                               } else if (element.data()['type'] ==
                                   AppConstants.admin) {
                                 AppRoutes.pushReplacementTo(
-                                    context, const AdminHome());
+                                    context, const NavBarAdmin());
                               } else {
                                 AppLoading.show(context, AppMessage.loginTx,
                                     AppMessage.userNotFound);

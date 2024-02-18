@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:genius/Widget/AppBar.dart';
 import 'package:genius/Widget/AppMessage.dart';
 
-class AdminHome extends StatefulWidget {
-  const AdminHome({super.key});
+class AdminTask extends StatefulWidget {
+  const AdminTask({super.key});
 
   @override
-  State<AdminHome> createState() => _AdminHomeState();
+  State<AdminTask> createState() => _AdminTaskState();
 }
 
-class _AdminHomeState extends State<AdminHome> {
+class _AdminTaskState extends State<AdminTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

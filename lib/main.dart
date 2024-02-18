@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'BackEnd/provider_class.dart';
-import 'Screens/Admin/AdminHome.dart';
+import 'Screens/Admin/Tasks/AdminTask.dart';
 import 'Widget/AppColor.dart';
 import 'firebase_options.dart';
 
