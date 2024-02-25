@@ -155,7 +155,8 @@ class Database {
         'startDate': startDate,
         'endDate': endDate,
         'taskName': taskName,
-        'status': AppConstants.newStatus
+        'status': AppConstants.newStatus,
+        'createdOn': FieldValue.serverTimestamp(),
       });
       return 'done';
     } catch (e) {

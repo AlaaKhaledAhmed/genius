@@ -183,7 +183,7 @@ class _ManageEmployState extends State<ManageEmploy> {
                                                     AppLoading.show(
                                                         context,
                                                         AppMessage
-                                                            .deleteEmployee,
+                                                            .delete,
                                                         AppMessage.confirm,
                                                         showButtom: true,
                                                         noFunction: () {

@@ -9,6 +9,7 @@ import 'package:genius/Widget/AppRoutes.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../Widget/AppColor.dart';
 import '../../../Widget/AppConstants.dart';
 import '../../../Widget/AppIcons.dart';
@@ -94,21 +95,15 @@ class _AdminTaskState extends State<AdminTask> {
                                   return TableViewRow(
                                     height: 45.h,
                                     cells: [
-//number======================================================================================================================================================
+//employee id======================================================================================================================================================
                                       TableViewCell(
-                                        padding: EdgeInsets.only(
-                                            left: 30.w, right: 10),
-                                        alignment: Alignment.center,
-                                        //child:
-                                        // AppText(
-                                        //   text: data[index]
-                                        //       .id
-                                        //       .toString()
-                                        //       .padLeft(2, '0'),
-                                        //   fontSize: AppSize.subTextSize,
-                                        //   overflow: TextOverflow.ellipsis,
-                                        // )
-                                      ),
+                                          alignment: Alignment.center,
+                                          child: AppText(
+                                            text:
+                                                '${data[index].data()?['employNaId']}',
+                                            fontSize: AppSize.subTextSize,
+                                            overflow: TextOverflow.ellipsis,
+                                          )),
 //name======================================================================================================================================================
                                       TableViewCell(
                                           // padding: EdgeInsets.only(left: 15.w),
@@ -121,191 +116,104 @@ class _AdminTaskState extends State<AdminTask> {
                                                 fontSize: AppSize.subTextSize,
                                                 overflow: TextOverflow.ellipsis,
                                               ))),
-//date======================================================================================================================================================
+//task======================================================================================================================================================
                                       TableViewCell(
-                                        alignment: Alignment.center,
-                                        // child: AppText(
-                                        //   text: GeneralWidget.convertStringToDate(
-                                        //       data[index].createdAt),
-                                        //   fontSize: AppSize.subTitle,
-                                        //   overflow: TextOverflow.ellipsis,
-                                        // )
-                                      ),
+                                          // padding: EdgeInsets.only(left: 15.w),
+                                          alignment: Alignment.centerRight,
+                                          child: TableViewCell(
+                                              alignment: Alignment.center,
+                                              child: AppText(
+                                                text:
+                                                    '${data[index].data()['taskName']}',
+                                                fontSize: AppSize.subTextSize,
+                                                // overflow: TextOverflow.ellipsis,
+                                              ))),
+//star date======================================================================================================================================================
+                                      TableViewCell(
+                                          // padding: EdgeInsets.only(left: 15.w),
+                                          alignment: Alignment.centerRight,
+                                          child: TableViewCell(
+                                              alignment: Alignment.center,
+                                              child: AppText(
+                                                text:
+                                                    '${data[index].data()['startDateStringFormat']}',
+                                                fontSize: AppSize.subTextSize,
+                                                // overflow: TextOverflow.ellipsis,
+                                              ))),
+//end date======================================================================================================================================================
+                                      TableViewCell(
+                                          // padding: EdgeInsets.only(left: 15.w),
+                                          alignment: Alignment.centerRight,
+                                          child: TableViewCell(
+                                              alignment: Alignment.center,
+                                              child: AppText(
+                                                text:
+                                                    '${data[index].data()['endDateStringFormat']}',
+                                                fontSize: AppSize.subTextSize,
+                                                // overflow: TextOverflow.ellipsis,
+                                              ))),
 //status======================================================================================================================================================
                                       TableViewCell(
-                                        alignment: Alignment.center,
-                                        // child: AppText(
-                                        //   text: data[index]['name'].toString(),
-                                        //   fontSize: AppSize.subTextSize,
-                                        //   overflow: TextOverflow.ellipsis,
-                                        // )
-                                      ),
-//file======================================================================================================================================================
-                                      TableViewCell(
-                                        alignment: Alignment.center,
-                                        // child: IconButton(
-                                        //     onPressed: () async {
-                                        //       //open file
-                                        //       await launchUrl(Uri.parse(
-                                        //           data[index].verifiedFile!));
-                                        //     },
-                                        //     icon: Icon(
-                                        //       AppIcons.show,
-                                        //       color:
-                                        //           Colors.black.withOpacity(0.16),
-                                        //       size: AppSize.appBarIconsSize + 5,
-                                        //     ))
-                                      ),
+                                          // padding: EdgeInsets.only(left: 15.w),
+                                          alignment: Alignment.centerRight,
+                                          child: TableViewCell(
+                                              alignment: Alignment.center,
+                                              child: AppText(
+                                                text: data[index]
+                                                            .data()['status'] ==
+                                                        0
+                                                    ? AppMessage
+                                                        .notCompleteStatus
+                                                    : AppMessage.completeStatus,
+                                                fontSize: AppSize.subTextSize,
+                                                // overflow: TextOverflow.ellipsis,
+                                              ))),
 //action======================================================================================================================================================
                                       TableViewCell(
-                                        padding: EdgeInsets.only(left: 10.w),
-                                        alignment: Alignment.center,
-                                        //                                       child:
-                                        //                                       Row(
-                                        //                                         crossAxisAlignment:
-                                        //                                             CrossAxisAlignment.center,
-                                        //                                         mainAxisSize: MainAxisSize.min,
-                                        //                                         children: data[index]
-                                        //                                                     .verifiedStatus!
-                                        //                                                     .id !=
-                                        //                                                 AppConstants.statusNew
-                                        //                                             ? [const Text('-')]
-                                        //                                             : [
-                                        // //accept======================================================================================================================================================
-                                        //                                                 InkWell(
-                                        //                                                   onTap: () async {
-                                        //                                                     AppDialog.confirmDialog(
-                                        //                                                         context: context,
-                                        //                                                         title:
-                                        //                                                             AppMessage.accept,
-                                        //                                                         content: AppMessage
-                                        //                                                             .acceptConfirm,
-                                        //                                                         yesColor:
-                                        //                                                             AppColor.mainColor,
-                                        //                                                         noColor: AppColor
-                                        //                                                             .deepLightGrey,
-                                        //                                                         noTextColor:
-                                        //                                                             AppColor.black,
-                                        //                                                         onPressedYes: () async {
-                                        //                                                           Navigator.pop(
-                                        //                                                               context);
-                                        //                                                         },
-                                        //                                                         onPressedNo: () {
-                                        //                                                           Navigator.pop(
-                                        //                                                               context);
-                                        //                                                         });
-                                        //                                                   },
-                                        //                                                   child: Container(
-                                        //                                                     padding:
-                                        //                                                         EdgeInsets.symmetric(
-                                        //                                                             horizontal: 7.spMin,
-                                        //                                                             vertical: 5.spMin),
-                                        //                                                     decoration: GeneralWidget
-                                        //                                                         .decoration(
-                                        //                                                             shadow: false,
-                                        //                                                             radius: 5,
-                                        //                                                             showBorder: true,
-                                        //                                                             borderColor: AppColor
-                                        //                                                                 .resultSuccess
-                                        //                                                                 .withOpacity(
-                                        //                                                                     0.5)),
-                                        //                                                     child: Row(
-                                        //                                                       children: [
-                                        //                                                         Icon(
-                                        //                                                           AppIcons.accept,
-                                        //                                                           color: AppColor
-                                        //                                                               .resultSuccess
-                                        //                                                               .withOpacity(0.5),
-                                        //                                                           size: AppSize
-                                        //                                                               .appBarIconsSize,
-                                        //                                                         ),
-                                        //                                                         SizedBox(
-                                        //                                                           width: 5.w,
-                                        //                                                         ),
-                                        //                                                         AppText(
-                                        //                                                           text:
-                                        //                                                               AppMessage.accept,
-                                        //                                                           fontSize: AppSize
-                                        //                                                               .smallSubText,
-                                        //                                                           fontWeight:
-                                        //                                                               FontWeight.w500,
-                                        //                                                         )
-                                        //                                                       ],
-                                        //                                                     ),
-                                        //                                                   ),
-                                        //                                                 ),
-                                        //                                                 SizedBox(
-                                        //                                                   width: 15.w,
-                                        //                                                 ),
-                                        // //reject============================================================================================================================================================
-                                        //                                                 InkWell(
-                                        //                                                     onTap: () async {
-                                        //                                                       AppDialog.confirmDialog(
-                                        //                                                           context: context,
-                                        //                                                           title:
-                                        //                                                               AppMessage.reject,
-                                        //                                                           content: AppMessage
-                                        //                                                               .rejectConfirm,
-                                        //                                                           yesColor: AppColor
-                                        //                                                               .errorColor,
-                                        //                                                           noColor: AppColor
-                                        //                                                               .deepLightGrey,
-                                        //                                                           noTextColor:
-                                        //                                                               AppColor.black,
-                                        //                                                           onPressedYes:
-                                        //                                                               () async {
-                                        //                                                             Navigator.pop(
-                                        //                                                                 context);
-                                        //                                                           },
-                                        //                                                           onPressedNo: () {
-                                        //                                                             Navigator.pop(
-                                        //                                                                 context);
-                                        //                                                           });
-                                        //                                                     },
-                                        //                                                     child: Container(
-                                        //                                                       padding:
-                                        //                                                           EdgeInsets.symmetric(
-                                        //                                                               horizontal:
-                                        //                                                                   7.spMin,
-                                        //                                                               vertical:
-                                        //                                                                   5.spMin),
-                                        //                                                       decoration: GeneralWidget
-                                        //                                                           .decoration(
-                                        //                                                               shadow: false,
-                                        //                                                               radius: 5,
-                                        //                                                               showBorder: true,
-                                        //                                                               borderColor: AppColor
-                                        //                                                                   .errorColor
-                                        //                                                                   .withOpacity(
-                                        //                                                                       0.5)),
-                                        //                                                       child: Row(
-                                        //                                                         children: [
-                                        //                                                           Icon(
-                                        //                                                             AppIcons.reject,
-                                        //                                                             color: AppColor
-                                        //                                                                 .errorColor
-                                        //                                                                 .withOpacity(
-                                        //                                                                     0.5),
-                                        //                                                             size: AppSize
-                                        //                                                                 .appBarIconsSize,
-                                        //                                                           ),
-                                        //                                                           SizedBox(
-                                        //                                                             width: 5.w,
-                                        //                                                           ),
-                                        //                                                           AppText(
-                                        //                                                             text: AppMessage
-                                        //                                                                 .reject,
-                                        //                                                             fontSize: AppSize
-                                        //                                                                 .smallSubText,
-                                        //                                                             fontWeight:
-                                        //                                                                 FontWeight.w500,
-                                        //                                                           )
-                                        //                                                         ],
-                                        //                                                       ),
-                                        //                                                     )),
-                                        //                                               ],
-                                        //                                       )
-                                      ),
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+//delete======================================================================================================================================================
+                                              IconButton(
+                                                  onPressed: () {
+                                                    AppLoading.show(
+                                                        context,
+                                                        AppMessage.delete,
+                                                        AppMessage.confirm,
+                                                        showButtom: true,
+                                                        noFunction: () {
+                                                      Navigator.pop(context);
+                                                    }, yesFunction: () async {
+                                                      Navigator.pop(context);
+                                                      await Database.delete(
+                                                          collection: 'task',
+                                                          docId: snapshot.data
+                                                              .docs[index].id);
+                                                    });
+                                                  },
+                                                  icon: Icon(
+                                                    AppIcons.delete,
+                                                    size:
+                                                        AppSize.iconsSize + 10,
+                                                    color: AppColor.errorColor,
+                                                  )),
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+//update============================================================================================================================================================
+                                              IconButton(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                    AppIcons.update,
+                                                    size:
+                                                        AppSize.iconsSize + 10,
+                                                    color: AppColor.mainColor,
+                                                  )),
+                                            ],
+                                          )),
                                     ],
                                   );
                                 }),

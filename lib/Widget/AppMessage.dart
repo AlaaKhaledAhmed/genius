@@ -6,6 +6,9 @@ class AppMessage {
 
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';
+  static String notCompleteStatus = 'غير مكتمل';
+  static String completeStatus = 'مكتمل';
+
   static String RSA = 'ريال';
   static String no = 'لا';
   static String invalidEmail = 'البريد الالكتروني غير صالح';
@@ -44,7 +47,7 @@ class AppMessage {
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String done = "تمت العملية بنجاح";
   static String emailAlreadyInUse = "البريد الالكتروني مستخدم مسبقا";
-  static String deleteEmployee = "حذف";
+  static String delete = "حذف";
   static String confirm = "هل انت متاكد من اكمال العملية؟";
   static String update = "تعديل البيانات";
 }
