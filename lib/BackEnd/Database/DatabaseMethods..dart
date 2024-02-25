@@ -164,5 +164,31 @@ class Database {
     }
   }
 
-// //====================================================================
+  static Future<String> updateTask({
+    required String name,
+    required String startDateStringFormat,
+    required String endDateStringFormat,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String taskName,
+    required String employNaId,
+    required String userId,
+    required String docId,
+  }) async {
+    try {
+      await AppConstants.taskCollection.doc(docId).update({
+        'name': name,
+        'userId': userId,
+        'employNaId': employNaId,
+        'startDateStringFormat': startDateStringFormat,
+        'endDateStringFormat': endDateStringFormat,
+        'startDate': startDate,
+        'endDate': endDate,
+        'taskName': taskName,
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }
