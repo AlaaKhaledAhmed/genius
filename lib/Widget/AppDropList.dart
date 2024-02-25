@@ -12,10 +12,11 @@ class AppDropList extends StatelessWidget {
   final List<String> listItem;
   final String? Function(String?)? validator;
   final String? hintText;
-  final String? dropValue;
+  // final String? dropValue;
   final bool? friezeText;
   final Color? fillColor;
   final Widget? prefixIcon;
+  final Widget?icon;
   final void Function(String?)? onChanged;
   const AppDropList(
       {Key? key,
@@ -23,10 +24,10 @@ class AppDropList extends StatelessWidget {
       required this.validator,
       required this.hintText,
       required this.onChanged,
-      required this.dropValue,
+      // required this.dropValue,
       this.friezeText,
       this.fillColor,
-      this.prefixIcon})
+      this.prefixIcon, this.icon})
       : super(key: key);
 
   @override
@@ -37,7 +38,7 @@ class AppDropList extends StatelessWidget {
       dropdownMaxHeight: 200.h,
       scrollbarAlwaysShow: true,
       alignment: Alignment.centerRight,
-      value: dropValue,
+      // value: dropValue,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(AppSize.contentPadding),
         labelStyle: TextStyle(
@@ -64,9 +65,11 @@ class AppDropList extends StatelessWidget {
       onChanged: onChanged,
       iconDisabledColor: AppColor.highlightColor,
       iconEnabledColor: AppColor.highlightColor,
+      icon: icon,
       itemPadding: EdgeInsets.zero,
       items: listItem
           .map((item) => DropdownMenuItem(
+
                 alignment: AlignmentDirectional.center,
                 value: item,
                 child: AppText(

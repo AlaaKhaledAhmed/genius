@@ -2,6 +2,7 @@ class AppMessage {
   static String serverText = "حدث خطأ ما اثناء معالجة طلبك";
 
   static String noData = 'لاتوجد بيانات لعرضها';
+  static String selectDate = 'اختر تاريخ البداية والنهاية';
 
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';

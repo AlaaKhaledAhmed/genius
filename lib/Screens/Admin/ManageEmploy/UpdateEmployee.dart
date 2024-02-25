@@ -113,16 +113,17 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                     ),
 //section=============================================================================
                     AppDropList(
-                        listItem: context.locale.toString() == 'ar'
-                            ? AppConstants.sectionListAr
-                            : AppConstants.sectionListEn,
-                        validator: (v) {},
-                        hintText: AppMessage.section,
-                        onChanged: (v) {
-                          section = v;
-                          setState(() {});
-                        },
-                        dropValue: section),
+                      listItem: context.locale.toString() == 'ar'
+                          ? AppConstants.sectionListAr
+                          : AppConstants.sectionListEn,
+                      validator: (v) {},
+                      hintText: AppMessage.section,
+                      onChanged: (v) {
+                        section = v;
+                        setState(() {});
+                      },
+                      // dropValue: section
+                    ),
                     SizedBox(
                       height: 10.h,
                     ),

@@ -5,6 +5,8 @@ class AppIcons {
   ///icons link=> https://fontawesome.com/search?o=r&m=free
   static IconData home = FluentIcons.home_person_20_regular;
   static IconData close = FluentIcons.closed_caption_16_regular;
+  static IconData x = FluentIcons.clear_formatting_16_regular;
+  static IconData date = FluentIcons.calendar_48_regular;
   static IconData back = FluentIcons.archive_arrow_back_16_regular;
   static IconData arrowUp = FluentIcons.arrow_up_12_regular;
   static IconData arrowDawn = FluentIcons.arrow_down_12_regular;
@@ -20,5 +22,6 @@ class AppIcons {
   static IconData logOut = FluentIcons.arrow_exit_20_regular;
   static IconData add = FluentIcons.add_circle_32_regular;
   static IconData manageUsers = FluentIcons.person_accounts_24_regular;
-  static IconData file = FluentIcons.document_32_regular;static IconData view = FluentIcons.eye_12_regular;
+  static IconData file = FluentIcons.document_32_regular;
+  static IconData view = FluentIcons.eye_12_regular;
 }

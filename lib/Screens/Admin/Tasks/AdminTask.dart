@@ -58,8 +58,10 @@ class _AdminTaskState extends State<AdminTask> {
             Expanded(
                 flex: 5,
                 child: StreamBuilder(
-                  stream: AppConstants.userCollection.snapshots(),
-                  builder: (context, snapshot) {
+                  stream: AppConstants.taskCollection
+                      .orderBy('createdOn', descending: true)
+                      .snapshots(),
+                  builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasError) {
                       return Center(
                         child: AppText(
@@ -67,7 +69,7 @@ class _AdminTaskState extends State<AdminTask> {
                             fontSize: AppSize.subTextSize),
                       );
                     } else if (snapshot.hasData) {
-                      List<QueryDocumentSnapshot> data = snapshot.data!.docs;
+                      var data = snapshot.data!.docs;
                       return data.isEmpty
                           ? GeneralWidget.emptyData(context: context)
                           : MediaQuery.removePadding(
@@ -107,16 +109,18 @@ class _AdminTaskState extends State<AdminTask> {
                                         //   overflow: TextOverflow.ellipsis,
                                         // )
                                       ),
-//name-image ======================================================================================================================================================
+//name======================================================================================================================================================
                                       TableViewCell(
-                                        // padding: EdgeInsets.only(left: 15.w),
-                                        alignment: Alignment.centerRight,
-                                        // child: AppText(
-                                        //   text: data[index]['name'].toString(),
-                                        //   fontSize: AppSize.subTextSize,
-                                        //   overflow: TextOverflow.ellipsis,
-                                        // )
-                                      ),
+                                          // padding: EdgeInsets.only(left: 15.w),
+                                          alignment: Alignment.centerRight,
+                                          child: TableViewCell(
+                                              alignment: Alignment.center,
+                                              child: AppText(
+                                                text:
+                                                    '${data[index].data()['name']}',
+                                                fontSize: AppSize.subTextSize,
+                                                overflow: TextOverflow.ellipsis,
+                                              ))),
 //date======================================================================================================================================================
                                       TableViewCell(
                                         alignment: Alignment.center,

@@ -5,7 +5,7 @@ import 'package:genius/Widget/AppMessage.dart';
 class AppConstants {
   static String employ = 'employ';
   static String admin = 'admin';
-  static String spurt = 'spurt';
+  static String spurt = 'spurt';static int newStatus = 0;
 
   static const Duration timeOut = Duration(seconds: 15);
 
@@ -20,6 +20,8 @@ class AppConstants {
   static const int logOutId = 7;
   static CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
+  static CollectionReference taskCollection =
+      FirebaseFirestore.instance.collection('task');
   static List<String> sectionListAr = [
     'Personnel Department',
     'Employee Relations',

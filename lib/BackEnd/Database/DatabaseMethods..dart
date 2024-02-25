@@ -3,6 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../Widget/AppConstants.dart';
 
+class Employee {
+  final String name;
+  final String id;
+  Employee({required this.id, required this.name});
+}
+
 class Database {
   //=======================Student Sing up method======================================
 
@@ -128,4 +134,34 @@ class Database {
       return 'error';
     }
   }
+
+  static Future<String> addTask({
+    required String name,
+    required String startDateStringFormat,
+    required String endDateStringFormat,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String taskName,
+    required String employNaId,
+    required String userId,
+  }) async {
+    try {
+      await AppConstants.taskCollection.add({
+        'name': name,
+        'userId': userId,
+        'employNaId': employNaId,
+        'startDateStringFormat': startDateStringFormat,
+        'endDateStringFormat': endDateStringFormat,
+        'startDate': startDate,
+        'endDate': endDate,
+        'taskName': taskName,
+        'status': AppConstants.newStatus
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+// //====================================================================
 }

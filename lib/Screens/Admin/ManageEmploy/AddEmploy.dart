@@ -104,7 +104,8 @@ class _AddEmployState extends State<AddEmploy> {
                           section = v;
                           setState(() {});
                         },
-                        dropValue: section),
+                        // dropValue: section
+                    ),
                     SizedBox(
                       height: 10.h,
                     ),
