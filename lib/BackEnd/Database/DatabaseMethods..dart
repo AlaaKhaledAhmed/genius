@@ -191,4 +191,37 @@ class Database {
       return 'error';
     }
   }
+
+  ///
+  static Future<String> addAdministrativeCircular({
+    required String text,
+    required String file,
+  }) async {
+    try {
+      await AppConstants.administrativeCircularCollection.add({
+        'text': text,
+        'file': file,
+        'createdOn': FieldValue.serverTimestamp(),
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  static Future<String> updateAdministrativeCircular({
+    required String text,
+    required String file,
+    required String docId,
+  }) async {
+    try {
+      await AppConstants.administrativeCircularCollection.doc(docId).update({
+        'text': text,
+        'file': file,
+       });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }

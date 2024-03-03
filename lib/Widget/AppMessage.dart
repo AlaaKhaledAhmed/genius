@@ -6,6 +6,8 @@ class AppMessage {
 
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';
+  static String file = 'الملف';
+  static String text = 'النص';
   static String notCompleteStatus = 'غير مكتمل';
   static String completeStatus = 'مكتمل';
 
@@ -32,6 +34,7 @@ class AppMessage {
   static String status = "الحالة";
   static String action = "الاجراء";
   static String addTask = "اضافة مهمة";
+  static String addAdministrativeCircular = "اضافة تعميم";
   static String manageUsers = "ادارة الموظفين";
   static String section = "القسم";
   static String phone = "رقم الجوال";

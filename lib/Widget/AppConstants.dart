@@ -22,6 +22,8 @@ class AppConstants {
       FirebaseFirestore.instance.collection('users');
   static CollectionReference taskCollection =
       FirebaseFirestore.instance.collection('task');
+  static CollectionReference administrativeCircularCollection =
+      FirebaseFirestore.instance.collection('administrativeCircular');
   static List<String> sectionListAr = [
     'Personnel Department',
     'Employee Relations',
