@@ -19,6 +19,7 @@ class AppMessage {
   static String loginTx = "تسجيل الدخول";
   static String userNotFound = "المستخدم غير وجود";
   static String home = "الرئيسية";
+  static String profile = "الملف الشخصي";
   static String task = "المهام";
   static String audience = "الحضور";
   static String elevateEmploy = "تقييم الموظفين";
@@ -53,4 +54,11 @@ class AppMessage {
   static String delete = "حذف";
   static String confirm = "هل انت متاكد من اكمال العملية؟";
   static String update = "تعديل البيانات";
+
+  static String sections = "الاقسام";
+  static String calender = "المواعيد";
+  static String empContracts = "عقود الموظفين";
+  static String projectsContracts = "عقود المشاريع";
+  static String endOfServiceCalculator = "حساب نهاية الخدمة";
+
 }

@@ -5,19 +5,28 @@ import 'package:genius/Widget/AppMessage.dart';
 class AppConstants {
   static String employ = 'employ';
   static String admin = 'admin';
-  static String spurt = 'spurt';static int newStatus = 0;
+  static String spurt = 'spurt';
+  static int newStatus = 0;
 
   static const Duration timeOut = Duration(seconds: 15);
 
   ///not chang id or resort item=>using in page-view
-  static const int manageUsersId = 0;
-  static const int taskId = 1;
-  static const int audienceId = 2;
-  static const int elevateEmployId = 3;
-  static const int administrativeCircularId = 4;
-  static const int administrativeRequestsId = 5;
-  static const int complaintsId = 6;
-  static const int logOutId = 7;
+  static const int profileId = 0;
+  static const int manageUsersId = 1;
+  static const int sectionsId =2;
+
+  static const int taskId = 3;
+  static const int audienceId = 4;
+  static const int elevateEmployId = 5;
+  static const int administrativeCircularId = 6;
+  static const int administrativeRequestsId = 7;
+  static const int calenderId = 8;
+  static const int contract=9;
+  static const int empContractsId = 10;
+  static const int projectsContractsId = 11;
+  static const int endOfServiceCalculatorId = 12;
+  static const int complaintsId = 13;
+  static const int logOutId = 14;
   static CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
   static CollectionReference taskCollection =

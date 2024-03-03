@@ -13,6 +13,7 @@ class AppIcons {
   static IconData delete = FluentIcons.delete_32_regular;
   static IconData update = FluentIcons.edit_32_regular;
 
+  static IconData profile = FluentIcons.person_accounts_20_regular;
   static IconData task = FluentIcons.task_list_add_24_regular;
   static IconData audience = FluentIcons.people_audience_32_regular;
   static IconData elevateEmploy = FluentIcons.organization_32_regular;
@@ -24,4 +25,11 @@ class AppIcons {
   static IconData manageUsers = FluentIcons.person_accounts_24_regular;
   static IconData file = FluentIcons.document_32_regular;
   static IconData view = FluentIcons.eye_12_regular;
-}
+
+
+  static IconData endOfServiceCalculator = FluentIcons.calculator_24_regular;
+  static IconData projectsContracts = FluentIcons.projection_screen_dismiss_28_filled;
+  static IconData empContracts = FluentIcons.document_contract_16_regular;
+  static IconData calender = FluentIcons.calendar_32_regular;
+  static IconData sections = FluentIcons.people_list_32_regular;
+ }

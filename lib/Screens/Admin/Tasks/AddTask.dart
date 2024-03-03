@@ -49,7 +49,7 @@ class _AddTaskState extends State<AddTask> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(
-          text: AppMessage.addUser,
+          text: AppMessage.addTask,
           isBasics: true,
         ),
         body: Padding(

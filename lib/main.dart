@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'BackEnd/provider_class.dart';
-import 'Screens/Admin/AdministrativeCircular/AdministrativeCircular.dart';
 import 'Screens/Admin/Tasks/AdminTask.dart';
 import 'Widget/AppColor.dart';
 import 'firebase_options.dart';
@@ -53,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           builder: (_, __) => MaterialApp(
                 initialRoute: initialRoute,
                 routes: <String, WidgetBuilder>{
-                  Login.route: (_) => const AdministrativeCircular(),
+                  Login.route: (_) => const NavBarAdmin(),
                 },
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,

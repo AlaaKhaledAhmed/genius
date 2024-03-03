@@ -56,37 +56,104 @@ class _AppDrawerState extends State<AppDrawer> {
                     padding: EdgeInsets.symmetric(horizontal: 15.w),
                     controller: controller,
                     children: DrawerItems.allListItem
-                        .map((item) => ListTile(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 5.w, vertical: 5.h),
-                              horizontalTitleGap: 20.spMin,
-                              title: AppText(
-                                text: item.title,
-                                fontSize: AppSize.subTextSize,
-                                color: AppColor.white,
-                              ),
-                              leading: Icon(
-                                item.icon,
-                                color: AppColor.white,
-                                size: AppSize.iconsSize,
-                              ),
-                              onTap: () async {
-                                ///close drawer
-                                Navigator.pop(context);
-                                item.itemIndex == AppConstants.logOutId
-                                    ? {
-                                        await FirebaseAuth.instance.signOut(),
-                                        AppRoutes.pushAndRemoveAllPageTo(
-                                            context, const Login(),
-                                            removeProviderData: true)
-                                      }
-                                    : context
-                                        .read<ProviderClass>()
-                                        .onTapDrawerItem(item.itemIndex!);
-                                print('subItem: ${item.title}');
-                              },
-                              // onTap: () => widget.onSelect(item),
-                            ))
+                        .map((item) => item.containSubCategory == true
+                            ? StatefulBuilder(builder: (context, se2) {
+                                return ExpansionTile(
+                                  onExpansionChanged: (bool expanded) {
+                                    se2(() {
+                                      isExpanded = expanded;
+                                    });
+                                  },
+
+                                  shape: Border(
+                                    top: BorderSide(color: AppColor.white),
+                                    bottom: BorderSide(color: AppColor.white),
+                                  ),
+                                  tilePadding: EdgeInsets.symmetric(horizontal: 5.w),
+
+                                  ///title=======
+                                  title: AppText(
+                                    text: item.title,
+                                    fontSize: AppSize.subTextSize,
+                                    color: AppColor.white,
+                                  ),
+
+                                  ///trailing=======
+                                  trailing: Icon(
+                                    Icons.arrow_drop_down_circle_outlined,
+                                    color: AppColor.white,
+                                    size: AppSize.iconsSize,
+                                  ),
+
+                                  ///leading=======
+                                  leading: Icon(
+                                    item.icon,
+                                    color: AppColor.white,
+                                    size: AppSize.iconsSize,
+                                  ),
+
+                                  ///sum item=======
+                                  children: (DrawerItems.contractsSubItem)
+                                      .map(
+                                        (subItem) => ListTile(
+                                            contentPadding: EdgeInsets.zero,
+                                            horizontalTitleGap: 0.spMin,
+                                            title: AppText(
+                                              text: subItem.title,
+                                              fontSize: AppSize.subTextSize,
+                                              color: AppColor.white,
+                                            ),
+                                            leading: Icon(
+                                              subItem.icon,
+                                              color: AppColor.white,
+                                              size: AppSize.iconsSize,
+                                            ),
+                                            onTap: () {
+                                              ///close drawer
+                                              Navigator.pop(context);
+                                              print(
+                                                  'subItem: ${subItem.title}');
+                                              // AppConstants.drawerController.toggle!();
+                                              context
+                                                  .read<ProviderClass>()
+                                                  .onTapDrawerItem(
+                                                      subItem.itemIndex!);
+                                            }),
+                                      )
+                                      .toList(),
+                                );
+                              })
+                            : ListTile(
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 5.w, vertical: 5.h),
+                                horizontalTitleGap: 20.spMin,
+                                title: AppText(
+                                  text: item.title,
+                                  fontSize: AppSize.subTextSize,
+                                  color: AppColor.white,
+                                ),
+                                leading: Icon(
+                                  item.icon,
+                                  color: AppColor.white,
+                                  size: AppSize.iconsSize,
+                                ),
+                                onTap: () async {
+                                  ///close drawer
+                                  Navigator.pop(context);
+                                  item.itemIndex == AppConstants.logOutId
+                                      ? {
+                                          await FirebaseAuth.instance.signOut(),
+                                          AppRoutes.pushAndRemoveAllPageTo(
+                                              context, const Login(),
+                                              removeProviderData: true)
+                                        }
+                                      : context
+                                          .read<ProviderClass>()
+                                          .onTapDrawerItem(item.itemIndex!);
+                                  print('subItem: ${item.title}');
+                                },
+                                // onTap: () => widget.onSelect(item),
+                              ))
                         .toList()),
               ),
             ),
@@ -119,7 +186,49 @@ class DrawerItems {
     title: AppMessage.manageUsers,
     icon: AppIcons.manageUsers,
   );
-//task
+//profile
+  static DrawerItem profile = DrawerItem(
+    itemIndex: AppConstants.profileId,
+    title: AppMessage.profile,
+    icon: AppIcons.profile,
+  ); //profile
+  static DrawerItem sections = DrawerItem(
+    itemIndex: AppConstants.sectionsId,
+    title: AppMessage.sections,
+    icon: AppIcons.sections,
+  ); //profile
+  static DrawerItem calender = DrawerItem(
+    itemIndex: AppConstants.calenderId,
+    title: AppMessage.calender,
+    icon: AppIcons.calender,
+  );
+  static DrawerItem contract = DrawerItem(
+    containSubCategory: true,
+    itemIndex: AppConstants.contract,
+    title: AppMessage.contract,
+    icon: AppIcons.empContracts,
+  ); //profile
+
+  static final contractsSubItem = [
+    DrawerItem(
+      itemIndex: AppConstants.empContractsId,
+      title: AppMessage.empContracts,
+      icon: AppIcons.empContracts,
+    ), //profile
+    DrawerItem(
+      itemIndex: AppConstants.projectsContractsId,
+      title: AppMessage.projectsContracts,
+      icon: AppIcons.projectsContracts,
+    )
+  ];
+  //profile
+  static DrawerItem endOfServiceCalculator = DrawerItem(
+    itemIndex: AppConstants.endOfServiceCalculatorId,
+    title: AppMessage.endOfServiceCalculator,
+    icon: AppIcons.endOfServiceCalculator,
+  ); //profile
+
+  //task
   static DrawerItem task = DrawerItem(
     itemIndex: AppConstants.taskId,
     title: AppMessage.task,
@@ -166,12 +275,17 @@ class DrawerItems {
 
   ///=====================================================================================
   static final List<DrawerItem> allListItem = [
+    profile,
     manageUsers,
+    sections,
     task,
     audience,
     elevateEmploy,
     administrativeCircular,
     administrativeRequests,
+    calender,
+    contract,
+    endOfServiceCalculator,
     complaints,
     logOut,
   ];
