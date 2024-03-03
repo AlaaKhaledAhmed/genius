@@ -96,7 +96,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                   children: (DrawerItems.contractsSubItem)
                                       .map(
                                         (subItem) => ListTile(
-                                            contentPadding: EdgeInsets.zero,
+                                           contentPadding:EdgeInsets.symmetric(horizontal: 5.w),
                                             horizontalTitleGap: 0.spMin,
                                             title: AppText(
                                               text: subItem.title,

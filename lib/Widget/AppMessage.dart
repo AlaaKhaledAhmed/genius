@@ -8,6 +8,7 @@ class AppMessage {
   static String yes = 'نعم';
   static String file = 'الملف';
   static String text = 'النص';
+  static String title = 'الموضوع';
   static String notCompleteStatus = 'غير مكتمل';
   static String completeStatus = 'مكتمل';
 

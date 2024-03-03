@@ -16,6 +16,7 @@ import '../../../Widget/AppIcons.dart';
 import '../../../Widget/AppSize.dart';
 import '../../../Widget/AppText.dart';
 import '../../../Widget/GeneralWidget.dart';
+import '../PDFView.dart';
 import 'AddEmploy.dart';
 import 'UpdateEmployee.dart';
 
@@ -159,9 +160,23 @@ class _ManageEmployState extends State<ManageEmploy> {
                                           child: IconButton(
                                               onPressed: () async {
                                                 //open file
-                                                await launchUrl(Uri.parse(
-                                                    data[index]
-                                                        .data()?['contract']));
+                                                ///open pdf view
+                                                showGeneralDialog(
+                                                  context: context,
+                                                  pageBuilder: (
+                                                    BuildContext context,
+                                                    Animation<double> animation,
+                                                    Animation<double>
+                                                        secondaryAnimation,
+                                                  ) {
+                                                    return PDFViewerPage(
+                                                      pdfUrl: data[index]
+                                                          .data()?['contract'],
+                                                      titleName: AppMessage
+                                                          .empContracts,
+                                                    );
+                                                  },
+                                                );
                                               },
                                               icon: Icon(
                                                 AppIcons.file,
@@ -182,8 +197,7 @@ class _ManageEmployState extends State<ManageEmploy> {
                                                   onPressed: () {
                                                     AppLoading.show(
                                                         context,
-                                                        AppMessage
-                                                            .delete,
+                                                        AppMessage.delete,
                                                         AppMessage.confirm,
                                                         showButtom: true,
                                                         noFunction: () {

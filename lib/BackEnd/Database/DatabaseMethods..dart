@@ -196,11 +196,13 @@ class Database {
   static Future<String> addAdministrativeCircular({
     required String text,
     required String file,
+    required String title ,
   }) async {
     try {
       await AppConstants.administrativeCircularCollection.add({
         'text': text,
         'file': file,
+        'title':title,
         'createdOn': FieldValue.serverTimestamp(),
       });
       return 'done';
@@ -210,13 +212,14 @@ class Database {
   }
 
   static Future<String> updateAdministrativeCircular({
-    required String text,
+    required String text, required String title ,
     required String file,
     required String docId,
   }) async {
     try {
       await AppConstants.administrativeCircularCollection.doc(docId).update({
         'text': text,
+        'title':title,
         'file': file,
        });
       return 'done';

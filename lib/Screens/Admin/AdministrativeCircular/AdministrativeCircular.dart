@@ -16,6 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../Widget/AppSize.dart';
 import '../../../Widget/AppText.dart';
 import '../../../Widget/GeneralWidget.dart';
+import '../PDFView.dart';
 import 'AddAdministrativeCircular.dart';
 import 'UpdateAdministrativeCircular.dart';
 
@@ -57,7 +58,7 @@ class _AdministrativeCircularState extends State<AdministrativeCircular> {
                 flex: 5,
                 child: StreamBuilder(
                   stream: AppConstants.administrativeCircularCollection
-                       .orderBy('createdOn', descending: true)
+                      .orderBy('createdOn', descending: true)
                       .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasError) {
@@ -113,9 +114,24 @@ class _AdministrativeCircularState extends State<AdministrativeCircular> {
                                               : IconButton(
                                                   onPressed: () async {
                                                     //open file
-                                                    await launchUrl(Uri.parse(
-                                                        data[index]
-                                                            .data()?['file']));
+                                                    ///open pdf view
+                                                    showGeneralDialog(
+                                                      context: context,
+                                                      pageBuilder: (
+                                                        BuildContext context,
+                                                        Animation<double>
+                                                            animation,
+                                                        Animation<double>
+                                                            secondaryAnimation,
+                                                      ) {
+                                                        return PDFViewerPage(
+                                                          pdfUrl: data[index]
+                                                              .data()?['file'],
+                                                          titleName:
+                                                              AppMessage.file,
+                                                        );
+                                                      },
+                                                    );
                                                   },
                                                   icon: Icon(
                                                     AppIcons.file,

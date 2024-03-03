@@ -35,8 +35,10 @@ class AddAdministrativeCircular extends StatefulWidget {
 class _AddAdministrativeCircularState extends State<AddAdministrativeCircular> {
   TextEditingController fileController = TextEditingController();
   TextEditingController textController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
   final _key1 = GlobalKey<State<StatefulWidget>>();
   final _key2 = GlobalKey<State<StatefulWidget>>();
+  final _key3 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
   Reference? fileRef;
   String? fileURL;
@@ -62,11 +64,25 @@ class _AddAdministrativeCircularState extends State<AddAdministrativeCircular> {
                 padding: EdgeInsets.only(bottom: bottom),
                 child: Column(
                   children: [
-//text=============================================================================
+//title=============================================================================
                     AppTextFields(
                       key: _key1,
                       onTap: () {
                         GeneralWidget.ensureVisibleOnTextArea(key: _key1);
+                      },
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      controller: titleController,
+                      labelText: AppMessage.title,
+
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+ //text=============================================================================
+                    AppTextFields(
+                      key: _key2,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key2);
                       },
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: textController,
@@ -79,9 +95,9 @@ class _AddAdministrativeCircularState extends State<AddAdministrativeCircular> {
                     ),
 //file=============================================================================
                     AppTextFields(
-                      key: _key2,
+                      key: _key3,
                       onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key2);
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key3);
                         setState(() {
                           getFile(context).whenComplete(() {
                             fileController.text = (file == null
@@ -118,6 +134,7 @@ class _AddAdministrativeCircularState extends State<AddAdministrativeCircular> {
                                     fileURL = await fileRef!.getDownloadURL();
                                     Database.addAdministrativeCircular(
                                       text: textController.text,
+                                      title: titleController.text,
                                       file: fileURL!,
                                     ).then((v) {
                                       print('================$v');
@@ -142,6 +159,7 @@ class _AddAdministrativeCircularState extends State<AddAdministrativeCircular> {
                                 }
                               : {
                                   Database.addAdministrativeCircular(
+                                    title: titleController.text,
                                     text: textController.text,
                                     file: fileController.text,
                                   ).then((v) {

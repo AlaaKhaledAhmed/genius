@@ -39,8 +39,10 @@ class _UpdateAdministrativeCircularState
     extends State<UpdateAdministrativeCircular> {
   TextEditingController fileController = TextEditingController();
   TextEditingController textController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
   final _key1 = GlobalKey<State<StatefulWidget>>();
   final _key2 = GlobalKey<State<StatefulWidget>>();
+  final _key3 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
   Reference? fileRef;
   String? fileURL;
@@ -52,6 +54,7 @@ class _UpdateAdministrativeCircularState
 
     textController.text = widget.data['text'];
 
+    titleController.text = widget.data['title'];
     fileController.text = widget.data['file'];
   }
 
@@ -75,11 +78,24 @@ class _UpdateAdministrativeCircularState
                 padding: EdgeInsets.only(bottom: bottom),
                 child: Column(
                   children: [
-//text=============================================================================
+//title=============================================================================
                     AppTextFields(
                       key: _key1,
                       onTap: () {
                         GeneralWidget.ensureVisibleOnTextArea(key: _key1);
+                      },
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      controller: titleController,
+                      labelText: AppMessage.title,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+//text=============================================================================
+                    AppTextFields(
+                      key: _key2,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key2);
                       },
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: textController,
@@ -92,9 +108,9 @@ class _UpdateAdministrativeCircularState
                     ),
 //file=============================================================================
                     AppTextFields(
-                      key: _key2,
+                      key: _key3,
                       onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key2);
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key3);
                         setState(() {
                           getFile(context).whenComplete(() {
                             fileController.text = (file == null
@@ -106,6 +122,9 @@ class _UpdateAdministrativeCircularState
                       validator: (v) {},
                       controller: fileController,
                       labelText: AppMessage.file,
+                    ),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     SizedBox(
                       height: 10.h,
@@ -132,6 +151,7 @@ class _UpdateAdministrativeCircularState
                                     Database.updateAdministrativeCircular(
                                       docId: widget.docId,
                                       text: textController.text,
+                                      title: titleController.text,
                                       file: fileURL!,
                                     ).then((v) {
                                       print('================$v');
@@ -154,6 +174,7 @@ class _UpdateAdministrativeCircularState
                                 }
                               : {
                                   Database.updateAdministrativeCircular(
+                                    title: titleController.text,
                                     docId: widget.docId,
                                     text: textController.text,
                                     file: fileController.text,
