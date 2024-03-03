@@ -29,6 +29,7 @@ class AdministrativeCircular extends StatefulWidget {
 
 class _AdministrativeCircularState extends State<AdministrativeCircular> {
   List<String> header = [
+    AppMessage.title,
     AppMessage.text,
     AppMessage.file,
     AppMessage.action,
@@ -94,6 +95,16 @@ class _AdministrativeCircularState extends State<AdministrativeCircular> {
                                   return TableViewRow(
                                     height: 45.h,
                                     cells: [
+//title======================================================================================================================================================
+                                      TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: AppText(
+                                            text:
+                                                '${data[index].data()?['title']}',
+                                            fontSize: AppSize.subTextSize,
+                                            overflow: TextOverflow.ellipsis,
+                                          )),
+
 //text======================================================================================================================================================
                                       TableViewCell(
                                           alignment: Alignment.center,
