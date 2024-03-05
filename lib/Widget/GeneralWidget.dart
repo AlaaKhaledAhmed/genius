@@ -158,7 +158,7 @@ class GeneralWidget {
               ]
             : null,
         gradient: isGradient
-            ? LinearGradient(
+            ? const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
