@@ -25,9 +25,9 @@ class AppMessage {
   static String task = "المهام";
   static String audience = "الحضور";
   static String elevateEmploy = "تقييم الموظفين";
-  static String administrativeCircular = "تعميم اداري";
+  static String administrativeCircular = "تعاميم اداري";
   static String administrativeRequests = "طلبات اداراية";
-  static String complaints = "الشكاوى";
+  static String complaints = "الشكاوي والاقتراحات";
   static String logOut = "تسجيل الخروج";
   static String employId = "رقم الموظف";
   static String employName = "اسم الموظف";
@@ -42,7 +42,7 @@ class AppMessage {
   static String section = "القسم";
   static String phone = "رقم الجوال";
   static String salary = "الراتب";
-  static String contract = "ملف العقد";
+  static String contract = "العقود";
   static String addUser = "اضافة موظف";
   static String add = "اضافة";
   static String phoneKey = '966+';

@@ -72,7 +72,7 @@ class _LoginState extends State<Login> {
                   height: 120.spMin,
                   width: 120.spMin,
                   decoration: GeneralWidget.decoration(
-                      image: AssetImage(Assets.imageLogo)),
+                      image: const AssetImage(Assets.imageLogo)),
                 ),
                 SizedBox(height: 20.h,),
                 AppText(
