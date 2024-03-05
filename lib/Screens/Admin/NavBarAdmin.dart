@@ -14,7 +14,7 @@ import 'Calender/Calender.dart';
 import 'EndOfServiceCalculator.dart';
 import 'ManageEmploy/ManageEmploy.dart';
 import 'Profile/Profile.dart';
-import 'Sections/ProjectsHome.dart';
+import 'Sections/SectionsHome.dart';
 
 class NavBarAdmin extends StatefulWidget {
   const NavBarAdmin({Key? key}) : super(key: key);

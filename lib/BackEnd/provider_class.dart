@@ -7,7 +7,7 @@ typedef OnUploadProgressCallbackAdv = void Function(double progress);
 
 class ProviderClass extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  int currentPageIndex = 0;
+  int currentPageIndex = 2;
   PageController? pageController;
 
   ///update page index==========================================================================

@@ -25,7 +25,7 @@ class AppMessage {
   static String task = "المهام";
   static String audience = "الحضور";
   static String elevateEmploy = "تقييم الموظفين";
-  static String administrativeCircular = "تعاميم اداري";
+  static String administrativeCircular = "تعاميم اداراية";
   static String administrativeRequests = "طلبات اداراية";
   static String complaints = "الشكاوي والاقتراحات";
   static String logOut = "تسجيل الخروج";
