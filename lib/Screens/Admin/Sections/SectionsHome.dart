@@ -98,8 +98,10 @@ class _SectionsState extends State<Sections> {
                     AppText(
                       text: 'موعد تسليم المشروع',
                       fontSize: AppSize.smallSubText,
+                      fontWeight: FontWeight.bold,
                     ),
                     Container(
+                      margin: EdgeInsets.only(top: 10.h,bottom: 10.h),
                       width: double.maxFinite,
                       padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 5.w),
                       decoration: GeneralWidget.decoration(shadow: false,color: AppColor.mainColor),
