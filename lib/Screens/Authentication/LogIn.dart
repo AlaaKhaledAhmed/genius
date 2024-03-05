@@ -50,119 +50,113 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-                image: bcImage.image,
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.6), BlendMode.darken),
-                fit: BoxFit.cover)),
-        child: Form(
-          key: logKey,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 120.spMin,
-                  width: 120.spMin,
-                  decoration: GeneralWidget.decoration(
-                      image: const AssetImage(Assets.imageLogo)),
-                ),
-                SizedBox(height: 20.h,),
-                AppText(
-                  text: AppMessage.welcome,
-                  fontSize: AppSize.subTextSize,
-                  fontWeight: FontWeight.bold,
-                  color: AppColor.white,
-                  align: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
+        body: Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: GeneralWidget.decoration(isGradient: true),
+      child: Form(
+        key: logKey,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 120.spMin,
+                width: 120.spMin,
+                decoration: GeneralWidget.decoration(
+                    image: const AssetImage(Assets.imageLogo)),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              AppText(
+                text: AppMessage.welcome,
+                fontSize: AppSize.subTextSize,
+                fontWeight: FontWeight.bold,
+                color: AppColor.white,
+                align: TextAlign.center,
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
 //==============================Email===============================================================
-                AppTextFields(
-                  controller: emailController,
-                  labelText: AppMessage.email,
-                  validator: (v) => AppValidator.validatorEmpty(v),
-                  obscureText: false,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
+              AppTextFields(
+                controller: emailController,
+                labelText: AppMessage.email,
+                validator: (v) => AppValidator.validatorEmpty(v),
+                obscureText: false,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
 //==============================Password===============================================================
-                AppTextFields(
-                  controller: passwordController,
-                  labelText: AppMessage.passwordTx,
-                  validator: (v) => AppValidator.validatorEmpty(v),
-                  obscureText: true,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
+              AppTextFields(
+                controller: passwordController,
+                labelText: AppMessage.passwordTx,
+                validator: (v) => AppValidator.validatorEmpty(v),
+                obscureText: true,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
 //===============================Add Button===============================================================
-                AppButtons(
-                  width: double.maxFinite,
-                  text: AppMessage.loginTx,
-                  backgroundColor: AppColor.mainColor,
-                  onPressed: () {
-                    FocusManager.instance.primaryFocus?.unfocus();
-                    if (logKey.currentState?.validate() == true) {
-                      AppLoading.show(context, 'lode', 'lode');
+              AppButtons(
+                width: double.maxFinite,
+                text: AppMessage.loginTx,
+                backgroundColor: AppColor.mainColor,
+                onPressed: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  if (logKey.currentState?.validate() == true) {
+                    AppLoading.show(context, 'lode', 'lode');
 
-                      Database.loggingToApp(
-                              email: emailController.text.trim(),
-                              password: passwordController.text)
-                          .then((String v) {
-                        Navigator.pop(context);
-                        if (v == 'error') {
-                          AppLoading.show(context, AppMessage.loginTx,
-                              AppMessage.serverText);
-                        } else if (v == 'user-not-found') {
-                          AppLoading.show(context, AppMessage.loginTx,
-                              AppMessage.userNotFound);
-                        } else {
-                          FirebaseFirestore.instance
-                              .collection('users')
-                              .where('userId', isEqualTo: v)
-                              .get()
-                              .then((value) {
-                            Navigator.pop(context);
-                            for (var element in value.docs) {
-                              print('responses is: $v');
-                              if (element.data()['type'] ==
-                                  AppConstants.employ) {
-                                AppRoutes.pushReplacementTo(
-                                    context, const EmployHome());
-                              } else if (element.data()['type'] ==
-                                  AppConstants.spurt) {
-                                AppRoutes.pushReplacementTo(
-                                    context, const SpurtHome());
-                              } else if (element.data()['type'] ==
-                                  AppConstants.admin) {
-                                AppRoutes.pushReplacementTo(
-                                    context, const NavBarAdmin());
-                              } else {
-                                AppLoading.show(context, AppMessage.loginTx,
-                                    AppMessage.userNotFound);
-                              }
+                    Database.loggingToApp(
+                            email: emailController.text.trim(),
+                            password: passwordController.text)
+                        .then((String v) {
+                      Navigator.pop(context);
+                      if (v == 'error') {
+                        AppLoading.show(
+                            context, AppMessage.loginTx, AppMessage.serverText);
+                      } else if (v == 'user-not-found') {
+                        AppLoading.show(context, AppMessage.loginTx,
+                            AppMessage.userNotFound);
+                      } else {
+                        FirebaseFirestore.instance
+                            .collection('users')
+                            .where('userId', isEqualTo: v)
+                            .get()
+                            .then((value) {
+                          Navigator.pop(context);
+                          for (var element in value.docs) {
+                            print('responses is: $v');
+                            if (element.data()['type'] == AppConstants.employ) {
+                              AppRoutes.pushReplacementTo(
+                                  context, const EmployHome());
+                            } else if (element.data()['type'] ==
+                                AppConstants.spurt) {
+                              AppRoutes.pushReplacementTo(
+                                  context, const SpurtHome());
+                            } else if (element.data()['type'] ==
+                                AppConstants.admin) {
+                              AppRoutes.pushReplacementTo(
+                                  context, const NavBarAdmin());
+                            } else {
+                              AppLoading.show(context, AppMessage.loginTx,
+                                  AppMessage.userNotFound);
                             }
-                          });
-                        }
-                      });
-                    }
-                  },
-                )
-              ],
-            ),
+                          }
+                        });
+                      }
+                    });
+                  }
+                },
+              )
+            ],
           ),
         ),
       ),
-    );
+    ));
   }
 }

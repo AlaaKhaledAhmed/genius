@@ -158,10 +158,14 @@ class GeneralWidget {
               ]
             : null,
         gradient: isGradient
-            ? LinearGradient(colors: [
-                AppColor.mainColor,
-                AppColor.subColor,
-              ])
+            ? LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF506C98), // #506C98
+                  Color(0xFFA9CBDB), // #A9CBDB
+                ],
+              )
             : null);
   }
 
