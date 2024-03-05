@@ -18,6 +18,7 @@ class AppMessage {
   static String email = 'البريد الالكتروني';
   static String passwordTx = 'كلمة المرور';
   static String loginTx = "تسجيل الدخول";
+  static String welcome = "أطلق العنان لقوة GENIUS ASSISTANT - الحل الإداري الشامل لديك";
   static String userNotFound = "المستخدم غير وجود";
   static String home = "الرئيسية";
   static String profile = "الملف الشخصي";

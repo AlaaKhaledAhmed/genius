@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genius/Widget/AppDialog.dart';
 import 'package:genius/Widget/AppSize.dart';
 import 'package:genius/Widget/AppText.dart';
+import 'package:genius/Widget/GeneralWidget.dart';
 import 'package:genius/Widget/ImagePath.dart';
+import 'package:genius/generated/assets.dart';
 import '../../BackEnd/Database/DatabaseMethods..dart';
 import '../../Widget/AppButtons.dart';
 import '../../Widget/AppColor.dart';
@@ -66,11 +68,19 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                  height: 120.spMin,
+                  width: 120.spMin,
+                  decoration: GeneralWidget.decoration(
+                      image: AssetImage(Assets.imageLogo)),
+                ),
+                SizedBox(height: 20.h,),
                 AppText(
-                  text: AppMessage.loginTx,
-                  fontSize: AppSize.textSize,
+                  text: AppMessage.welcome,
+                  fontSize: AppSize.subTextSize,
                   fontWeight: FontWeight.bold,
                   color: AppColor.white,
+                  align: TextAlign.center,
                 ),
                 SizedBox(
                   height: 15.h,
