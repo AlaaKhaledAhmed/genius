@@ -39,7 +39,7 @@ class _EmpContractsState extends State<EmpContracts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
-        text: AppMessage.manageUsers,
+        text: AppMessage.empContracts,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
