@@ -6,8 +6,8 @@ import 'package:genius/Screens/Admin/Complaints/Complaints.dart';
 import 'package:genius/Screens/Admin/Contracts/EmpContracts.dart';
 import 'package:genius/Screens/Admin/Contracts/ProjectsContracts.dart';
 import 'package:genius/Screens/Admin/ElevateEmploy/ElevateEmploy.dart';
-import 'package:genius/Screens/Admin/Tasks/AdminTask.dart';
-import 'package:provider/provider.dart';
+import 'package:genius/Screens/Admin/Projects/ProjectsMain.dart';
+ import 'package:provider/provider.dart';
 import '../../BackEnd/provider_class.dart';
 import '../../Widget/AppDrawer.dart';
 import 'Calender/Calender.dart';
@@ -28,7 +28,8 @@ class _NavBarAdminState extends State<NavBarAdmin> {
     const Profile(),
     const ManageEmploy(),
     const Sections(),
-    const AdminTask(),
+    // const AdminTask(),
+   const  ProjectsMain(),
     const AdminAudience(),
     const ElevateEmploy(),
     const AdministrativeCircular(),

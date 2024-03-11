@@ -1,6 +1,10 @@
+import 'dart:io';
 import 'dart:math';
+import 'package:path/path.dart' as path;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,13 +35,19 @@ class AddProject extends StatefulWidget {
 class _AddProjectState extends State<AddProject> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+  final _key3 = GlobalKey<State<StatefulWidget>>();
   final key2 = GlobalKey<State<StatefulWidget>>();
   final key1 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
+  TextEditingController fileController = TextEditingController();
+
   List<Employee> selectedEmployees = [];
   List<Employee> employees = [];
   String? from, to;
   DateTime? startDate, endDate;
+  Reference? fileRef;
+  String? fileURL;
+  File? file;
   @override
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
@@ -70,7 +80,6 @@ class _AddProjectState extends State<AddProject> {
                           employees =
                               snapshot.data!.docs.map((DocumentSnapshot doc) {
                             return Employee(
-                                docId: doc.id,
                                 name: doc['name'],
                                 userId: doc['userId'],
                                 empNumber: doc['employNumber']);
@@ -81,7 +90,7 @@ class _AddProjectState extends State<AddProject> {
                               value: selectedEmployees.isEmpty
                                   ? null
                                   : selectedEmployees
-                                      .map((e) => e.docId)
+                                      .map((e) => e.userId)
                                       .toList()
                                       .last,
                               validator: (v) => AppValidator.validatorEmpty(v),
@@ -89,39 +98,33 @@ class _AddProjectState extends State<AddProject> {
                               onChanged: (v) {
                                 setState(() {
                                   selectedEmployees
-                                          .map((e) => e.docId)
+                                          .map((e) => e.userId)
                                           .toList()
                                           .contains(v)
                                       ? selectedEmployees.removeWhere(
-                                          (element) => element.docId == v)
-                                      : selectedEmployees.add(
-                                      Employee(
-                                          docId: v,
+                                          (element) => element.userId == v)
+                                      : selectedEmployees.add(Employee(
                                           name: employees
                                               .where((element) =>
-                                                  element.docId == v)
+                                                  element.userId == v)
                                               .first
                                               .name,
-                                          userId: employees
-                                              .where((element) =>
-                                                  element.docId == v)
-                                              .first
-                                              .userId,
+                                          userId: v!,
                                           empNumber: employees
                                               .where((element) =>
-                                                  element.docId == v)
+                                                  element.userId == v)
                                               .first
                                               .empNumber));
                                 });
                                 set(() {});
                                 selectedEmployees.forEach((element) {
                                   print(
-                                      'name: ${element.name}\nuserid: ${element.userId}\ndocId: ${element.docId}');
+                                      'name: ${element.name}\nuserid: ${element.userId}\ndocId: ${element.userId}');
                                 });
                               },
                               items: employees
                                   .map((e) => DropdownMenuItem<String>(
-                                        value: e.docId,
+                                        value: e.userId,
                                         enabled: true,
                                         child: StatefulBuilder(
                                             builder: (context, set) {
@@ -132,9 +135,9 @@ class _AddProjectState extends State<AddProject> {
                                               label:
                                                   '${e.name} - ${e.empNumber}',
                                               value: selectedEmployees
-                                                  .map((e) => e.docId)
+                                                  .map((e) => e.userId)
                                                   .toList()
-                                                  .contains(e.docId),
+                                                  .contains(e.userId),
                                               onChanged: (bool? value) {
                                                 if (value == true) {
                                                   selectedEmployees.add(e);
@@ -146,7 +149,7 @@ class _AddProjectState extends State<AddProject> {
                                                 selectedEmployees
                                                     .forEach((element) {
                                                   print(
-                                                      'selectedCategoryCategories: ${element.name}-${element.docId}');
+                                                      'selectedCategoryCategories: ${element.name}-${element.userId}');
                                                 });
                                               },
                                             ),
@@ -194,7 +197,6 @@ class _AddProjectState extends State<AddProject> {
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: nameController,
                       labelText: AppMessage.projectName,
-
                     ),
                     SizedBox(
                       height: 10.h,
@@ -208,7 +210,6 @@ class _AddProjectState extends State<AddProject> {
                       validator: (v) => AppValidator.validatorNumbers(v),
                       controller: priceController,
                       labelText: AppMessage.projectPrice,
-
                     ),
                     SizedBox(
                       height: 10.h,
@@ -218,8 +219,7 @@ class _AddProjectState extends State<AddProject> {
                       onTap: () async {
                         List<DateTime?>? r =
                             await GeneralWidget.showDateRangDialog(
-                              showRange: true,
-                                context: context);
+                                showRange: true, context: context);
                         if (r != null) {
                           ///need this format to display month name to user
                           from = GeneralWidget.convertStringToDate(r[0]);
@@ -252,7 +252,7 @@ class _AddProjectState extends State<AddProject> {
                             SizedBox(
                               width: 10.w,
                             ),
-//date====================================================================================================================================
+//selected date====================================================================================================================================
                             Padding(
                               padding: EdgeInsets.only(top: 5.0.h),
                               child: AppText(
@@ -286,6 +286,26 @@ class _AddProjectState extends State<AddProject> {
                     SizedBox(
                       height: 10.h,
                     ),
+//file=============================================================================
+                    AppTextFields(
+                      key: _key3,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key3);
+                        setState(() {
+                          getFile(context).whenComplete(() {
+                            fileController.text = (file == null
+                                ? fileController.text
+                                : path.basename(file!.path));
+                          });
+                        });
+                      },
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      controller: fileController,
+                      labelText: AppMessage.contract,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
 //save buttons=============================================================================
                     AppButtons(
                       text: AppMessage.add,
@@ -296,25 +316,22 @@ class _AddProjectState extends State<AddProject> {
                           AppLoading.show(context, '', 'lode');
 
                           Database.addProject(
-                              projectId: 1.toString(),
-                              name: nameController.text,
-                              startDate: startDate!,
-                              endDate: endDate!,
-                              price: double.parse(priceController.text),
-                              employees: []).then((v) {
+                                  projectId: GeneralWidget.randomNumber(9),
+                                  name: nameController.text,
+                                  startDate: startDate!,
+                                  endDate: endDate!,
+                                  price: double.parse(priceController.text),
+                                  employees: selectedEmployees)
+                              .then((v) {
                             print('================$v');
                             if (v == "done") {
                               Navigator.pop(context);
                               Navigator.pop(context);
-                              AppLoading.show(
-                                  context, AppMessage.addUser, AppMessage.done);
-                            } else if (v == "email-already-in-use") {
-                              Navigator.pop(context);
-                              AppLoading.show(context, AppMessage.addUser,
-                                  AppMessage.emailAlreadyInUse);
+                              AppLoading.show(context, AppMessage.addProject,
+                                  AppMessage.done);
                             } else {
                               Navigator.pop(context);
-                              AppLoading.show(context, AppMessage.addUser,
+                              AppLoading.show(context, AppMessage.addProject,
                                   AppMessage.serverText);
                             }
                           });
@@ -327,5 +344,18 @@ class _AddProjectState extends State<AddProject> {
             ),
           ),
         ));
+  }
+
+  Future getFile(context) async {
+    FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowMultiple: false,
+        allowedExtensions: ['pdf']);
+    if (pickedFile == null) {
+      return;
+    }
+    setState(() {
+      file = File(pickedFile.paths.first!);
+    });
   }
 }

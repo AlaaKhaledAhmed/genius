@@ -8,25 +8,27 @@ import 'package:genius/Widget/AppBar.dart';
 import 'package:genius/Widget/AppConstants.dart';
 import 'package:genius/Widget/AppMessage.dart';
 import 'package:genius/Widget/GeneralWidget.dart';
+import '../../../../Widget/AppButtons.dart';
+import '../../../../Widget/AppColor.dart';
+import '../../../../Widget/AppDialog.dart';
+import '../../../../Widget/AppDropList.dart';
+import '../../../../Widget/AppIcons.dart';
+import '../../../../Widget/AppSize.dart';
+import '../../../../Widget/AppText.dart';
+import '../../../../Widget/AppTextFields.dart';
+import '../../../../Widget/AppValidator.dart';
 
-import '../../../Widget/AppButtons.dart';
-import '../../../Widget/AppColor.dart';
-import '../../../Widget/AppDialog.dart';
-import '../../../Widget/AppDropList.dart';
-import '../../../Widget/AppIcons.dart';
-import '../../../Widget/AppSize.dart';
-import '../../../Widget/AppText.dart';
-import '../../../Widget/AppTextFields.dart';
-import '../../../Widget/AppValidator.dart';
-
-class AddTask extends StatefulWidget {
-  const AddTask({Key? key}) : super(key: key);
+class UpdateTask extends StatefulWidget {
+  var data;
+  String docId;
+  UpdateTask({super.key, required this.data, required this.docId});
 
   @override
-  State<AddTask> createState() => _AddTaskState();
+  State<UpdateTask> createState() => _UpdateTaskState();
 }
 
-class _AddTaskState extends State<AddTask> {
+class _UpdateTaskState extends State<UpdateTask> {
+
   String? from, to;
   DateTime? startDate, endDate;
   TextEditingController taskController = TextEditingController();
@@ -39,6 +41,14 @@ class _AddTaskState extends State<AddTask> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    selectedName = widget.data['name'];
+    empUserId = widget.data['userId'];
+    employeeId = widget.data['employNaId'];
+    startDate = widget.data['startDate'].toDate();
+    endDate = widget.data['endDate'].toDate();
+    from = widget.data['startDateStringFormat'];
+    to = widget.data['endDateStringFormat'];
+    taskController.text = widget.data['taskName'];
   }
 
   @override
@@ -49,7 +59,7 @@ class _AddTaskState extends State<AddTask> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(
-          text: AppMessage.addTask,
+          text: AppMessage.addUser,
           isBasics: true,
         ),
         body: Padding(
@@ -77,8 +87,8 @@ class _AddTaskState extends State<AddTask> {
                               items: names
                                   .map((e) => '${e['name']}-${e['employNaId']}')
                                   .toList(),
-                              validator: (v) => AppValidator.validatorEmpty(v),
-                              hintText: AppMessage.employName,
+                              validator: (v) {},
+                              hintText: "$selectedName-$employeeId",
                               onChanged: (v) {
                                 selectedName = v!.split('-')[0];
                                 employeeId = v.split('-')[1];
@@ -135,7 +145,6 @@ class _AddTaskState extends State<AddTask> {
                               : GeneralWidget.convertStringToDate(r[1]));
                           startDate = r[0];
                           endDate = (r.length == 1 ? startDate : r[1]);
-
                         }
                         setState(() {});
                       },
@@ -166,7 +175,7 @@ class _AddTaskState extends State<AddTask> {
                               child: AppText(
                                 text: from == null
                                     ? AppMessage.selectDate
-                                    : "$from",
+                                    : "$from - $to",
                                 fontSize: AppSize.subTextSize,
                                 color: AppColor.textColor,
                               ),
@@ -196,14 +205,15 @@ class _AddTaskState extends State<AddTask> {
                     ),
 //save buttons=============================================================================
                     AppButtons(
-                      text: AppMessage.add,
+                      text: AppMessage.update,
                       width: double.maxFinite,
                       onPressed: () async {
                         FocusManager.instance.primaryFocus?.unfocus();
                         if (formKey.currentState?.validate() == true) {
                           AppLoading.show(context, '', 'lode');
 
-                          Database.addTask(
+                          Database.updateTask(
+                            docId: widget.docId,
                             name: selectedName!,
                             startDate: startDate!,
                             endDate: endDate!,
@@ -218,10 +228,10 @@ class _AddTaskState extends State<AddTask> {
                               Navigator.pop(context);
                               Navigator.pop(context);
                               AppLoading.show(
-                                  context, AppMessage.addUser, AppMessage.done);
+                                  context, AppMessage.update, AppMessage.done);
                             } else if (v == "email-already-in-use") {
                               Navigator.pop(context);
-                              AppLoading.show(context, AppMessage.addUser,
+                              AppLoading.show(context, AppMessage.update,
                                   AppMessage.emailAlreadyInUse);
                             } else {
                               Navigator.pop(context);

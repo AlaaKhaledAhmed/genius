@@ -2,7 +2,7 @@ class AppMessage {
   static String serverText = "حدث خطأ ما اثناء معالجة طلبك";
 
   static String noData = 'لاتوجد بيانات لعرضها';
-  static String selectDate = 'اختر تاريخ النهاية';
+  static String selectDate = 'اختر التاريخ';
   static String selectEmployee = 'اختر الموظف';
 
   static String mandatoryTx = 'حقل اجباري';
@@ -38,6 +38,7 @@ class AppMessage {
   static String logOut = "تسجيل الخروج";
   static String employId = "رقم الهوية/الاقامة";
   static String employName = "اسم الموظف";
+  static String employNumbers = "عدد الموظفين";
   static String taskText = "المهمة";
   static String starDate = "تاريخ البداية";
   static String endDate = "تاريخ النهاية";

@@ -6,14 +6,21 @@ import '../../Widget/AppConstants.dart';
 class Employee {
   final String name;
   final String? empNumber;
-  final String? docId;
+
   final String userId;
   Employee({
-    this.docId,
     required this.name,
     required this.userId,
-    this.empNumber,
+    required this.empNumber,
   });
+  // Factory method to construct Employee object from map
+  factory Employee.fromMap(Map<String, dynamic> map) {
+    return Employee(
+      name: map['name'],
+      empNumber: map['empNumber'], userId: map['userId'],
+      // map other properties accordingly
+    );
+  }
 }
 
 class Database {
@@ -268,10 +275,12 @@ class Database {
           'price': price,
           'startDate': startDate,
           'endDate': endDate,
+          'status': 0,
           'employees': employees
               .map((employee) => {
-                    'employeeId': employee.userId,
+                    'userId': employee.userId,
                     'name': employee.name,
+                    'empNumber': employee.empNumber
                   })
               .toList(),
           'createdOn': FieldValue.serverTimestamp(),
