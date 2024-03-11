@@ -67,21 +67,25 @@ class _AddTaskState extends State<AddTask> {
                   children: [
 //employee name-id=============================================================================
                     StreamBuilder<QuerySnapshot>(
-                      stream: AppConstants.userCollection
-                          .where('type', isEqualTo: AppConstants.employ)
-                          .orderBy('createdOn', descending: true)
+                      stream: AppConstants.projectCollection
+                          .where('projectId', isEqualTo: widget.projectId)
                           .snapshots(),
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.hasData) {
-                          employees =
-                              snapshot.data!.docs.map((DocumentSnapshot doc) {
-                            return Employee(
-                                name: doc['name'],
-                                userId: doc['userId'],
-                                empNumber: doc['employNumber']);
-                          }).toList();
+                          snapshot.data!.docs.forEach((doc) {
+                            List<dynamic> employeesData = doc['employees'];
+                            employees.clear();
+                            employeesData.forEach((employeeData) {
+                              employees.add(Employee(
+                                name: employeeData['name'],
+                                userId: employeeData['userId'],
+                                empNumber: employeeData['empNumber'],
+                              ));
+                            });
+                          });
 
+                          color_print('length: ${employees.length}');
                           return StatefulBuilder(builder: (context, set) {
                             return AppDropList2(
                               value: selectedEmployees.isEmpty
@@ -131,6 +135,7 @@ class _AddTaskState extends State<AddTask> {
                                         }),
                                       ))
                                   .toList(),
+
                             );
                           });
                         }

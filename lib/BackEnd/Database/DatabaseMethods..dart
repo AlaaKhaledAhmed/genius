@@ -5,7 +5,7 @@ import '../../Widget/AppConstants.dart';
 
 class Employee {
   final String name;
-  final String? empNumber;
+  final String empNumber;
 
   final String userId;
   Employee({
