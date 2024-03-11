@@ -194,8 +194,21 @@ class _AddProjectState extends State<AddProject> {
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: nameController,
                       labelText: AppMessage.projectName,
-                      maxLines: 4,
-                      minLines: 4,
+
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+//price =============================================================================
+                    AppTextFields(
+                      key: key2,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: key2);
+                      },
+                      validator: (v) => AppValidator.validatorNumbers(v),
+                      controller: priceController,
+                      labelText: AppMessage.projectPrice,
+
                     ),
                     SizedBox(
                       height: 10.h,
@@ -205,6 +218,7 @@ class _AddProjectState extends State<AddProject> {
                       onTap: () async {
                         List<DateTime?>? r =
                             await GeneralWidget.showDateRangDialog(
+                              showRange: true,
                                 context: context);
                         if (r != null) {
                           ///need this format to display month name to user

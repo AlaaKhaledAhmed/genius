@@ -41,6 +41,17 @@ class AppValidator {
     return null;
   }
 
+  static String? validatorNumbers(id) {
+    if (id.trim().isEmpty) {
+      return AppMessage.mandatoryTx;
+    }
+
+    if (id.length != 10) {
+      return AppMessage.noLessThan10;
+    }
+    return null;
+  }
+
   //valid email=============================================================
   static String? validatorEmail(email) {
     if (email.isEmpty) {

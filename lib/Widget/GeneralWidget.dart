@@ -251,13 +251,13 @@ class GeneralWidget {
 
   ///===============================================================================
   static Future<List<DateTime?>?> showDateRangDialog(
-      {required BuildContext context, DateTime? startDate}) async {
+      {required BuildContext context, DateTime? startDate,bool showRange=false}) async {
     List<DateTime?>? results = await showCalendarDatePicker2Dialog(
       context: context,
       config: CalendarDatePicker2WithActionButtonsConfig(
         currentDate: DateTime.now(),
         firstDate: startDate ?? DateTime.now(),
-        calendarType: CalendarDatePicker2Type.single,
+        calendarType: showRange?CalendarDatePicker2Type.range:CalendarDatePicker2Type.single,
         selectedDayTextStyle:
             TextStyle(color: AppColor.white, fontWeight: FontWeight.w700),
         selectedDayHighlightColor: AppColor.mainColor,

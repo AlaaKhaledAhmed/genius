@@ -9,6 +9,7 @@ class AppMessage {
   static String yes = 'نعم';
   static String file = 'الملف';
   static String projectName = 'اسم المشروع';
+  static String projectPrice = 'تكلفة المشروع';
   static String text = 'النص';
   static String title = 'الموضوع';
   static String notCompleteStatus = 'غير مكتمل';
