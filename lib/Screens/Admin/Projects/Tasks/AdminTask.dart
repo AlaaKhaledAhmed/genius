@@ -43,6 +43,16 @@ class _AdminTaskState extends State<AdminTask> {
     return Scaffold(
       appBar: AppBarWidget(
         text: AppMessage.task,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: AppColor.white,
+            size: AppSize.iconsSize + 6,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
