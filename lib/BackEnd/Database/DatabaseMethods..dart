@@ -5,9 +5,15 @@ import '../../Widget/AppConstants.dart';
 
 class Employee {
   final String name;
+  final String? empNumber;
   final String? docId;
   final String userId;
-  Employee({this.docId, required this.name, required this.userId});
+  Employee({
+    this.docId,
+    required this.name,
+    required this.userId,
+    this.empNumber,
+  });
 }
 
 class Database {
@@ -143,8 +149,9 @@ class Database {
       return 'error';
     }
   }
+
   ///==================================================================================================================
-    static Future<String> addTask({
+  static Future<String> addTask({
     required String name,
     required String startDateStringFormat,
     required String endDateStringFormat,
@@ -172,6 +179,7 @@ class Database {
       return 'error';
     }
   }
+
   ///==================================================================================================================
   static Future<String> updateTask({
     required String name,
@@ -219,6 +227,7 @@ class Database {
       return 'error';
     }
   }
+
   ///==================================================================================================================
   static Future<String> updateAdministrativeCircular({
     required String text,

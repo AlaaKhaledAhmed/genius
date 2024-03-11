@@ -70,10 +70,10 @@ class _AddProjectState extends State<AddProject> {
                           employees =
                               snapshot.data!.docs.map((DocumentSnapshot doc) {
                             return Employee(
-                              docId: doc.id,
-                              name: doc['name'],
-                              userId: doc['userId'],
-                            );
+                                docId: doc.id,
+                                name: doc['name'],
+                                userId: doc['userId'],
+                                empNumber: doc['employNumber']);
                           }).toList();
 
                           return StatefulBuilder(builder: (context, set) {
@@ -94,7 +94,8 @@ class _AddProjectState extends State<AddProject> {
                                           .contains(v)
                                       ? selectedEmployees.removeWhere(
                                           (element) => element.docId == v)
-                                      : selectedEmployees.add(Employee(
+                                      : selectedEmployees.add(
+                                      Employee(
                                           docId: v,
                                           name: employees
                                               .where((element) =>
@@ -105,7 +106,12 @@ class _AddProjectState extends State<AddProject> {
                                               .where((element) =>
                                                   element.docId == v)
                                               .first
-                                              .userId));
+                                              .userId,
+                                          empNumber: employees
+                                              .where((element) =>
+                                                  element.docId == v)
+                                              .first
+                                              .empNumber));
                                 });
                                 set(() {});
                                 selectedEmployees.forEach((element) {
@@ -123,7 +129,8 @@ class _AddProjectState extends State<AddProject> {
                                             padding:
                                                 EdgeInsets.only(right: 10.w),
                                             child: AppCheckBox(
-                                              label: e.name,
+                                              label:
+                                                  '${e.name} - ${e.empNumber}',
                                               value: selectedEmployees
                                                   .map((e) => e.docId)
                                                   .toList()
