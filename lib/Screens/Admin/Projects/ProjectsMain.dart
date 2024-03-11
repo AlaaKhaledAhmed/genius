@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genius/Screens/Admin/Projects/Tasks/AddTask.dart';
+import 'package:genius/Screens/Admin/Projects/Tasks/AdminTask.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 
 import '../../../BackEnd/Database/DatabaseMethods..dart';
@@ -33,7 +34,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
     AppMessage.endDate,
     AppMessage.employNumbers,
     AppMessage.status,
-    AppMessage.addTask,
+    AppMessage.task,
     AppMessage.action,
   ];
   @override
@@ -99,7 +100,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                           return TableViewRow(
                             height: 45.h,
                             cells: [
-                              // project name
+// project name ====================================================================
                               TableViewCell(
                                 alignment: Alignment.center,
                                 child: AppText(
@@ -108,7 +109,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              // price
+// price=========================================================================
                               TableViewCell(
                                 alignment: Alignment.centerRight,
                                 child: TableViewCell(
@@ -120,7 +121,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                   ),
                                 ),
                               ),
-                              // start date
+// start date========================================================================================================================================
                               TableViewCell(
                                 alignment: Alignment.centerRight,
                                 child: TableViewCell(
@@ -131,7 +132,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                   ),
                                 ),
                               ),
-                              // end date
+// end date ========================================================================================================================================
                               TableViewCell(
                                 alignment: Alignment.centerRight,
                                 child: TableViewCell(
@@ -142,7 +143,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                   ),
                                 ),
                               ),
-                              // number of employees
+// number of employees========================================================================================================================================
                               TableViewCell(
                                 alignment: Alignment.centerRight,
                                 child: TableViewCell(
@@ -153,7 +154,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                   ),
                                 ),
                               ),
-                              // status
+// status========================================================================================================================================
                               TableViewCell(
                                 alignment: Alignment.centerRight,
                                 child: TableViewCell(
@@ -181,7 +182,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                   ),
                                 ),
                               ),
-                              // add task
+// add task========================================================================================================================================
                               TableViewCell(
                                 alignment: Alignment.centerRight,
                                 child: TableViewCell(
@@ -190,18 +191,18 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                     onPressed: () {
                                       AppRoutes.pushTo(
                                         context,
-                                        AddTask(projectId: data[index].data()['projectId'] ),
+                                        AdminTask(projectId: data[index].data()['projectId'] ),
                                       );
                                     },
                                     icon: Icon(
-                                      AppIcons.add,
+                                      AppIcons.view,
                                       size: AppSize.iconsSize + 10,
                                       color: AppColor.mainColor,
                                     ),
                                   ),
                                 ),
                               ),
-                              // action
+// action========================================================================================================================================
                               TableViewCell(
                                 alignment: Alignment.center,
                                 child: Row(

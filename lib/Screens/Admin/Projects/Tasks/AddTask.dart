@@ -34,9 +34,8 @@ class _AddTaskState extends State<AddTask> {
   TextEditingController taskController = TextEditingController();
   final key1 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
-  String? selectedName;
-  String? employeeId;
-  String? empUserId;
+
+
   List<Employee> selectedEmployees = [];
   List<Employee> employees = [];
   @override
@@ -243,14 +242,15 @@ class _AddTaskState extends State<AddTask> {
                           AppLoading.show(context, '', 'lode');
 
                           Database.addTask(
-                            name: selectedName!,
+                            projectId: widget.projectId!,
+                            name: selectedEmployees[0].name,
                             startDate: startDate!,
                             endDate: endDate!,
                             startDateStringFormat: from!,
                             endDateStringFormat: to!,
                             taskName: taskController.text,
-                            employNaId: employeeId!,
-                            userId: empUserId!,
+                            employNumber:selectedEmployees[0].empNumber,
+                            userId: selectedEmployees[0].userId,
                           ).then((v) {
                             print('================$v');
                             if (v == "done") {

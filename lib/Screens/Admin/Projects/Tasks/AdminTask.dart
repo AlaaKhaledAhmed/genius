@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
- import 'package:genius/Widget/AppBar.dart';
+import 'package:genius/Widget/AppBar.dart';
 import 'package:genius/Widget/AppButtons.dart';
 import 'package:genius/Widget/AppDialog.dart';
 import 'package:genius/Widget/AppMessage.dart';
@@ -21,7 +21,8 @@ import 'AddTask.dart';
 import 'UpdateTask.dart';
 
 class AdminTask extends StatefulWidget {
-  const AdminTask({super.key});
+  final String projectId;
+  const AdminTask({super.key, required this.projectId});
 
   @override
   State<AdminTask> createState() => _AdminTaskState();
@@ -52,7 +53,11 @@ class _AdminTaskState extends State<AdminTask> {
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
               child: AppButtons(
                 onPressed: () {
-                  AppRoutes.pushTo(context, const AddTask());
+                  AppRoutes.pushTo(
+                      context,
+                      AddTask(
+                        projectId: widget.projectId,
+                      ));
                 },
                 text: AppMessage.addTask,
                 icon: AppIcons.add,

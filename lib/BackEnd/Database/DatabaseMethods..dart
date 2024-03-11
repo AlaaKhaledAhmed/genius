@@ -165,14 +165,16 @@ class Database {
     required DateTime startDate,
     required DateTime endDate,
     required String taskName,
-    required String employNaId,
+    required String employNumber,
     required String userId,
+    required String projectId,
   }) async {
     try {
       await AppConstants.taskCollection.add({
+        'projectId':projectId,
         'name': name,
         'userId': userId,
-        'employNaId': employNaId,
+        'employNumber':employNumber,
         'startDateStringFormat': startDateStringFormat,
         'endDateStringFormat': endDateStringFormat,
         'startDate': startDate,
@@ -195,7 +197,7 @@ class Database {
     required DateTime startDate,
     required DateTime endDate,
     required String taskName,
-    required String employNaId,
+    required String employNumber,
     required String userId,
     required String docId,
   }) async {
@@ -203,7 +205,7 @@ class Database {
       await AppConstants.taskCollection.doc(docId).update({
         'name': name,
         'userId': userId,
-        'employNaId': employNaId,
+        'employNumber':employNumber,
         'startDateStringFormat': startDateStringFormat,
         'endDateStringFormat': endDateStringFormat,
         'startDate': startDate,
