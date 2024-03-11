@@ -29,8 +29,10 @@ class ManageEmploy extends StatefulWidget {
 
 class _ManageEmployState extends State<ManageEmploy> {
   List<String> header = [
-    AppMessage.employId,
     AppMessage.employName,
+    AppMessage.employeeNumber,
+    AppMessage.employId,
+    AppMessage.nationalities,
     AppMessage.email,
     AppMessage.phone,
     AppMessage.section,
@@ -100,21 +102,40 @@ class _ManageEmployState extends State<ManageEmploy> {
                                   return TableViewRow(
                                     height: 45.h,
                                     cells: [
-//employee id======================================================================================================================================================
-                                      TableViewCell(
-                                          alignment: Alignment.center,
-                                          child: AppText(
-                                            text:
-                                                '${data[index].data()?['employNaId']}',
-                                            fontSize: AppSize.subTextSize,
-                                            overflow: TextOverflow.ellipsis,
-                                          )),
+
 //name======================================================================================================================================================
                                       TableViewCell(
                                           alignment: Alignment.center,
                                           child: AppText(
                                             text:
                                                 '${data[index].data()?['name']}',
+                                            fontSize: AppSize.subTextSize,
+                                            overflow: TextOverflow.ellipsis,
+                                          )),
+//employee number======================================================================================================================================================
+                                      TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: AppText(
+                                            text:
+                                            '${data[index].data()?['employNumber']}',
+                                            fontSize: AppSize.subTextSize,
+                                            overflow: TextOverflow.ellipsis,
+                                          )),
+//employee id======================================================================================================================================================
+                                      TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: AppText(
+                                            text:
+                                            '${data[index].data()?['employNaId']}',
+                                            fontSize: AppSize.subTextSize,
+                                            overflow: TextOverflow.ellipsis,
+                                          )),
+//employee nationalities======================================================================================================================================================
+                                      TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: AppText(
+                                            text:
+                                            '${data[index].data()?['nationalities']}',
                                             fontSize: AppSize.subTextSize,
                                             overflow: TextOverflow.ellipsis,
                                           )),

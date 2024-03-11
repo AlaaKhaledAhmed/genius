@@ -31,6 +31,7 @@ class AddEmploy extends StatefulWidget {
 
 class _AddEmployState extends State<AddEmploy> {
   TextEditingController nameController = TextEditingController();
+  TextEditingController employNumberController = TextEditingController();
   TextEditingController idController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -42,8 +43,10 @@ class _AddEmployState extends State<AddEmploy> {
   final _key4 = GlobalKey<State<StatefulWidget>>();
   final _key5 = GlobalKey<State<StatefulWidget>>();
   final _key6 = GlobalKey<State<StatefulWidget>>();
+  final _key7 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
   String? section;
+  String? nationalities;
   Reference? fileRef;
   String? fileURL;
   File? file;
@@ -51,7 +54,7 @@ class _AddEmployState extends State<AddEmploy> {
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
     bottom = max(min(bottom, 185.h), 0);
-
+color_print( context.locale.toString());
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(
@@ -67,19 +70,6 @@ class _AddEmployState extends State<AddEmploy> {
                 padding: EdgeInsets.only(bottom: bottom),
                 child: Column(
                   children: [
-//employee id=============================================================================
-                    AppTextFields(
-                      key: _key1,
-                      onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key1);
-                      },
-                      validator: (v) => AppValidator.validatorId(v),
-                      controller: idController,
-                      labelText: AppMessage.employId,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
 //name=============================================================================
                     AppTextFields(
                       key: _key2,
@@ -93,18 +83,62 @@ class _AddEmployState extends State<AddEmploy> {
                     SizedBox(
                       height: 10.h,
                     ),
+//employee number=============================================================================
+                    AppTextFields(
+                      key: _key7,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key7);
+                      },
+                      validator: (v) => AppValidator.validatorId(v),
+                      controller: employNumberController,
+                      labelText: AppMessage.employeeNumber,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+//employee identity=============================================================================
+                    AppTextFields(
+                      key: _key1,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key1);
+                      },
+                      validator: (v) => AppValidator.validatorId(v),
+                      controller: idController,
+                      labelText: AppMessage.employId,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+
+
+//Nationalities=============================================================================
+                    AppDropList(
+                      listItem: context.locale.toString() == 'ar'
+                          ? AppConstants.arabicNationalities
+                          : AppConstants.englishNationalities,
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      hintText: AppMessage.nationalities,
+                      onChanged: (v) {
+                        nationalities = v;
+                        setState(() {});
+                      },
+                      // dropValue: section
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
 //section=============================================================================
                     AppDropList(
-                        listItem: context.locale.toString() == 'ar'
-                            ? AppConstants.sectionListAr
-                            : AppConstants.sectionListEn,
-                        validator: (v) => AppValidator.validatorEmpty(v),
-                        hintText: AppMessage.section,
-                        onChanged: (v) {
-                          section = v;
-                          setState(() {});
-                        },
-                        // dropValue: section
+                      listItem: context.locale.toString() == 'ar'
+                          ? AppConstants.sectionListAr
+                          : AppConstants.sectionListEn,
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      hintText: AppMessage.section,
+                      onChanged: (v) {
+                        section = v;
+                        setState(() {});
+                      },
+                      // dropValue: section
                     ),
                     SizedBox(
                       height: 10.h,
@@ -129,8 +163,9 @@ class _AddEmployState extends State<AddEmploy> {
                         GeneralWidget.ensureVisibleOnTextArea(key: _key4);
                         setState(() {
                           getFile(context).whenComplete(() {
-                            fileController.text =
-                                (file == null ? fileController.text : path.basename(file!.path));
+                            fileController.text = (file == null
+                                ? fileController.text
+                                : path.basename(file!.path));
                           });
                         });
                       },
@@ -209,6 +244,8 @@ class _AddEmployState extends State<AddEmploy> {
                               employNaId: idController.text,
                               phone: phoneController.text,
                               salary: salaryController.text,
+                              employNumber: employNumberController.text,
+                              nationalities: nationalities!,
                               section: section.toString(),
                             ).then((v) {
                               print('================$v');

@@ -23,6 +23,7 @@ Future<void> main() async {
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       fallbackLocale: const Locale('ar'),
+      startLocale:  const Locale('ar'),
       child: const MyApp()));
 }
 
@@ -57,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                 },
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
-                locale: const Locale('ar'),
+                locale: context.locale,
                 debugShowCheckedModeBanner: false,
                 theme: ThemeData(
                     scaffoldBackgroundColor: AppColor.inputBG,

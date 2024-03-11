@@ -35,6 +35,7 @@ class UpdateEmployee extends StatefulWidget {
 
 class _UpdateEmployeeState extends State<UpdateEmployee> {
   TextEditingController nameController = TextEditingController();
+  TextEditingController employNumberController = TextEditingController();
   TextEditingController idController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -46,11 +47,13 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
   final _key4 = GlobalKey<State<StatefulWidget>>();
   final _key5 = GlobalKey<State<StatefulWidget>>();
   final _key6 = GlobalKey<State<StatefulWidget>>();
+  final _key7 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
   String? section;
   Reference? fileRef;
   String? fileURL;
   File? file;
+  String? nationalities;
   @override
   void initState() {
     // TODO: implement initState
@@ -85,19 +88,6 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                 padding: EdgeInsets.only(bottom: bottom),
                 child: Column(
                   children: [
-//employee id=============================================================================
-                    AppTextFields(
-                      key: _key1,
-                      onTap: () {
-                        GeneralWidget.ensureVisibleOnTextArea(key: _key1);
-                      },
-                      validator: (v) => AppValidator.validatorId(v),
-                      controller: idController,
-                      labelText: AppMessage.employId,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
 //name=============================================================================
                     AppTextFields(
                       key: _key2,
@@ -111,15 +101,42 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                     SizedBox(
                       height: 10.h,
                     ),
-//section=============================================================================
+//employee number=============================================================================
+                    AppTextFields(
+                      key: _key7,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key7);
+                      },
+                      validator: (v) => AppValidator.validatorId(v),
+                      controller: employNumberController,
+                      labelText: AppMessage.employeeNumber,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+//employee identity=============================================================================
+                    AppTextFields(
+                      key: _key1,
+                      onTap: () {
+                        GeneralWidget.ensureVisibleOnTextArea(key: _key1);
+                      },
+                      validator: (v) => AppValidator.validatorId(v),
+                      controller: idController,
+                      labelText: AppMessage.employId,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+
+//Nationalities=============================================================================
                     AppDropList(
                       listItem: context.locale.toString() == 'ar'
-                          ? AppConstants.sectionListAr
-                          : AppConstants.sectionListEn,
-                      validator: (v) {},
-                      hintText: AppMessage.section,
+                          ? AppConstants.arabicNationalities
+                          : AppConstants.englishNationalities,
+                      validator: (v) => AppValidator.validatorEmpty(v),
+                      hintText: AppMessage.nationalities,
                       onChanged: (v) {
-                        section = v;
+                        nationalities = v;
                         setState(() {});
                       },
                       // dropValue: section
@@ -127,7 +144,6 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                     SizedBox(
                       height: 10.h,
                     ),
-
 //file=============================================================================
                     AppTextFields(
                       key: _key4,
@@ -223,6 +239,8 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                                       salary: salaryController.text,
                                       section: section.toString(),
                                       docId: widget.docId,
+                                      employNumber: employNumberController.text,
+                                      nationalities: nationalities!,
                                     ).then((v) {
                                       print('================$v');
                                       if (v == "done") {
@@ -251,6 +269,8 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
                                     salary: salaryController.text,
                                     section: section.toString(),
                                     docId: widget.docId,
+                                    employNumber: employNumberController.text,
+                                    nationalities: nationalities!,
                                   ).then((v) {
                                     print('================$v');
                                     if (v == "done") {

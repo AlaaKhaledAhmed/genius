@@ -14,6 +14,7 @@ class AppMessage {
 
   static String RSA = 'ريال';
   static String no = 'لا';
+  static String employeeNumber = "رقم الموظف";
   static String invalidEmail = 'البريد الالكتروني غير صالح';
   static String email = 'البريد الالكتروني';
   static String passwordTx = 'كلمة المرور';
@@ -29,7 +30,7 @@ class AppMessage {
   static String administrativeRequests = "طلبات اداراية";
   static String complaints = "الشكاوي والاقتراحات";
   static String logOut = "تسجيل الخروج";
-  static String employId = "رقم الموظف";
+  static String employId = "رقم الهوية/الاقامة";
   static String employName = "اسم الموظف";
   static String taskText = "المهمة";
   static String starDate = "تاريخ البداية";
@@ -40,6 +41,7 @@ class AppMessage {
   static String addAdministrativeCircular = "اضافة تعميم";
   static String manageUsers = "ادارة الموظفين";
   static String section = "القسم";
+  static String nationalities = "الجنسية";
   static String phone = "رقم الجوال";
   static String salary = "الراتب";
   static String contract = "العقود";
@@ -49,7 +51,7 @@ class AppMessage {
   static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';
   static String startWith5 = 'يجب ان يبدأ رقم الجوال بالرقم 5';
   static String noLessThan9 = "يجب ان يكون رقم الجوال 9 خانات";
-  static String noLessThan10 = "يجب ان يكون رقم الموظف 10 خانات";
+  static String noLessThan10 = "يجب ان يكون الحقل 10 خانات";
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String done = "تمت العملية بنجاح";
   static String emailAlreadyInUse = "البريد الالكتروني مستخدم مسبقا";

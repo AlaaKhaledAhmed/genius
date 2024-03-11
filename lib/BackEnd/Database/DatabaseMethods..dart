@@ -20,6 +20,8 @@ class Database {
     required String salary,
     required String contract,
     required String employNaId,
+    required String employNumber,
+    required String nationalities,
   }) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -36,6 +38,8 @@ class Database {
           'contract': contract,
           'employNaId': employNaId,
           'type': 'employ',
+          'nationalities': nationalities,
+          'employNumber': employNumber,
           'createdOn': FieldValue.serverTimestamp(),
         });
         return 'done';
@@ -62,6 +66,8 @@ class Database {
     required String contract,
     required String employNaId,
     required String docId,
+    required String employNumber,
+    required String nationalities,
   }) async {
     try {
       await AppConstants.userCollection.doc(docId).update({
@@ -71,6 +77,8 @@ class Database {
         'salary': salary,
         'contract': contract,
         'employNaId': employNaId,
+        'nationalities': nationalities,
+        'employNumber': employNumber,
       });
       return 'done';
     } catch (e) {
@@ -196,13 +204,13 @@ class Database {
   static Future<String> addAdministrativeCircular({
     required String text,
     required String file,
-    required String title ,
+    required String title,
   }) async {
     try {
       await AppConstants.administrativeCircularCollection.add({
         'text': text,
         'file': file,
-        'title':title,
+        'title': title,
         'createdOn': FieldValue.serverTimestamp(),
       });
       return 'done';
@@ -212,16 +220,17 @@ class Database {
   }
 
   static Future<String> updateAdministrativeCircular({
-    required String text, required String title ,
+    required String text,
+    required String title,
     required String file,
     required String docId,
   }) async {
     try {
       await AppConstants.administrativeCircularCollection.doc(docId).update({
         'text': text,
-        'title':title,
+        'title': title,
         'file': file,
-       });
+      });
       return 'done';
     } catch (e) {
       return 'error';
