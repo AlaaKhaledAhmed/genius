@@ -5,12 +5,13 @@ import '../../Widget/AppConstants.dart';
 
 class Employee {
   final String name;
-  final String id;
-  Employee({required this.id, required this.name});
+  final String? docId;
+  final String userId;
+  Employee({this.docId, required this.name, required this.userId});
 }
 
 class Database {
-  //=======================Student Sing up method======================================
+  //=============================================================
 
   static Future<String> addEmploy({
     required String name,
@@ -142,8 +143,8 @@ class Database {
       return 'error';
     }
   }
-
-  static Future<String> addTask({
+  ///==================================================================================================================
+    static Future<String> addTask({
     required String name,
     required String startDateStringFormat,
     required String endDateStringFormat,
@@ -171,7 +172,7 @@ class Database {
       return 'error';
     }
   }
-
+  ///==================================================================================================================
   static Future<String> updateTask({
     required String name,
     required String startDateStringFormat,
@@ -200,7 +201,7 @@ class Database {
     }
   }
 
-  ///
+  ///==================================================================================================================
   static Future<String> addAdministrativeCircular({
     required String text,
     required String file,
@@ -218,7 +219,7 @@ class Database {
       return 'error';
     }
   }
-
+  ///==================================================================================================================
   static Future<String> updateAdministrativeCircular({
     required String text,
     required String title,
@@ -232,6 +233,42 @@ class Database {
         'file': file,
       });
       return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  ///==================================================================================================================
+  static Future<String> addProject({
+    required String name,
+    required String projectId,
+    required double price,
+    required DateTime startDate,
+    required DateTime endDate,
+    required List<Employee> employees,
+  }) async {
+    try {
+      DocumentSnapshot newData =
+          await AppConstants.projectCollection.doc(projectId).get();
+      if (newData.exists) {
+        return 'id-already-in-use';
+      } else {
+        await AppConstants.projectCollection.doc(projectId).set({
+          'name': name,
+          'projectId': projectId,
+          'price': price,
+          'startDate': startDate,
+          'endDate': endDate,
+          'employees': employees
+              .map((employee) => {
+                    'employeeId': employee.userId,
+                    'name': employee.name,
+                  })
+              .toList(),
+          'createdOn': FieldValue.serverTimestamp(),
+        });
+        return 'done';
+      }
     } catch (e) {
       return 'error';
     }

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genius/Widget/AppColor.dart';
 import 'package:genius/Widget/AppConstants.dart';
+import 'package:genius/Widget/AppRoutes.dart';
 import 'package:genius/Widget/AppSize.dart';
 import 'package:genius/Widget/AppText.dart';
 import 'package:genius/Widget/GeneralWidget.dart';
 import 'package:pie_chart/pie_chart.dart';
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppMessage.dart';
+import '../Projects/ProjectsMain.dart';
 
 class Sections extends StatefulWidget {
   const Sections({super.key});
@@ -131,16 +133,23 @@ class _SectionsState extends State<Sections> {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (c, i) {
-                      return Container(
-                        margin: EdgeInsets.only(left: 10),
-                        alignment: AlignmentDirectional.center,
-                        height: 50,
-                        width: 100.w,
-                        decoration: GeneralWidget.decoration(),
-                        child: AppText(
-                          text: AppConstants.sections[i],
-                          fontSize: AppSize.subTextSize,
-                          align: TextAlign.center,
+                      return InkWell(
+                        onTap: (){
+                          if (i==3) {
+                            AppRoutes.pushTo(context, ProjectsMain());
+                          }  
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          alignment: AlignmentDirectional.center,
+                          height: 50,
+                          width: 100.w,
+                          decoration: GeneralWidget.decoration(),
+                          child: AppText(
+                            text: AppConstants.sections[i],
+                            fontSize: AppSize.subTextSize,
+                            align: TextAlign.center,
+                          ),
                         ),
                       );
                     }),

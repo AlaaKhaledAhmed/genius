@@ -84,7 +84,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                             List names = data.map((e) => e.data()).toList();
 
                             return AppDropList(
-                              listItem: names
+                              items: names
                                   .map((e) => '${e['name']}-${e['employNaId']}')
                                   .toList(),
                               validator: (v) {},
@@ -108,7 +108,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                               icon: const Center(
                                 child: CircularProgressIndicator(),
                               ),
-                              listItem: [],
+                              items: [],
                               validator: (v) {},
                               hintText: AppMessage.employName,
                               onChanged: (v) {});

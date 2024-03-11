@@ -2,24 +2,29 @@ class AppMessage {
   static String serverText = "حدث خطأ ما اثناء معالجة طلبك";
 
   static String noData = 'لاتوجد بيانات لعرضها';
-  static String selectDate = 'اختر تاريخ البداية والنهاية';
+  static String selectDate = 'اختر تاريخ النهاية';
+  static String selectEmployee = 'اختر الموظف';
 
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';
   static String file = 'الملف';
+  static String projectName = 'اسم المشروع';
   static String text = 'النص';
   static String title = 'الموضوع';
   static String notCompleteStatus = 'غير مكتمل';
   static String completeStatus = 'مكتمل';
 
   static String RSA = 'ريال';
+  static String projectManagement = 'ادارة المشاريع';
+  static String addProject = 'اضافة مشروع';
   static String no = 'لا';
   static String employeeNumber = "رقم الموظف";
   static String invalidEmail = 'البريد الالكتروني غير صالح';
   static String email = 'البريد الالكتروني';
   static String passwordTx = 'كلمة المرور';
   static String loginTx = "تسجيل الدخول";
-  static String welcome = "أطلق العنان لقوة GENIUS ASSISTANT - الحل الإداري الشامل لديك";
+  static String welcome =
+      "أطلق العنان لقوة GENIUS ASSISTANT - الحل الإداري الشامل لديك";
   static String userNotFound = "المستخدم غير وجود";
   static String home = "الرئيسية";
   static String profile = "الملف الشخصي";
@@ -64,5 +69,4 @@ class AppMessage {
   static String empContracts = "عقود الموظفين";
   static String projectsContracts = "عقود المشاريع";
   static String endOfServiceCalculator = "حساب نهاية الخدمة";
-
 }

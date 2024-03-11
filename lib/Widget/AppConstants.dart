@@ -29,6 +29,8 @@ class AppConstants {
   static const int logOutId = 14;
   static CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
+  static CollectionReference projectCollection =
+      FirebaseFirestore.instance.collection('projects');
   static CollectionReference taskCollection =
       FirebaseFirestore.instance.collection('task');
   static CollectionReference administrativeCircularCollection =

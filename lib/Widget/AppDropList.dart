@@ -9,36 +9,34 @@ import 'AppText.dart';
 import 'GeneralWidget.dart';
 
 class AppDropList extends StatelessWidget {
-  final List<String> listItem;
+  final List<String> items;
   final String? Function(String?)? validator;
   final String? hintText;
-  // final String? dropValue;
   final bool? friezeText;
   final Color? fillColor;
   final Widget? prefixIcon;
-  final Widget?icon;
+  final Widget? icon;
   final void Function(String?)? onChanged;
   const AppDropList(
       {Key? key,
-      required this.listItem,
+      required this.items,
       required this.validator,
       required this.hintText,
       required this.onChanged,
-      // required this.dropValue,
       this.friezeText,
       this.fillColor,
-      this.prefixIcon, this.icon})
+      this.prefixIcon,
+      this.icon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField2<String>(
+    return DropdownButtonFormField2 <String>(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       dropdownMaxHeight: 200.h,
       scrollbarAlwaysShow: true,
       alignment: Alignment.centerRight,
-      // value: dropValue,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(AppSize.contentPadding),
         labelStyle: TextStyle(
@@ -67,18 +65,11 @@ class AppDropList extends StatelessWidget {
       iconEnabledColor: AppColor.highlightColor,
       icon: icon,
       itemPadding: EdgeInsets.zero,
-      items: listItem
-          .map((item) => DropdownMenuItem(
-
-                alignment: AlignmentDirectional.center,
-                value: item,
-                child: AppText(
-                  fontSize: AppSize.textFieldsSize,
-                  text: item,
-                  color: AppColor.textColor,
-                ),
-              ))
-          .toList(),
+      items: items.map((e) => DropdownMenuItem(
+        alignment: AlignmentDirectional.center,
+        value: e,
+        child:AppText(text: e,fontSize: AppSize.subTextSize,) ,
+      )).toList()
     );
   }
 }

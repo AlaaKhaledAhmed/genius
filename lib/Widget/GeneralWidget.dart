@@ -257,7 +257,7 @@ class GeneralWidget {
       config: CalendarDatePicker2WithActionButtonsConfig(
         currentDate: DateTime.now(),
         firstDate: startDate ?? DateTime.now(),
-        calendarType: CalendarDatePicker2Type.range,
+        calendarType: CalendarDatePicker2Type.single,
         selectedDayTextStyle:
             TextStyle(color: AppColor.white, fontWeight: FontWeight.w700),
         selectedDayHighlightColor: AppColor.mainColor,

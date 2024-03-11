@@ -113,7 +113,7 @@ color_print( context.locale.toString());
 
 //Nationalities=============================================================================
                     AppDropList(
-                      listItem: context.locale.toString() == 'ar'
+                      items: context.locale.toString() == 'ar'
                           ? AppConstants.arabicNationalities
                           : AppConstants.englishNationalities,
                       validator: (v) => AppValidator.validatorEmpty(v),
@@ -129,7 +129,7 @@ color_print( context.locale.toString());
                     ),
 //section=============================================================================
                     AppDropList(
-                      listItem: context.locale.toString() == 'ar'
+                      items: context.locale.toString() == 'ar'
                           ? AppConstants.sectionListAr
                           : AppConstants.sectionListEn,
                       validator: (v) => AppValidator.validatorEmpty(v),

@@ -74,7 +74,7 @@ class _AddTaskState extends State<AddTask> {
                             List names = data.map((e) => e.data()).toList();
 
                             return AppDropList(
-                              listItem: names
+                              items: names
                                   .map((e) => '${e['name']}-${e['employNaId']}')
                                   .toList(),
                               validator: (v) => AppValidator.validatorEmpty(v),
@@ -98,7 +98,7 @@ class _AddTaskState extends State<AddTask> {
                               icon: const Center(
                                 child: CircularProgressIndicator(),
                               ),
-                              listItem: [],
+                              items: [],
                               validator: (v) {},
                               hintText: AppMessage.employName,
                               onChanged: (v) {});
@@ -166,7 +166,7 @@ class _AddTaskState extends State<AddTask> {
                               child: AppText(
                                 text: from == null
                                     ? AppMessage.selectDate
-                                    : "$from - $to",
+                                    : "$from",
                                 fontSize: AppSize.subTextSize,
                                 color: AppColor.textColor,
                               ),

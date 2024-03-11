@@ -130,7 +130,7 @@ class _UpdateEmployeeState extends State<UpdateEmployee> {
 
 //Nationalities=============================================================================
                     AppDropList(
-                      listItem: context.locale.toString() == 'ar'
+                      items: context.locale.toString() == 'ar'
                           ? AppConstants.arabicNationalities
                           : AppConstants.englishNationalities,
                       validator: (v) => AppValidator.validatorEmpty(v),

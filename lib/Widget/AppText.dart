@@ -13,6 +13,7 @@ class AppText extends StatelessWidget {
   final double? textHeight;
   final List<Shadow>? shadow;
   final TextDirection? textDirection;
+  final int? maxLines;
   const AppText(
       {Key? key,
       required this.text,
@@ -24,7 +25,9 @@ class AppText extends StatelessWidget {
       this.fontWeight,
       this.textDecoration,
       this.textHeight,
-      this.shadow, this.textDirection})
+      this.shadow,
+      this.textDirection,
+      this.maxLines})
       : super(key: key);
 
   @override
@@ -32,7 +35,8 @@ class AppText extends StatelessWidget {
     return Text(
       text,
       textAlign: align,
-      textDirection:textDirection ,
+      textDirection: textDirection,
+      maxLines: maxLines,
       style: TextStyle(
           color: color,
           overflow: overflow ?? TextOverflow.clip,
@@ -46,6 +50,7 @@ class AppText extends StatelessWidget {
     );
   }
 }
-color_print(String text){
+
+color_print(String text) {
   print('\x1B[33m ${text}\x1B[0m');
 }
