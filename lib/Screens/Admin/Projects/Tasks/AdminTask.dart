@@ -30,10 +30,10 @@ class AdminTask extends StatefulWidget {
 
 class _AdminTaskState extends State<AdminTask> {
   List<String> header = [
-    AppMessage.employId,
+    AppMessage.employeeNumber,
     AppMessage.employName,
     AppMessage.taskText,
-    AppMessage.starDate,
+    // AppMessage.starDate,
     AppMessage.endDate,
     AppMessage.status,
     AppMessage.action,
@@ -112,12 +112,12 @@ class _AdminTaskState extends State<AdminTask> {
                                   return TableViewRow(
                                     height: 45.h,
                                     cells: [
-//employee id======================================================================================================================================================
+//employee number======================================================================================================================================================
                                       TableViewCell(
                                           alignment: Alignment.center,
                                           child: AppText(
                                             text:
-                                                '${data[index].data()?['employNaId']}',
+                                                '${data[index].data()?['employNumber']}',
                                             fontSize: AppSize.subTextSize,
                                             overflow: TextOverflow.ellipsis,
                                           )),
@@ -145,18 +145,18 @@ class _AdminTaskState extends State<AdminTask> {
                                                 fontSize: AppSize.subTextSize,
                                                 // overflow: TextOverflow.ellipsis,
                                               ))),
-//star date======================================================================================================================================================
-                                      TableViewCell(
-                                          // padding: EdgeInsets.only(left: 15.w),
-                                          alignment: Alignment.centerRight,
-                                          child: TableViewCell(
-                                              alignment: Alignment.center,
-                                              child: AppText(
-                                                text:
-                                                    '${data[index].data()['startDateStringFormat']}',
-                                                fontSize: AppSize.subTextSize,
-                                                // overflow: TextOverflow.ellipsis,
-                                              ))),
+// //star date======================================================================================================================================================
+//                                       TableViewCell(
+//                                           // padding: EdgeInsets.only(left: 15.w),
+//                                           alignment: Alignment.centerRight,
+//                                           child: TableViewCell(
+//                                               alignment: Alignment.center,
+//                                               child: AppText(
+//                                                 text:
+//                                                     '${data[index].data()['startDateStringFormat']}',
+//                                                 fontSize: AppSize.subTextSize,
+//                                                 // overflow: TextOverflow.ellipsis,
+//                                               ))),
 //end date======================================================================================================================================================
                                       TableViewCell(
                                           // padding: EdgeInsets.only(left: 15.w),
@@ -171,20 +171,42 @@ class _AdminTaskState extends State<AdminTask> {
                                               ))),
 //status======================================================================================================================================================
                                       TableViewCell(
-                                          // padding: EdgeInsets.only(left: 15.w),
-                                          alignment: Alignment.centerRight,
-                                          child: TableViewCell(
-                                              alignment: Alignment.center,
-                                              child: AppText(
-                                                text: data[index]
-                                                            .data()['status'] ==
-                                                        0
-                                                    ? AppMessage
-                                                        .notCompleteStatus
-                                                    : AppMessage.completeStatus,
-                                                fontSize: AppSize.subTextSize,
-                                                // overflow: TextOverflow.ellipsis,
-                                              ))),
+                                        alignment: Alignment.centerRight,
+                                        child: TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5.w, vertical: 5.h),
+                                            decoration:
+                                                GeneralWidget.decoration(
+                                              shadow: false,
+                                              radius: 5,
+                                              color: data[index]
+                                                          .data()['status'] ==
+                                                      0
+                                                  ? AppColor.errorColor
+                                                      .withOpacity(0.2)
+                                                  : AppColor.successColor
+                                                      .withOpacity(0.3),
+                                            ),
+                                            child: AppText(
+                                              text: data[index]
+                                                          .data()['status'] ==
+                                                      0
+                                                  ? AppMessage.notCompleteStatus
+                                                  : AppMessage.completeStatus,
+                                              fontSize: AppSize.smallSubText,
+                                              color: data[index]
+                                                          .data()['status'] ==
+                                                      0
+                                                  ? AppColor.errorColor
+                                                  : AppColor.successColor,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
 //action======================================================================================================================================================
                                       TableViewCell(
                                           alignment: Alignment.center,
