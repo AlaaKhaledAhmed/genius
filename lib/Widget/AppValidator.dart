@@ -42,12 +42,14 @@ class AppValidator {
   }
 
   static String? validatorNumbers(id) {
+    final numberRegExp = RegExp(r'^[0-9]+$');
+
     if (id.trim().isEmpty) {
       return AppMessage.mandatoryTx;
     }
 
-    if (id.length != 10) {
-      return AppMessage.noLessThan10;
+    if (!numberRegExp.hasMatch(id)) {
+      return AppMessage.onlyDigits;
     }
     return null;
   }

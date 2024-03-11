@@ -62,6 +62,7 @@ class AppMessage {
   static String done = "تمت العملية بنجاح";
   static String emailAlreadyInUse = "البريد الالكتروني مستخدم مسبقا";
   static String delete = "حذف";
+  static String onlyDigits = "الرجاء ادخال ارقام فقط";
   static String confirm = "هل انت متاكد من اكمال العملية؟";
   static String update = "تعديل البيانات";
 
