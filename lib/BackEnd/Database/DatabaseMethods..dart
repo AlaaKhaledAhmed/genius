@@ -264,6 +264,7 @@ class Database {
     required double price,
     required DateTime startDate,
     required DateTime endDate,
+    required String file,
     required List<Employee> employees,
   }) async {
     try {
@@ -278,6 +279,7 @@ class Database {
           'price': price,
           'startDate': startDate,
           'endDate': endDate,
+          'file':file,
           'status': 0,
           'employees': employees
               .map((employee) => {
@@ -290,6 +292,37 @@ class Database {
         });
         return 'done';
       }
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  ///==================================================================================================================
+  static Future<String> updateProject({
+    required String name,
+    required double price,
+    required DateTime startDate,
+    required DateTime endDate,
+    required List<Employee> employees,
+    required String docId,
+    required String file
+  }) async {
+    try {
+      await AppConstants.projectCollection.doc(docId).update({
+        'name': name,
+        'price': price,
+        'startDate': startDate,
+        'endDate': endDate,
+        'file':file,
+        'employees': employees
+            .map((employee) => {
+                  'userId': employee.userId,
+                  'name': employee.name,
+                  'empNumber': employee.empNumber
+                })
+            .toList(),
+      });
+      return 'done';
     } catch (e) {
       return 'error';
     }
@@ -309,6 +342,8 @@ class Database {
       return 'error';
     }
   }
+
+  ///==================================================================================================================
   static Future<String> updateIndividualTaskStatus({
     required String docId,
     required int status,
@@ -323,6 +358,7 @@ class Database {
     }
   }
 
+  ///==================================================================================================================
   static Future<String> addTaskIndividual({
     required String name,
     required String startDateStringFormat,
@@ -344,7 +380,7 @@ class Database {
         'endDate': endDate,
         'taskName': taskName,
         'status': AppConstants.newStatus,
-        'file':'',
+        'file': '',
         'createdOn': FieldValue.serverTimestamp(),
       });
       return 'done';
@@ -374,7 +410,6 @@ class Database {
         'startDate': startDate,
         'endDate': endDate,
         'taskName': taskName,
-
       });
       return 'done';
     } catch (e) {

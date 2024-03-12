@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:path/path.dart' as path;
@@ -25,14 +26,16 @@ import '../../../Widget/AppValidator.dart';
 import '../../../Widget/DropList2.dart';
 import '../../../Widget/GeneralWidget.dart';
 
-class AddProject extends StatefulWidget {
-  const AddProject({Key? key}) : super(key: key);
+class UpdateProject extends StatefulWidget {
+  final data;
+  final String docId;
+  const UpdateProject({super.key, required this.docId, this.data});
 
   @override
-  State<AddProject> createState() => _AddProjectState();
+  State<UpdateProject> createState() => _UpdateProjectState();
 }
 
-class _AddProjectState extends State<AddProject> {
+class _UpdateProjectState extends State<UpdateProject> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   final _key3 = GlobalKey<State<StatefulWidget>>();
@@ -48,6 +51,25 @@ class _AddProjectState extends State<AddProject> {
   Reference? fileRef;
   String? fileURL;
   File? file;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startDate = widget.data['startDate'].toDate();
+    endDate = widget.data['endDate'].toDate();
+    from =
+        GeneralWidget.convertStringToDate((widget.data['startDate']).toDate());
+    to = GeneralWidget.convertStringToDate((widget.data['endDate']).toDate());
+    priceController.text = widget.data['price'].toString();
+    nameController.text = widget.data['name'];
+    var x = List<Employee>.from(
+        widget.data['employees']!.map((x) => Employee.fromMap(x)));
+    color_print('x: ${x.length}');
+    selectedEmployees.addAll(x);
+    fileController.text = widget.data['file'];
+  }
+
   @override
   Widget build(BuildContext context) {
     var bottom = MediaQuery.of(context).viewInsets.bottom;
@@ -56,7 +78,7 @@ class _AddProjectState extends State<AddProject> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(
-          text: AppMessage.addProject,
+          text: AppMessage.updateProject,
           isBasics: true,
         ),
         body: Padding(
@@ -308,40 +330,75 @@ class _AddProjectState extends State<AddProject> {
                     ),
 //save buttons=============================================================================
                     AppButtons(
-                      text: AppMessage.add,
+                      text: AppMessage.update,
                       width: double.maxFinite,
                       onPressed: () async {
                         FocusManager.instance.primaryFocus?.unfocus();
                         if (formKey.currentState?.validate() == true) {
                           AppLoading.show(context, '', 'lode');
 
-                          fileRef = FirebaseStorage.instance
-                              .ref('project')
-                              .child(fileController.text);
-                          await fileRef?.putFile(file!).then((getValue) async {
-                            fileURL = await fileRef!.getDownloadURL();
-                            Database.addProject(
-                                    projectId: GeneralWidget.randomNumber(9),
-                                    name: nameController.text,
-                                    startDate: startDate!,
-                                    endDate: endDate!,
-                                    price: double.parse(priceController.text),
-                                    employees: selectedEmployees,
-                                    file: fileURL!)
-                                .then((v) {
-                              print('================$v');
-                              if (v == "done") {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                                AppLoading.show(context, AppMessage.addProject,
-                                    AppMessage.done);
-                              } else {
-                                Navigator.pop(context);
-                                AppLoading.show(context, AppMessage.addProject,
-                                    AppMessage.serverText);
-                              }
-                            });
-                          });
+                          ///if chang file
+                          file != null
+                              ? {
+                                  fileRef = FirebaseStorage.instance
+                                      .ref('project')
+                                      .child(fileController.text),
+                                  await fileRef
+                                      ?.putFile(file!)
+                                      .then((getValue) async {
+                                    fileURL = await fileRef!.getDownloadURL();
+                                    Database.updateProject(
+                                            name: nameController.text,
+                                            startDate: startDate!,
+                                            endDate: endDate!,
+                                            price: double.parse(
+                                                priceController.text),
+                                            employees: selectedEmployees,
+                                            file: fileURL!,
+                                            docId: widget.docId)
+                                        .then((v) {
+                                      print('================$v');
+                                      if (v == "done") {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                        AppLoading.show(context,
+                                            AppMessage.updateProject, AppMessage.done);
+                                      } else {
+                                        Navigator.pop(context);
+                                        AppLoading.show(
+                                            context,
+                                            AppMessage.updateProject,
+                                            AppMessage.serverText);
+                                      }
+                                    });
+                                  }),
+                                }
+                              : {
+                                  Database.updateProject(
+                                          name: nameController.text,
+                                          startDate: startDate!,
+                                          endDate: endDate!,
+                                          price: double.parse(
+                                              priceController.text),
+                                          employees: selectedEmployees,
+                                          file: fileController.text,
+                                          docId: widget.docId)
+                                      .then((v) {
+                                    print('================$v');
+                                    if (v == "done") {
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                      AppLoading.show(context,
+                                          AppMessage.updateProject, AppMessage.done);
+                                    } else {
+                                      Navigator.pop(context);
+                                      AppLoading.show(
+                                          context,
+                                          AppMessage.updateProject,
+                                          AppMessage.serverText);
+                                    }
+                                  })
+                                };
                         }
                       },
                     )

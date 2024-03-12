@@ -68,6 +68,7 @@ class AppMessage {
   static String onlyDigits = "الرجاء ادخال ارقام فقط";
   static String confirm = "هل انت متاكد من اكمال العملية؟";
   static String update = "تعديل البيانات";
+  static String updateProject = "تعديل بيانات المشروع";
 
   static String sections = "الاقسام";
   static String calender = "المواعيد";

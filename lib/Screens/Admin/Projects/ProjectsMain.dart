@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genius/Screens/Admin/Projects/Tasks/AddTask.dart';
 import 'package:genius/Screens/Admin/Projects/Tasks/AdminTask.dart';
+import 'package:genius/Screens/Admin/Projects/UpdateProject.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 
 import '../../../BackEnd/Database/DatabaseMethods..dart';
@@ -251,7 +252,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                       onPressed: () {
                                         AppRoutes.pushTo(
                                           context,
-                                          UpdateTask(
+                                          UpdateProject(
                                             docId: snapshot.data.docs[index].id,
                                             data: data[index].data(),
                                           ),
