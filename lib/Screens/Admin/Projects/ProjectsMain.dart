@@ -42,6 +42,16 @@ class _ProjectsMainState extends State<ProjectsMain> {
     return Scaffold(
       appBar: AppBarWidget(
         text: AppMessage.projectManagement,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: AppColor.white,
+            size: AppSize.iconsSize + 6,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           builder: (_, __) => MaterialApp(
                 initialRoute: initialRoute,
                 routes: <String, WidgetBuilder>{
-                  Login.route: (_) => const AdminIndividualTasks(projectId: '123'),
+                  Login.route: (_) => const NavBarAdmin(),
                 },
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,

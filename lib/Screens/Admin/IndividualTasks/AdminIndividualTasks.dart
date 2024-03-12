@@ -23,8 +23,7 @@ import 'AddIndividualTasks.dart';
 import 'UpdateIndividualTasks.dart';
 
 class AdminIndividualTasks extends StatefulWidget {
-  final String projectId;
-  const AdminIndividualTasks({super.key, required this.projectId});
+  const AdminIndividualTasks({super.key});
 
   @override
   State<AdminIndividualTasks> createState() => _AdminIndividualTasksState();
@@ -66,10 +65,7 @@ class _AdminIndividualTasksState extends State<AdminIndividualTasks> {
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
               child: AppButtons(
                 onPressed: () {
-                  AppRoutes.pushTo(
-                      context,
-                      AddIndividualTasks(
-                      ));
+                  AppRoutes.pushTo(context, AddIndividualTasks());
                 },
                 text: AppMessage.addTask,
                 icon: AppIcons.add,

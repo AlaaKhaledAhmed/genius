@@ -6,6 +6,7 @@ import 'package:genius/Screens/Admin/Complaints/Complaints.dart';
 import 'package:genius/Screens/Admin/Contracts/EmpContracts.dart';
 import 'package:genius/Screens/Admin/Contracts/ProjectsContracts.dart';
 import 'package:genius/Screens/Admin/ElevateEmploy/ElevateEmploy.dart';
+import 'package:genius/Screens/Admin/IndividualTasks/AdminIndividualTasks.dart';
 import 'package:genius/Screens/Admin/Projects/ProjectsMain.dart';
  import 'package:provider/provider.dart';
 import '../../BackEnd/provider_class.dart';
@@ -28,8 +29,7 @@ class _NavBarAdminState extends State<NavBarAdmin> {
     const Profile(),
     const ManageEmploy(),
     const Sections(),
-    // const AdminTask(),
-   const  ProjectsMain(),
+    const AdminIndividualTasks(),
     const AdminAudience(),
     const ElevateEmploy(),
     const AdministrativeCircular(),
