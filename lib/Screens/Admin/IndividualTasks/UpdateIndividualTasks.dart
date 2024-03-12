@@ -61,7 +61,7 @@ class _UpdateIndividualTasksState extends State<UpdateIndividualTasks> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(
-          text: AppMessage.addUser,
+          text: AppMessage.update,
           isBasics: true,
         ),
         body: Padding(

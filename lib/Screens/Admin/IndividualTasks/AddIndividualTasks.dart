@@ -50,7 +50,7 @@ class _AddIndividualTasksState extends State<AddIndividualTasks> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(
-          text: AppMessage.addUser,
+          text: AppMessage.addTask,
           isBasics: true,
         ),
         body: Padding(

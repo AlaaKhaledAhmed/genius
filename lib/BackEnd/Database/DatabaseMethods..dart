@@ -309,6 +309,19 @@ class Database {
       return 'error';
     }
   }
+  static Future<String> updateIndividualTaskStatus({
+    required String docId,
+    required int status,
+  }) async {
+    try {
+      await AppConstants.individualTasksCollection.doc(docId).update({
+        'status': status,
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
 
   static Future<String> addTaskIndividual({
     required String name,

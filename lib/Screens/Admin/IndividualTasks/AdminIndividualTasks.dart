@@ -263,7 +263,7 @@ class _AdminIndividualTasksState extends State<AdminIndividualTasks> {
                                                     }, yesFunction: () async {
                                                       Navigator.pop(context);
                                                       await Database
-                                                          .updateTaskStatus(
+                                                          .updateIndividualTaskStatus(
                                                               status: 0,
                                                               docId: snapshot
                                                                   .data
@@ -290,7 +290,8 @@ class _AdminIndividualTasksState extends State<AdminIndividualTasks> {
                                                     }, yesFunction: () async {
                                                       Navigator.pop(context);
                                                       await Database.delete(
-                                                          collection: 'task',
+                                                          collection:
+                                                              'individualTasks',
                                                           docId: snapshot.data
                                                               .docs[index].id);
                                                     });
