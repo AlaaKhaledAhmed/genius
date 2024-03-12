@@ -168,20 +168,23 @@ class Database {
     required String employNumber,
     required String userId,
     required String projectId,
+
   }) async {
     try {
       await AppConstants.taskCollection.add({
-        'projectId':projectId,
+        'projectId': projectId,
         'name': name,
         'userId': userId,
-        'employNumber':employNumber,
+        'employNumber': employNumber,
         'startDateStringFormat': startDateStringFormat,
         'endDateStringFormat': endDateStringFormat,
         'startDate': startDate,
         'endDate': endDate,
         'taskName': taskName,
         'status': AppConstants.newStatus,
+        'file':'',
         'createdOn': FieldValue.serverTimestamp(),
+
       });
       return 'done';
     } catch (e) {
@@ -205,7 +208,7 @@ class Database {
       await AppConstants.taskCollection.doc(docId).update({
         'name': name,
         'userId': userId,
-        'employNumber':employNumber,
+        'employNumber': employNumber,
         'startDateStringFormat': startDateStringFormat,
         'endDateStringFormat': endDateStringFormat,
         'startDate': startDate,
@@ -289,6 +292,21 @@ class Database {
         });
         return 'done';
       }
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  ///==================================================================================================================
+  static Future<String> updateTaskStatus({
+    required String docId,
+    required int status,
+  }) async {
+    try {
+      await AppConstants.taskCollection.doc(docId).update({
+        'status': status,
+      });
+      return 'done';
     } catch (e) {
       return 'error';
     }

@@ -17,6 +17,7 @@ import '../../../../Widget/AppSize.dart';
 import '../../../../Widget/AppText.dart';
 
 import '../../../../Widget/GeneralWidget.dart';
+import '../../PDFView.dart';
 import 'AddTask.dart';
 import 'UpdateTask.dart';
 
@@ -36,6 +37,7 @@ class _AdminTaskState extends State<AdminTask> {
     // AppMessage.starDate,
     AppMessage.endDate,
     AppMessage.status,
+    AppMessage.attachment,
     AppMessage.action,
   ];
   @override
@@ -207,6 +209,43 @@ class _AdminTaskState extends State<AdminTask> {
                                           ),
                                         ),
                                       ),
+//file======================================================================================================================================================
+                                      TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: data[index]
+                                                  .data()?['file']
+                                                  .isEmpty
+                                              ? Text('-')
+                                              : IconButton(
+                                                  onPressed: () async {
+                                                    //open file
+                                                    ///open pdf view
+                                                    showGeneralDialog(
+                                                      context: context,
+                                                      pageBuilder: (
+                                                        BuildContext context,
+                                                        Animation<double>
+                                                            animation,
+                                                        Animation<double>
+                                                            secondaryAnimation,
+                                                      ) {
+                                                        return PDFViewerPage(
+                                                          pdfUrl: data[index]
+                                                              .data()?['file'],
+                                                          titleName: AppMessage
+                                                              .empContracts,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  icon: Icon(
+                                                    AppIcons.file,
+                                                    color: Colors.black
+                                                        .withOpacity(0.16),
+                                                    size:
+                                                        AppSize.iconsSize + 10,
+                                                  ))),
+
 //action======================================================================================================================================================
                                       TableViewCell(
                                           alignment: Alignment.center,
@@ -215,6 +254,33 @@ class _AdminTaskState extends State<AdminTask> {
                                                 CrossAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
+//resends============================================================================================================================================================
+                                              IconButton(
+                                                  onPressed: () {
+                                                    AppLoading.show(
+                                                        context,
+                                                        AppMessage.resend,
+                                                        AppMessage.confirm,
+                                                        showButtom: true,
+                                                        noFunction: () {
+                                                      Navigator.pop(context);
+                                                    }, yesFunction: () async {
+                                                      Navigator.pop(context);
+                                                      await Database
+                                                          .updateTaskStatus(
+                                                              status: 0,
+                                                              docId: snapshot
+                                                                  .data
+                                                                  .docs[index]
+                                                                  .id);
+                                                    });
+                                                  },
+                                                  icon: Icon(
+                                                    AppIcons.resend,
+                                                    size:
+                                                        AppSize.iconsSize + 10,
+                                                    color: AppColor.mainColor,
+                                                  )),
 //delete======================================================================================================================================================
                                               IconButton(
                                                   onPressed: () {

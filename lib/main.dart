@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genius/Screens/Admin/NavBarAdmin.dart';
 import 'package:genius/Screens/Admin/Projects/AddProject.dart';
+import 'package:genius/Screens/Admin/Projects/Tasks/AdminTask.dart';
 import 'package:genius/Screens/Authentication/LogIn.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           builder: (_, __) => MaterialApp(
                 initialRoute: initialRoute,
                 routes: <String, WidgetBuilder>{
-                  Login.route: (_) => const ProjectsMain(),
+                  Login.route: (_) => const AdminTask(projectId: '123'),
                 },
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,

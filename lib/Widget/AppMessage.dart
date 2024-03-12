@@ -3,11 +3,13 @@ class AppMessage {
 
   static String noData = 'لاتوجد بيانات لعرضها';
   static String selectDate = 'اختر التاريخ';
+  static String resend = 'اعادة الارسال';
   static String selectEmployee = 'اختر الموظف';
 
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';
   static String file = 'الملف';
+  static String attachment = 'مرفق';
   static String projectName = 'اسم المشروع';
   static String projectPrice = 'تكلفة المشروع';
   static String text = 'النص';

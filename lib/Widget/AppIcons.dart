@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class AppIcons {
   ///icons link=> https://fontawesome.com/search?o=r&m=free
   static IconData home = FluentIcons.home_person_20_regular;
+  static IconData resend = FluentIcons.arrow_rotate_clockwise_24_regular;
   static IconData close = FluentIcons.closed_caption_16_regular;
   static IconData x = FluentIcons.clear_formatting_16_regular;
   static IconData date = FluentIcons.calendar_48_regular;
