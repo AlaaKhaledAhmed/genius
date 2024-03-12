@@ -9,7 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'BackEnd/provider_class.dart';
- import 'Screens/Admin/Projects/ProjectsMain.dart';
+ import 'Screens/Admin/IndividualTasks/AdminIndividualTasks.dart';
+import 'Screens/Admin/Projects/ProjectsMain.dart';
 import 'Widget/AppColor.dart';
 import 'firebase_options.dart';
 
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           builder: (_, __) => MaterialApp(
                 initialRoute: initialRoute,
                 routes: <String, WidgetBuilder>{
-                  Login.route: (_) => const AdminTask(projectId: '123'),
+                  Login.route: (_) => const AdminIndividualTasks(projectId: '123'),
                 },
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,

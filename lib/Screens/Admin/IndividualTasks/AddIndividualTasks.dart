@@ -8,6 +8,7 @@ import 'package:genius/Widget/AppBar.dart';
 import 'package:genius/Widget/AppConstants.dart';
 import 'package:genius/Widget/AppMessage.dart';
 import 'package:genius/Widget/GeneralWidget.dart';
+
 import '../../../../Widget/AppButtons.dart';
 import '../../../../Widget/AppColor.dart';
 import '../../../../Widget/AppDialog.dart';
@@ -19,39 +20,26 @@ import '../../../../Widget/AppTextFields.dart';
 import '../../../../Widget/AppValidator.dart';
 import '../../../../Widget/DropList2.dart';
 
-class UpdateTask extends StatefulWidget {
-  final String? projectId;
-  var data;
-  String docId;
-  UpdateTask(
-      {super.key, required this.data, required this.docId, this.projectId});
+class AddIndividualTasks extends StatefulWidget {
+  const AddIndividualTasks({Key? key}) : super(key: key);
 
   @override
-  State<UpdateTask> createState() => _UpdateTaskState();
+  State<AddIndividualTasks> createState() => _AddIndividualTasksState();
 }
 
-class _UpdateTaskState extends State<UpdateTask> {
+class _AddIndividualTasksState extends State<AddIndividualTasks> {
   String? from, to;
   DateTime? startDate, endDate;
   TextEditingController taskController = TextEditingController();
   final key1 = GlobalKey<State<StatefulWidget>>();
   final formKey = GlobalKey<FormState>();
-  List<Employee> selectedEmployees = [];
-  List<Employee> employees = [];
+  String? selectedName;
+  String? employNumber;
+  String? empUserId;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    startDate = widget.data['startDate'].toDate();
-    endDate = widget.data['endDate'].toDate();
-    from = widget.data['startDateStringFormat'];
-    to = widget.data['endDateStringFormat'];
-    taskController.text = widget.data['taskName'];
-
-    selectedEmployees.add(Employee(
-        name: widget.data['name'],
-        userId: widget.data['userId'],
-        empNumber: widget.data['employNumber']));
   }
 
   @override
@@ -75,81 +63,47 @@ class _UpdateTaskState extends State<UpdateTask> {
                 child: Column(
                   children: [
 //employee name-id=============================================================================
-                    StreamBuilder<QuerySnapshot>(
-                      stream: AppConstants.projectCollection
-                          .where('projectId', isEqualTo: widget.projectId)
-                          .snapshots(),
-                      builder:
-                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (snapshot.hasData) {
-                          snapshot.data!.docs.forEach((doc) {
-                            List<dynamic> employeesData = doc['employees'];
-                            employees.clear();
-                            employeesData.forEach((employeeData) {
-                              employees.add(Employee(
-                                name: employeeData['name'],
-                                userId: employeeData['userId'],
-                                empNumber: employeeData['empNumber'],
-                              ));
-                            });
-                          });
+                    StreamBuilder(
+                        stream: AppConstants.userCollection
+                            .where('type', isEqualTo: AppConstants.employ)
+                            .orderBy('createdOn', descending: true)
+                            .snapshots(),
+                        builder: (context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            // List<DocumentSnapshot>
+                            var data = snapshot.data!.docs;
+                            List names = data.map((e) => e.data()).toList();
 
-                          color_print('length: ${employees.length}');
-                          return StatefulBuilder(builder: (context, set) {
-                            return AppDropList2(
-                              value: selectedEmployees.isEmpty
-                                  ? null
-                                  : selectedEmployees
-                                      .map((e) => e.userId)
-                                      .toList()
-                                      .last,
-                              validator: (v) => AppValidator.validatorEmpty(v),
-                              hintText: AppMessage.selectEmployee,
-                              onChanged: (v) {
-                                setState(() {
-                                  selectedEmployees.clear();
-                                  selectedEmployees.add(Employee(
-                                      name: employees
-                                          .where(
-                                              (element) => element.userId == v)
-                                          .first
-                                          .name,
-                                      userId: v!,
-                                      empNumber: employees
-                                          .where(
-                                              (element) => element.userId == v)
-                                          .first
-                                          .empNumber));
-                                });
-                                set(() {});
-                                selectedEmployees.forEach((element) {
-                                  print(
-                                      'name: ${element.name}\nuserid: ${element.userId}\ndocId: ${element.userId}');
-                                });
-                              },
-                              items: employees
-                                  .map((e) => DropdownMenuItem<String>(
-                                        value: e.userId,
-                                        enabled: true,
-                                        child: StatefulBuilder(
-                                            builder: (context, set) {
-                                          return Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10.w),
-                                              child: AppText(
-                                                  text:
-                                                      '${e.name} - ${e.empNumber}',
-                                                  fontSize:
-                                                      AppSize.subTextSize));
-                                        }),
-                                      ))
+                            return AppDropList(
+                              items: names
+                                  .map((e) => '${e['name']}-${e['employNaId']}')
                                   .toList(),
+                              validator: (v) => AppValidator.validatorEmpty(v),
+                              hintText: AppMessage.employName,
+                              onChanged: (v) {
+                                selectedName = v!.split('-')[0];
+                                employNumber = v.split('-')[1];
+                                int index = names.indexWhere((e) =>
+                                e['name'] == selectedName &&
+                                    e['employNaId'] == employNumber);
+                                empUserId =
+                                '${names.elementAt(index)['userId']}';
+                                setState(() {});
+                                print('selectedName: $selectedName');
+                                print('id: $employNumber');
+                                print('uid: $empUserId');
+                              },
                             );
-                          });
-                        }
-                        return const Center(child: CircularProgressIndicator());
-                      },
-                    ),
+                          }
+                          return AppDropList(
+                              icon: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                              items: [],
+                              validator: (v) {},
+                              hintText: AppMessage.employName,
+                              onChanged: (v) {});
+                        }),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -172,8 +126,8 @@ class _UpdateTaskState extends State<UpdateTask> {
                     GestureDetector(
                       onTap: () async {
                         List<DateTime?>? r =
-                            await GeneralWidget.showDateRangDialog(
-                                context: context);
+                        await GeneralWidget.showDateRangDialog(
+                            context: context);
                         if (r != null) {
                           ///need this format to display month name to user
                           from = GeneralWidget.convertStringToDate(r[0]);
@@ -182,6 +136,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                               : GeneralWidget.convertStringToDate(r[1]));
                           startDate = r[0];
                           endDate = (r.length == 1 ? startDate : r[1]);
+
                         }
                         setState(() {});
                       },
@@ -212,12 +167,27 @@ class _UpdateTaskState extends State<UpdateTask> {
                               child: AppText(
                                 text: from == null
                                     ? AppMessage.selectDate
-                                    : "$from - $to",
+                                    : "$from",
                                 fontSize: AppSize.subTextSize,
                                 color: AppColor.textColor,
                               ),
                             ),
                             const Spacer(),
+//clear date====================================================================================================================================
+                            from == null
+                                ? const SizedBox()
+                                : IconButton(
+                                onPressed: () {
+                                  from = null;
+                                  to = null;
+
+                                  setState(() {});
+                                },
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: AppColor.textColor,
+                                  size: AppSize.iconsSize,
+                                )),
                           ],
                         ),
                       ),
@@ -227,33 +197,32 @@ class _UpdateTaskState extends State<UpdateTask> {
                     ),
 //save buttons=============================================================================
                     AppButtons(
-                      text: AppMessage.update,
+                      text: AppMessage.add,
                       width: double.maxFinite,
                       onPressed: () async {
                         FocusManager.instance.primaryFocus?.unfocus();
                         if (formKey.currentState?.validate() == true) {
                           AppLoading.show(context, '', 'lode');
 
-                          Database.updateTask(
-                            docId: widget.docId,
-                            name: selectedEmployees[0].name,
+                          Database.addTaskIndividual(
+                            name: selectedName!,
                             startDate: startDate!,
                             endDate: endDate!,
                             startDateStringFormat: from!,
                             endDateStringFormat: to!,
                             taskName: taskController.text,
-                            employNumber: selectedEmployees[0].empNumber,
-                            userId: selectedEmployees[0].userId,
+                            employNumber: employNumber!,
+                            userId: empUserId!,
                           ).then((v) {
                             print('================$v');
                             if (v == "done") {
                               Navigator.pop(context);
                               Navigator.pop(context);
                               AppLoading.show(
-                                  context, AppMessage.update, AppMessage.done);
+                                  context, AppMessage.addUser, AppMessage.done);
                             } else if (v == "email-already-in-use") {
                               Navigator.pop(context);
-                              AppLoading.show(context, AppMessage.update,
+                              AppLoading.show(context, AppMessage.addUser,
                                   AppMessage.emailAlreadyInUse);
                             } else {
                               Navigator.pop(context);

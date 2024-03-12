@@ -33,6 +33,8 @@ class AppConstants {
       FirebaseFirestore.instance.collection('projects');
   static CollectionReference taskCollection =
       FirebaseFirestore.instance.collection('task');
+  static CollectionReference individualTasksCollection =
+      FirebaseFirestore.instance.collection('individualTasks');
   static CollectionReference administrativeCircularCollection =
       FirebaseFirestore.instance.collection('administrativeCircular');
   static List<String> sectionListEn = [

@@ -168,7 +168,6 @@ class Database {
     required String employNumber,
     required String userId,
     required String projectId,
-
   }) async {
     try {
       await AppConstants.taskCollection.add({
@@ -182,9 +181,8 @@ class Database {
         'endDate': endDate,
         'taskName': taskName,
         'status': AppConstants.newStatus,
-        'file':'',
+        'file': '',
         'createdOn': FieldValue.serverTimestamp(),
-
       });
       return 'done';
     } catch (e) {
@@ -305,6 +303,65 @@ class Database {
     try {
       await AppConstants.taskCollection.doc(docId).update({
         'status': status,
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  static Future<String> addTaskIndividual({
+    required String name,
+    required String startDateStringFormat,
+    required String endDateStringFormat,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String taskName,
+    required String employNumber,
+    required String userId,
+  }) async {
+    try {
+      await AppConstants.individualTasksCollection.add({
+        'name': name,
+        'userId': userId,
+        'employNumber': employNumber,
+        'startDateStringFormat': startDateStringFormat,
+        'endDateStringFormat': endDateStringFormat,
+        'startDate': startDate,
+        'endDate': endDate,
+        'taskName': taskName,
+        'status': AppConstants.newStatus,
+        'file':'',
+        'createdOn': FieldValue.serverTimestamp(),
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  static Future<String> updateTaskIndividual({
+    required String name,
+    required String startDateStringFormat,
+    required String endDateStringFormat,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String taskName,
+    required String employNumber,
+    required String userId,
+    required String docId,
+  }) async {
+    try {
+      await AppConstants.individualTasksCollection.doc(docId).update({
+        'name': name,
+        'userId': userId,
+        'employNumber': employNumber,
+        'startDateStringFormat': startDateStringFormat,
+        'endDateStringFormat': endDateStringFormat,
+        'startDate': startDate,
+        'endDate': endDate,
+        'taskName': taskName,
+
       });
       return 'done';
     } catch (e) {
