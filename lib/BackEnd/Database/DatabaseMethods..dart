@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:genius/Widget/GeneralWidget.dart';
 import '../../Widget/AppConstants.dart';
 
 class Employee {
@@ -151,6 +152,26 @@ class Database {
           .collection(collection)
           .doc(docId)
           .delete();
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+//=========================================================================
+  static Future<String> deleteProjectsTask({
+    required String projectId,
+  }) async {
+    try {
+      QuerySnapshot querySnapshot = await AppConstants.taskCollection
+          .where('projectId', isEqualTo: projectId)
+          .get();
+      // Check if there's any matching task
+      if (querySnapshot.size > 0) {
+        for (var document in querySnapshot.docs) {
+          document.reference.delete();
+        }
+      }
       return 'done';
     } catch (e) {
       return 'error';
@@ -384,6 +405,7 @@ class Database {
     }
   }
 
+//=======================================================================
   static Future<String> updateTaskIndividual({
     required String name,
     required String startDateStringFormat,

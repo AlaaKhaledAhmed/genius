@@ -42,8 +42,7 @@ class AppValidator {
   }
 
   static String? validatorNumbers(id) {
-    final numberRegExp = RegExp(r'^[0-9]+$');
-
+    final numberRegExp = RegExp(r'^\d*\.?\d+$');
     if (id.trim().isEmpty) {
       return AppMessage.mandatoryTx;
     }

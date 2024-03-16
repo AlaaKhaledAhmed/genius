@@ -86,198 +86,225 @@ class _ProjectsMainState extends State<ProjectsMain> {
                     return data.isEmpty
                         ? GeneralWidget.emptyData(context: context)
                         : MediaQuery.removePadding(
-                      removeBottom: true,
-                      context: context,
-                      child: ScrollableTableView(
-                        rowDividerHeight: 0.5.spMin,
-                        headerHeight: 40.h,
-                        headerBackgroundColor: AppColor.deepLightGrey,
-                        headers: header
-                            .map((e) => TableViewHeader(
-                          label: e,
-                          textStyle: TextStyle(
-                            color: AppColor.black,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          alignment: Alignment.center,
-                          width: 120.w,
-                        ))
-                            .toList(),
-                        rows: List.generate(data.length, (index) {
-                          // Convert dynamic list to Employee list
-                          List<dynamic> employeesData = data[index].data()['employees'];
-                          List<Employee> employees = employeesData.map((e) => Employee.fromMap(e)).toList();
+                            removeBottom: true,
+                            context: context,
+                            child: ScrollableTableView(
+                              rowDividerHeight: 0.5.spMin,
+                              headerHeight: 40.h,
+                              headerBackgroundColor: AppColor.deepLightGrey,
+                              headers: header
+                                  .map((e) => TableViewHeader(
+                                        label: e,
+                                        textStyle: TextStyle(
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        alignment: Alignment.center,
+                                        width: 120.w,
+                                      ))
+                                  .toList(),
+                              rows: List.generate(data.length, (index) {
+                                // Convert dynamic list to Employee list
+                                List<dynamic> employeesData =
+                                    data[index].data()['employees'];
+                                List<Employee> employees = employeesData
+                                    .map((e) => Employee.fromMap(e))
+                                    .toList();
 
-                          return TableViewRow(
-                            height: 45.h,
-                            cells: [
+                                return TableViewRow(
+                                  height: 45.h,
+                                  cells: [
 // project name ====================================================================
-                              TableViewCell(
-                                alignment: Alignment.center,
-                                child: AppText(
-                                  text: '${data[index].data()?['name']}',
-                                  fontSize: AppSize.subTextSize,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-// price=========================================================================
-                              TableViewCell(
-                                alignment: Alignment.centerRight,
-                                child: TableViewCell(
-                                  alignment: Alignment.center,
-                                  child: AppText(
-                                    text: '${data[index].data()['price']} ${AppMessage.RSA}',
-                                    fontSize: AppSize.subTextSize,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ),
-// start date========================================================================================================================================
-                              TableViewCell(
-                                alignment: Alignment.centerRight,
-                                child: TableViewCell(
-                                  alignment: Alignment.center,
-                                  child: AppText(
-                                    text: '${GeneralWidget.convertStringToDate((data[index].data()['startDate']).toDate())}',
-                                    fontSize: AppSize.subTextSize,
-                                  ),
-                                ),
-                              ),
-// end date ========================================================================================================================================
-                              TableViewCell(
-                                alignment: Alignment.centerRight,
-                                child: TableViewCell(
-                                  alignment: Alignment.center,
-                                  child: AppText(
-                                    text: '${GeneralWidget.convertStringToDate((data[index].data()['endDate']).toDate())}',
-                                    fontSize: AppSize.subTextSize,
-                                  ),
-                                ),
-                              ),
-// number of employees========================================================================================================================================
-                              TableViewCell(
-                                alignment: Alignment.centerRight,
-                                child: TableViewCell(
-                                  alignment: Alignment.center,
-                                  child: AppText(
-                                    text: '${employees.length}',
-                                    fontSize: AppSize.subTextSize,
-                                  ),
-                                ),
-                              ),
-// status========================================================================================================================================
-                              TableViewCell(
-                                alignment: Alignment.centerRight,
-                                child: TableViewCell(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-                                    decoration: GeneralWidget.decoration(
-                                      shadow: false,
-                                      radius: 5,
-                                      color: data[index].data()['status'] == 0
-                                          ? AppColor.errorColor.withOpacity(0.2)
-                                          : AppColor.successColor.withOpacity(0.3),
-                                    ),
-                                    child: AppText(
-                                      text: data[index].data()['status'] == 0
-                                          ? AppMessage.notCompleteStatus
-                                          : AppMessage.completeStatus,
-                                      fontSize: AppSize.smallSubText,
-                                      color: data[index].data()['status'] == 0
-                                          ? AppColor.errorColor
-                                          : AppColor.successColor,
-                                      overflow: TextOverflow.ellipsis,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-// add task========================================================================================================================================
-                              TableViewCell(
-                                alignment: Alignment.centerRight,
-                                child: TableViewCell(
-                                  alignment: Alignment.center,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      AppRoutes.pushTo(
-                                        context,
-                                        AdminTask(projectId: data[index].data()['projectId'] ),
-                                      );
-                                    },
-                                    icon: Icon(
-                                      AppIcons.view,
-                                      size: AppSize.iconsSize + 10,
-                                      color: AppColor.mainColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-// action========================================================================================================================================
-                              TableViewCell(
-                                alignment: Alignment.center,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    // delete
-                                    IconButton(
-                                      onPressed: () {
-                                        AppLoading.show(
-                                          context,
-                                          AppMessage.delete,
-                                          AppMessage.confirm,
-                                          showButtom: true,
-                                          noFunction: () {
-                                            Navigator.pop(context);
-                                          },
-                                          yesFunction: () async {
-                                            Navigator.pop(context);
-                                            await Database.delete(
-                                              collection: 'projects',
-                                              docId: snapshot.data.docs[index].id,
-                                            );
-                                          },
-                                        );
-                                      },
-                                      icon: Icon(
-                                        AppIcons.delete,
-                                        size: AppSize.iconsSize + 10,
-                                        color: AppColor.errorColor,
+                                    TableViewCell(
+                                      alignment: Alignment.center,
+                                      child: AppText(
+                                        text: '${data[index].data()?['name']}',
+                                        fontSize: AppSize.subTextSize,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    SizedBox(width: 5.w),
-                                    // update
-                                    IconButton(
-                                      onPressed: () {
-                                        AppRoutes.pushTo(
-                                          context,
-                                          UpdateProject(
-                                            docId: snapshot.data.docs[index].id,
-                                            data: data[index].data(),
+// price=========================================================================
+                                    TableViewCell(
+                                      alignment: Alignment.centerRight,
+                                      child: TableViewCell(
+                                        alignment: Alignment.center,
+                                        child: AppText(
+                                          text:
+                                              '${data[index].data()['price']} ${AppMessage.RSA}',
+                                          fontSize: AppSize.subTextSize,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ),
+// start date========================================================================================================================================
+                                    TableViewCell(
+                                      alignment: Alignment.centerRight,
+                                      child: TableViewCell(
+                                        alignment: Alignment.center,
+                                        child: AppText(
+                                          text:
+                                              '${GeneralWidget.convertStringToDate((data[index].data()['startDate']).toDate())}',
+                                          fontSize: AppSize.subTextSize,
+                                        ),
+                                      ),
+                                    ),
+// end date ========================================================================================================================================
+                                    TableViewCell(
+                                      alignment: Alignment.centerRight,
+                                      child: TableViewCell(
+                                        alignment: Alignment.center,
+                                        child: AppText(
+                                          text:
+                                              '${GeneralWidget.convertStringToDate((data[index].data()['endDate']).toDate())}',
+                                          fontSize: AppSize.subTextSize,
+                                        ),
+                                      ),
+                                    ),
+// number of employees========================================================================================================================================
+                                    TableViewCell(
+                                      alignment: Alignment.centerRight,
+                                      child: TableViewCell(
+                                        alignment: Alignment.center,
+                                        child: AppText(
+                                          text: '${employees.length}',
+                                          fontSize: AppSize.subTextSize,
+                                        ),
+                                      ),
+                                    ),
+// status========================================================================================================================================
+                                    TableViewCell(
+                                      alignment: Alignment.centerRight,
+                                      child: TableViewCell(
+                                        alignment: Alignment.center,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 5.w, vertical: 5.h),
+                                          decoration: GeneralWidget.decoration(
+                                            shadow: false,
+                                            radius: 5,
+                                            color:
+                                                data[index].data()['status'] ==
+                                                        0
+                                                    ? AppColor.errorColor
+                                                        .withOpacity(0.2)
+                                                    : AppColor.successColor
+                                                        .withOpacity(0.3),
                                           ),
-                                        );
-                                      },
-                                      icon: Icon(
-                                        AppIcons.update,
-                                        size: AppSize.iconsSize + 10,
-                                        color: AppColor.mainColor,
+                                          child: AppText(
+                                            text: data[index]
+                                                        .data()['status'] ==
+                                                    0
+                                                ? AppMessage.notCompleteStatus
+                                                : AppMessage.completeStatus,
+                                            fontSize: AppSize.smallSubText,
+                                            color:
+                                                data[index].data()['status'] ==
+                                                        0
+                                                    ? AppColor.errorColor
+                                                    : AppColor.successColor,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+// add task========================================================================================================================================
+                                    TableViewCell(
+                                      alignment: Alignment.centerRight,
+                                      child: TableViewCell(
+                                        alignment: Alignment.center,
+                                        child: IconButton(
+                                          onPressed: () {
+                                            color_print('id: ${data[index]
+                                                .data()['projectId']}');
+                                            AppRoutes.pushTo(
+                                              context,
+                                              AdminTask(
+                                                  projectId: data[index]
+                                                      .data()['projectId']),
+                                            );
+                                          },
+                                          icon: Icon(
+                                            AppIcons.view,
+                                            size: AppSize.iconsSize + 10,
+                                            color: AppColor.mainColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+// action========================================================================================================================================
+                                    TableViewCell(
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          // delete
+                                          IconButton(
+                                            onPressed: () {
+                                              AppLoading.show(
+                                                context,
+                                                AppMessage.delete,
+                                                AppMessage.confirm,
+                                                showButtom: true,
+                                                noFunction: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                yesFunction: () async {
+                                                  Navigator.pop(context);
+                                                  await Database
+                                                      .deleteProjectsTask(
+                                                          projectId: data[
+                                                                      index]
+                                                                  .data()[
+                                                              'projectId']);
+                                                  await Database.delete(
+                                                    collection: 'projects',
+                                                    docId: snapshot
+                                                        .data.docs[index].id,
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            icon: Icon(
+                                              AppIcons.delete,
+                                              size: AppSize.iconsSize + 10,
+                                              color: AppColor.errorColor,
+                                            ),
+                                          ),
+                                          SizedBox(width: 5.w),
+                                          // update
+                                          IconButton(
+                                            onPressed: () {
+                                              AppRoutes.pushTo(
+                                                context,
+                                                UpdateProject(
+                                                  docId: snapshot
+                                                      .data.docs[index].id,
+                                                  data: data[index].data(),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              AppIcons.update,
+                                              size: AppSize.iconsSize + 10,
+                                              color: AppColor.mainColor,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
-                                ),
-                              ),
-                            ],
+                                );
+                              }),
+                            ),
                           );
-                        }),
-                      ),
-                    );
                   } else {
                     return const Center(child: CircularProgressIndicator());
                   }
                 },
-              )
-          )
+              ))
         ],
       ),
     );

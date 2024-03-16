@@ -79,7 +79,7 @@ class _AdminTaskState extends State<AdminTask> {
                 flex: 5,
                 child: StreamBuilder(
                   stream: AppConstants.taskCollection
-                      .orderBy('createdOn', descending: true)
+                      .where('projectId', isEqualTo: widget.projectId)
                       .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasError) {
