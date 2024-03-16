@@ -37,6 +37,7 @@ class _AdministrativeCircularState extends State<AdministrativeCircularEmp> {
     return Scaffold(
       appBar: AppBarWidget(
         text: AppMessage.administrativeCircular,
+        isEmp: true,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
