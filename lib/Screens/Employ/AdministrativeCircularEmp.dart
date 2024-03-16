@@ -73,8 +73,10 @@ class _AdministrativeCircularState extends State<AdministrativeCircularEmp> {
                                   child: ListTile(
                                     title: AppText(
                                       text: '${data[index].data()?['title']}',
-                                      fontSize: AppSize.textSize - 2,
+                                      fontSize: AppSize.subTextSize,
                                       overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColor.subColor,
                                     ),
                                     subtitle: AppText(
                                       text: '${data[index].data()?['text']}',
