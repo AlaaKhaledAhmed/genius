@@ -44,17 +44,17 @@ class _AdminIndividualTasksState extends State<AdminIndividualTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
-        text: AppMessage.task,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: AppColor.white,
-            size: AppSize.iconsSize + 6,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        text: AppMessage.indTask,
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.arrow_back_ios_rounded,
+        //     color: AppColor.white,
+        //     size: AppSize.iconsSize + 6,
+        //   ),
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        // ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),

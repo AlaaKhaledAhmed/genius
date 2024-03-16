@@ -234,7 +234,7 @@ class DrawerItems {
   //task
   static DrawerItem task = DrawerItem(
     itemIndex: AppConstants.taskId,
-    title: AppMessage.task,
+    title: AppMessage.indTask,
     icon: AppIcons.task,
   );
 

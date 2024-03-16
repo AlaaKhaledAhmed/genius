@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
           builder: (_, __) => MaterialApp(
                 initialRoute: Login.route,
                 routes: <String, WidgetBuilder>{
-                  Login.route: (_) => const NavBarAdmin(),
+                  Login.route: (_) => const Login(),
                   NavBarAdmin.route: (_) => const NavBarAdmin(),
                   EmployeeNavBar.route: (_) => const EmployeeNavBar(),
                 },
