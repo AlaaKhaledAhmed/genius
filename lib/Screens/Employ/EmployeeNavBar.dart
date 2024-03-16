@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:genius/Screens/Employ/AdministrativeCircularEmp.dart';
 import 'package:genius/Widget/AppDrawerEmployee.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,8 @@ class EmployeeNavBar extends StatefulWidget {
 
 class _EmployeeNavBarState extends State<EmployeeNavBar> {
   List<Widget> pages = [
-    const EmployeeTask(),
+    const EmployeeTask(), const EmployeeTask(), const EmployeeTask(),
+    const AdministrativeCircularEmp(),
     // const ManageEmploy(),
     // const Sections(),
     // const AdminIndividualTasks(),
@@ -36,6 +38,7 @@ class _EmployeeNavBarState extends State<EmployeeNavBar> {
     context.read<ProviderClass>().pageController = PageController(
         initialPage: context.read<ProviderClass>().currentPageIndexEmp);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

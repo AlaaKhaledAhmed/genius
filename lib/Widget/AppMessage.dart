@@ -8,6 +8,7 @@ class AppMessage {
 
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';
+  static String noFile = 'لايوجد ملف مرفق لعرضه';
   static String file = 'الملف';
   static String attachment = 'مرفق';
   static String projectName = 'اسم المشروع';
@@ -27,7 +28,7 @@ class AppMessage {
   static String passwordTx = 'كلمة المرور';
   static String loginTx = "تسجيل الدخول";
   static String welcome =
-      "أطلق العنان لقوة GENIUS ASSISTANT - الحل الإداري الشامل لديك";
+      "Unleash the power of GENIUS ASSISTANT - your all-in-one administrative solution";
   static String userNotFound = "المستخدم غير وجود";
   static String home = "الرئيسية";
   static String profile = "الملف الشخصي";
@@ -65,7 +66,9 @@ class AppMessage {
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String done = "تمت العملية بنجاح";
   static String emailAlreadyInUse = "البريد الالكتروني مستخدم مسبقا";
-  static String delete = "حذف";  static String indTask = "المهام الفردية";  static String prTask = "مهام المشاريع";
+  static String delete = "حذف";
+  static String indTask = "المهام الفردية";
+  static String prTask = "مهام المشاريع";
   static String onlyDigits = "الرجاء ادخال ارقام فقط";
   static String confirm = "هل انت متاكد من اكمال العملية؟";
   static String update = "تعديل البيانات";

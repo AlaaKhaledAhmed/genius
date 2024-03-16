@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:genius/Widget/AppText.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:file_picker/file_picker.dart';
@@ -88,28 +89,56 @@ class _UplodeFileState extends State<UplodeFile> {
                               .child(fileController.text);
                           await fileRef?.putFile(file!).then((getValue) async {
                             fileURL = await fileRef!.getDownloadURL();
-                            (widget.type == 1
-                                    ? Database.updateTaskStatus(
-                                        file: fileURL,
-                                        docId: widget.docId,
-                                        status: 1)
-                                    : Database.updateIndividualTaskStatus(
-                                        file: fileURL,
-                                        docId: widget.docId,
-                                        status: 1))
-                                .then((v) {
-                              print('================$v');
-                              if (v == "done") {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                                AppLoading.show(context, AppMessage.uplodeFile,
-                                    AppMessage.done);
-                              } else {
-                                Navigator.pop(context);
-                                AppLoading.show(context, AppMessage.uplodeFile,
-                                    AppMessage.serverText);
-                              }
-                            });
+
+                            widget.type == 2
+                                ? {
+                              color_print('updateTaskStatus'),
+                                    Database.updateTaskStatus(
+                                            file: fileURL,
+                                            docId: widget.docId,
+                                            status: 1)
+                                        .then((v) {
+                                      print('================$v');
+                                      if (v == "done") {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                        AppLoading.show(
+                                            context,
+                                            AppMessage.uplodeFile,
+                                            AppMessage.done);
+                                      } else {
+                                        Navigator.pop(context);
+                                        AppLoading.show(
+                                            context,
+                                            AppMessage.uplodeFile,
+                                            AppMessage.serverText);
+                                      }
+                                    })
+                                  }
+                                : {
+                              color_print('updateIndividualTaskStatus'),
+                                    Database.updateIndividualTaskStatus(
+                                            file: fileURL,
+                                            docId: widget.docId,
+                                            status: 1)
+                                        .then((v) {
+                                      print('================$v');
+                                      if (v == "done") {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                        AppLoading.show(
+                                            context,
+                                            AppMessage.uplodeFile,
+                                            AppMessage.done);
+                                      } else {
+                                        Navigator.pop(context);
+                                        AppLoading.show(
+                                            context,
+                                            AppMessage.uplodeFile,
+                                            AppMessage.serverText);
+                                      }
+                                    })
+                                  };
                           });
                         }
                       },

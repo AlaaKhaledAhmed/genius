@@ -73,7 +73,10 @@ class _EmployeeTaskState extends State<EmployeeTask> {
                 child: Container(
                   alignment: AlignmentDirectional.center,
                   padding: EdgeInsets.all(15.spMin),
-                  decoration: GeneralWidget.decoration(),
+                  decoration: GeneralWidget.decoration(
+                      color: selectedIndex == 1
+                          ? AppColor.subColor
+                          : AppColor.white),
                   child: AppText(
                     text: AppMessage.indTask,
                     fontSize: AppSize.subTextSize,
@@ -93,7 +96,10 @@ class _EmployeeTaskState extends State<EmployeeTask> {
                 child: Container(
                   alignment: AlignmentDirectional.center,
                   padding: EdgeInsets.all(15.spMin),
-                  decoration: GeneralWidget.decoration(),
+                  decoration: GeneralWidget.decoration(
+                      color: selectedIndex == 2
+                          ? AppColor.subColor
+                          : AppColor.white),
                   child: AppText(
                     text: AppMessage.prTask,
                     fontSize: AppSize.subTextSize,
