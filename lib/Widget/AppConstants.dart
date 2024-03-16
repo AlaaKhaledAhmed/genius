@@ -31,11 +31,8 @@ class AppConstants {
 
   ///=====================================
   static const int profileIdEm = 0;
-
-
   static const int taskIdEm = 1;
   static const int audienceIdEm = 2;
-
   static const int administrativeCircularIdEm = 3;
   static const int administrativeRequestsIdEm = 4;
   static const int endOfServiceCalculatorIdEm = 5;

@@ -7,7 +7,8 @@ import '../../BackEnd/provider_class.dart';
 import 'EmployeeTasks/EmployeeTasks.dart';
 
 class EmployeeNavBar extends StatefulWidget {
-  static String route = '/employeeNavBar';
+  static String route = '/NavBarEmp';
+
   const EmployeeNavBar({super.key});
 
   @override
@@ -16,22 +17,12 @@ class EmployeeNavBar extends StatefulWidget {
 
 class _EmployeeNavBarState extends State<EmployeeNavBar> {
   List<Widget> pages = [
-    const EmployeeTask(), const EmployeeTask(), const EmployeeTask(),
+    const EmployeeTask(),
+    const EmployeeTask(),
+    const EmployeeTask(),
     const AdministrativeCircularEmp(),
-    // const ManageEmploy(),
-    // const Sections(),
-    // const AdminIndividualTasks(),
-    // const AdminAudience(),
-    // const ElevateEmploy(),
-    // const AdministrativeCircular(),
-    // const AdministrativeRequests(),
-    // const Calender(),
-    // const EmpContracts(),
-    // const EmpContracts(),
-    // const ProjectsContracts(),
-    // const EndOfServiceCalculator(),
-    // const Complaints(),
   ];
+
   @override
   void initState() {
     super.initState();

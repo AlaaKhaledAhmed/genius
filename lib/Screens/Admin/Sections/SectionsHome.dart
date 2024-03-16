@@ -8,6 +8,7 @@ import 'package:genius/Widget/AppText.dart';
 import 'package:genius/Widget/GeneralWidget.dart';
 import 'package:pie_chart/pie_chart.dart';
 import '../../../Widget/AppBar.dart';
+import '../../../Widget/AppDrawerAdmin.dart';
 import '../../../Widget/AppMessage.dart';
 import '../Projects/ProjectsMain.dart';
 
@@ -33,6 +34,7 @@ class _SectionsState extends State<Sections> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBarWidget(text: AppMessage.sections),
       body: GeneralWidget.body(
         child: Padding(

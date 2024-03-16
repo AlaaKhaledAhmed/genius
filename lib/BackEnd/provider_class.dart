@@ -1,5 +1,3 @@
-
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +6,7 @@ typedef OnUploadProgressCallbackAdv = void Function(double progress);
 class ProviderClass extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<ScaffoldState> scaffoldKeyEmp = GlobalKey<ScaffoldState>();
-    int currentPageIndex = 2;
+  int currentPageIndex = 2;
   int currentPageIndexEmp = 0;
   PageController? pageController;
 
@@ -20,6 +18,7 @@ class ProviderClass extends ChangeNotifier {
         duration: const Duration(milliseconds: 100), curve: Curves.ease);
     print('index is: $currentPageIndex');
   }
+
   void onTapDrawerItemEmp(int index) async {
     currentPageIndexEmp = index;
     notifyListeners();
@@ -33,12 +32,20 @@ class ProviderClass extends ChangeNotifier {
     if (!scaffoldKey.currentState!.isDrawerOpen) {
       scaffoldKey.currentState!.openDrawer();
     }
-  } void controlMenuEmp() {
+  }
+
+  void controlMenuEmp() {
     if (!scaffoldKeyEmp.currentState!.isDrawerOpen) {
       scaffoldKeyEmp.currentState!.openDrawer();
     }
   }
-  emptyProviderData() {
 
+  emptyProviderData() {
+    scaffoldKey = GlobalKey<ScaffoldState>();
+    scaffoldKeyEmp = GlobalKey<ScaffoldState>();
+    currentPageIndex = 2;
+    currentPageIndexEmp = 0;
+    pageController = null;
+    notifyListeners();
   }
 }

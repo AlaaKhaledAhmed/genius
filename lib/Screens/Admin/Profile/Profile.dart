@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../Widget/AppBar.dart';
+import '../../../Widget/AppDrawerAdmin.dart';
 import '../../../Widget/AppMessage.dart';
 
 class Profile extends StatefulWidget {
@@ -14,6 +15,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBarWidget(
         text: AppMessage.profile,
       ),

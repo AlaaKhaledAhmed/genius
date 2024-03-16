@@ -42,7 +42,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String initialRoute = Login.route;
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,12 @@ class _MyAppState extends State<MyApp> {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, __) => MaterialApp(
-               home: EmployeeNavBar(),
+                initialRoute: Login.route,
+                routes: <String, WidgetBuilder>{
+                  Login.route: (_) => const Login(),
+                  NavBarAdmin.route: (_) => const NavBarAdmin(),
+                  EmployeeNavBar.route: (_) => const EmployeeNavBar(),
+                },
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,

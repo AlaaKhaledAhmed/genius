@@ -18,7 +18,7 @@ import 'Profile/Profile.dart';
 import 'Sections/SectionsHome.dart';
 
 class NavBarAdmin extends StatefulWidget {
-  static String route = '/navBarAdmin';
+  static String route = '/NavBarAdmin';
   const NavBarAdmin({Key? key}) : super(key: key);
 
   @override

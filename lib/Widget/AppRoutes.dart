@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../BackEnd/provider_class.dart';
 
 
 class AppRoutes {
@@ -60,8 +63,7 @@ class AppRoutes {
   static pushAndRemoveAllPageTo(BuildContext context, page,
       {bool? noAnimation, required bool removeProviderData}) {
     if (removeProviderData == true) {
-      // context.read<ProviderClass>().emptyProviderData();
-      print('dddddddddddddeleat');
+       print('dddddddddddddeleat');
     }
     noAnimation != null && noAnimation
         ? Navigator.pushAndRemoveUntil(context,

@@ -20,7 +20,7 @@ import '../Admin/NavBarAdmin.dart';
 import '../Sppurt/Sppurt.dart';
 
 class Login extends StatefulWidget {
-  static String route = '/login';
+  static String route = '/';
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -127,21 +127,27 @@ class _LoginState extends State<Login> {
                             .where('userId', isEqualTo: v)
                             .get()
                             .then((value) {
-                          Navigator.pop(context);
+                          color_print('typpe is: ${value.docs}');
+
                           for (var element in value.docs) {
                             print('responses is: $v');
-                            color_print('typpe is: ${element.data()['type']}');
                             if (element.data()['type'] == AppConstants.employ) {
-                              AppRoutes.pushReplacementTo(
-                                  context, const EmployeeNavBar());
+                              AppRoutes.pushAndRemoveAllPageTo(
+                                  removeProviderData: true,
+                                  context,
+                                  const EmployeeNavBar());
                             } else if (element.data()['type'] ==
                                 AppConstants.spurt) {
-                              AppRoutes.pushReplacementTo(
-                                  context, const SpurtHome());
+                              AppRoutes.pushAndRemoveAllPageTo(
+                                  removeProviderData: true,
+                                  context,
+                                  const SpurtHome());
                             } else if (element.data()['type'] ==
                                 AppConstants.admin) {
-                              AppRoutes.pushReplacementTo(
-                                  context, const NavBarAdmin());
+                              AppRoutes.pushAndRemoveAllPageTo(
+                                  removeProviderData: true,
+                                  context,
+                                  const NavBarAdmin());
                             } else {
                               AppLoading.show(context, AppMessage.loginTx,
                                   AppMessage.userNotFound);
