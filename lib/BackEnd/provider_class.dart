@@ -7,7 +7,9 @@ typedef OnUploadProgressCallbackAdv = void Function(double progress);
 
 class ProviderClass extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  int currentPageIndex = 2;
+  GlobalKey<ScaffoldState> scaffoldKeyEmp = GlobalKey<ScaffoldState>();
+    int currentPageIndex = 2;
+  int currentPageIndexEmp = 0;
   PageController? pageController;
 
   ///update page index==========================================================================
@@ -18,11 +20,22 @@ class ProviderClass extends ChangeNotifier {
         duration: const Duration(milliseconds: 100), curve: Curves.ease);
     print('index is: $currentPageIndex');
   }
+  void onTapDrawerItemEmp(int index) async {
+    currentPageIndexEmp = index;
+    notifyListeners();
+    pageController?.animateToPage(currentPageIndexEmp,
+        duration: const Duration(milliseconds: 100), curve: Curves.ease);
+    print('index is: $currentPageIndexEmp');
+  }
 
   ///open-close drawer ==========================================================================
   void controlMenu() {
     if (!scaffoldKey.currentState!.isDrawerOpen) {
       scaffoldKey.currentState!.openDrawer();
+    }
+  } void controlMenuEmp() {
+    if (!scaffoldKeyEmp.currentState!.isDrawerOpen) {
+      scaffoldKeyEmp.currentState!.openDrawer();
     }
   }
   emptyProviderData() {

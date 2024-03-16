@@ -10,7 +10,7 @@ import 'package:genius/Screens/Admin/IndividualTasks/AdminIndividualTasks.dart';
 import 'package:genius/Screens/Admin/Projects/ProjectsMain.dart';
  import 'package:provider/provider.dart';
 import '../../BackEnd/provider_class.dart';
-import '../../Widget/AppDrawer.dart';
+import '../../Widget/AppDrawerAdmin.dart';
 import 'Calender/Calender.dart';
 import 'EndOfServiceCalculator.dart';
 import 'ManageEmploy/ManageEmploy.dart';
@@ -18,6 +18,7 @@ import 'Profile/Profile.dart';
 import 'Sections/SectionsHome.dart';
 
 class NavBarAdmin extends StatefulWidget {
+  static String route = '/navBarAdmin';
   const NavBarAdmin({Key? key}) : super(key: key);
 
   @override

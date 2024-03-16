@@ -5,11 +5,12 @@ import 'package:genius/Screens/Admin/NavBarAdmin.dart';
 import 'package:genius/Screens/Admin/Projects/AddProject.dart';
 import 'package:genius/Screens/Admin/Projects/Tasks/AdminTask.dart';
 import 'package:genius/Screens/Authentication/LogIn.dart';
+import 'package:genius/Screens/Employ/EmployeeNavBar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'BackEnd/provider_class.dart';
- import 'Screens/Admin/IndividualTasks/AdminIndividualTasks.dart';
+import 'Screens/Admin/IndividualTasks/AdminIndividualTasks.dart';
 import 'Screens/Admin/Projects/ProjectsMain.dart';
 import 'Widget/AppColor.dart';
 import 'firebase_options.dart';
@@ -26,7 +27,7 @@ Future<void> main() async {
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       fallbackLocale: const Locale('ar'),
-      startLocale:  const Locale('ar'),
+      startLocale: const Locale('ar'),
       child: const MyApp()));
 }
 
@@ -55,10 +56,7 @@ class _MyAppState extends State<MyApp> {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, __) => MaterialApp(
-                initialRoute: initialRoute,
-                routes: <String, WidgetBuilder>{
-                  Login.route: (_) => const NavBarAdmin(),
-                },
+               home: EmployeeNavBar(),
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,

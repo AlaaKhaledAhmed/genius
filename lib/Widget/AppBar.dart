@@ -16,7 +16,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final Color? backgroundColor;
   final double? elevation;
-  final bool? isBasics;
+  final bool? isBasics;final bool? isEmp;
   const AppBarWidget(
       {Key? key,
       required this.text,
@@ -24,7 +24,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       this.actions,
       this.backgroundColor,
       this.elevation,
-      this.isBasics})
+      this.isBasics, this.isEmp})
       : super(key: key);
 
   @override
@@ -53,7 +53,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     Icons.menu,
                     color: AppColor.white,
                   ),
-                  onPressed: context.read<ProviderClass>().controlMenu,
+                  onPressed: isEmp==true?context.read<ProviderClass>().controlMenuEmp:context.read<ProviderClass>().controlMenu,
                 )),
         //-----------------------------------------------------------------------------------
         actions: isBasics == true

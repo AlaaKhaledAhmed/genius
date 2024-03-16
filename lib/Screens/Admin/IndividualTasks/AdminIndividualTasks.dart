@@ -103,7 +103,7 @@ class _AdminIndividualTasksState extends State<AdminIndividualTasks> {
                                               color: AppColor.black,
                                               fontWeight: FontWeight.normal),
                                           alignment: Alignment.center,
-                                          width: 120.w,
+                                          width: 150.w,
                                         ))
                                     .toList(),
                                 rows: List.generate(data.length, (index) {

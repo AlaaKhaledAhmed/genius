@@ -44,36 +44,64 @@ class _SectionsState extends State<Sections> {
               SizedBox(
                 height: GeneralWidget.height(context) / 3,
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: PieChart(
-                        dataMap: dataMap,
-                        colorList: colorList,
-                        chartType: ChartType.disc,
-                        legendOptions: const LegendOptions(
-                          showLegendsInRow: true,
-                          legendPosition: LegendPosition.bottom,
-                          showLegends: true,
-                          legendTextStyle: TextStyle(fontSize: 14),
-                        ),
-                        centerText: 'المهام',
+                      child: Column(
+                        children: [
+                          Flexible(
+                            child: PieChart(
+                              chartRadius: 90.r,
+
+                              dataMap: dataMap,
+                              colorList: colorList,
+                              chartType: ChartType.disc,
+                              legendOptions: LegendOptions(
+                                showLegendsInRow: true,
+                                legendPosition: LegendPosition.bottom,
+                                showLegends: true,
+                                legendTextStyle: TextStyle(
+                                    fontSize: AppSize.smallSubText - 3.spMin),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.w,
+                          ),
+                          AppText(
+                              text: 'المهام الفردية', fontSize: AppSize.subTextSize)
+                        ],
                       ),
                     ),
                     SizedBox(
                       width: 30.w,
                     ),
                     Expanded(
-                      child: PieChart(
-                        dataMap: dataMap,
-                        colorList: colorList,
-                        chartType: ChartType.disc,
-                        legendOptions: const LegendOptions(
-                          showLegendsInRow: true,
-                          legendPosition: LegendPosition.bottom,
-                          showLegends: true,
-                          legendTextStyle: TextStyle(fontSize: 14),
-                        ),
-                        centerText: 'المشاريع',
+                      child: Column(
+                        children: [
+                          Flexible(
+                            child: PieChart(
+                              chartRadius: 90.r,
+                      
+                              dataMap: dataMap,
+                              colorList: colorList,
+                              chartType: ChartType.disc,
+                              legendOptions: LegendOptions(
+                                showLegendsInRow: true,
+                                legendPosition: LegendPosition.bottom,
+                                showLegends: true,
+                                legendTextStyle: TextStyle(
+                                    fontSize: AppSize.smallSubText - 3.spMin),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.w,
+                          ),
+                          AppText(
+                              text: 'المشاريع', fontSize: AppSize.subTextSize)
+                        ],
                       ),
                     ),
                   ],
@@ -103,15 +131,16 @@ class _SectionsState extends State<Sections> {
                       fontWeight: FontWeight.bold,
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 10.h,bottom: 10.h),
+                      margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
                       width: double.maxFinite,
-                      padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 5.w),
-                      decoration: GeneralWidget.decoration(shadow: false,color: AppColor.mainColor),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
+                      decoration: GeneralWidget.decoration(
+                          shadow: false, color: AppColor.mainColor),
                       child: AppText(
-                        text: '02-04-2024 10:30 pm',
-                        fontSize: AppSize.smallSubText,
-                          color: AppColor.white
-                      ),
+                          text: '02-04-2024 10:30 pm',
+                          fontSize: AppSize.smallSubText,
+                          color: AppColor.white),
                     ),
                   ],
                 ),
@@ -134,10 +163,10 @@ class _SectionsState extends State<Sections> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (c, i) {
                       return InkWell(
-                        onTap: (){
-                          if (i==3) {
+                        onTap: () {
+                          if (i == 3) {
                             AppRoutes.pushTo(context, ProjectsMain());
-                          }  
+                          }
                         },
                         child: Container(
                           margin: EdgeInsets.only(left: 10),

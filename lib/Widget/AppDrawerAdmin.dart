@@ -69,7 +69,8 @@ class _AppDrawerState extends State<AppDrawer> {
                                     top: BorderSide(color: AppColor.white),
                                     bottom: BorderSide(color: AppColor.white),
                                   ),
-                                  tilePadding: EdgeInsets.symmetric(horizontal: 5.w),
+                                  tilePadding:
+                                      EdgeInsets.symmetric(horizontal: 5.w),
 
                                   ///title=======
                                   title: AppText(
@@ -96,7 +97,9 @@ class _AppDrawerState extends State<AppDrawer> {
                                   children: (DrawerItems.contractsSubItem)
                                       .map(
                                         (subItem) => ListTile(
-                                           contentPadding:EdgeInsets.symmetric(horizontal: 5.w),
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 5.w),
                                             horizontalTitleGap: 0.spMin,
                                             title: AppText(
                                               text: subItem.title,

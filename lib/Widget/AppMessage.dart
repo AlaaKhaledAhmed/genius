@@ -56,6 +56,7 @@ class AppMessage {
   static String contract = "العقود";
   static String addUser = "اضافة موظف";
   static String add = "اضافة";
+  static String uplodeFile = "ارفاق ملف";
   static String phoneKey = '966+';
   static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';
   static String startWith5 = 'يجب ان يبدأ رقم الجوال بالرقم 5';
@@ -64,7 +65,7 @@ class AppMessage {
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String done = "تمت العملية بنجاح";
   static String emailAlreadyInUse = "البريد الالكتروني مستخدم مسبقا";
-  static String delete = "حذف";
+  static String delete = "حذف";  static String indTask = "المهام الفردية";  static String prTask = "مهام المشاريع";
   static String onlyDigits = "الرجاء ادخال ارقام فقط";
   static String confirm = "هل انت متاكد من اكمال العملية؟";
   static String update = "تعديل البيانات";

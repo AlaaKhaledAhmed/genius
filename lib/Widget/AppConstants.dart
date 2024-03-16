@@ -27,6 +27,20 @@ class AppConstants {
   static const int endOfServiceCalculatorId = 12;
   static const int complaintsId = 13;
   static const int logOutId = 14;
+
+
+  ///=====================================
+  static const int profileIdEm = 0;
+
+
+  static const int taskIdEm = 1;
+  static const int audienceIdEm = 2;
+
+  static const int administrativeCircularIdEm = 3;
+  static const int administrativeRequestsIdEm = 4;
+  static const int endOfServiceCalculatorIdEm = 5;
+  static const int complaintsIdEm = 6;
+  ///
   static CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
   static CollectionReference projectCollection =

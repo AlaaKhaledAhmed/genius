@@ -279,7 +279,7 @@ class Database {
           'price': price,
           'startDate': startDate,
           'endDate': endDate,
-          'file':file,
+          'file': file,
           'status': 0,
           'employees': employees
               .map((employee) => {
@@ -298,22 +298,21 @@ class Database {
   }
 
   ///==================================================================================================================
-  static Future<String> updateProject({
-    required String name,
-    required double price,
-    required DateTime startDate,
-    required DateTime endDate,
-    required List<Employee> employees,
-    required String docId,
-    required String file
-  }) async {
+  static Future<String> updateProject(
+      {required String name,
+      required double price,
+      required DateTime startDate,
+      required DateTime endDate,
+      required List<Employee> employees,
+      required String docId,
+      required String file}) async {
     try {
       await AppConstants.projectCollection.doc(docId).update({
         'name': name,
         'price': price,
         'startDate': startDate,
         'endDate': endDate,
-        'file':file,
+        'file': file,
         'employees': employees
             .map((employee) => {
                   'userId': employee.userId,
@@ -329,14 +328,12 @@ class Database {
   }
 
   ///==================================================================================================================
-  static Future<String> updateTaskStatus({
-    required String docId,
-    required int status,
-  }) async {
+  static Future<String> updateTaskStatus(
+      {required String docId, required int status, String? file}) async {
     try {
-      await AppConstants.taskCollection.doc(docId).update({
-        'status': status,
-      });
+      await AppConstants.taskCollection
+          .doc(docId)
+          .update({'status': status, 'file': file ?? ""});
       return 'done';
     } catch (e) {
       return 'error';
@@ -344,14 +341,12 @@ class Database {
   }
 
   ///==================================================================================================================
-  static Future<String> updateIndividualTaskStatus({
-    required String docId,
-    required int status,
-  }) async {
+  static Future<String> updateIndividualTaskStatus(
+      {required String docId, required int status, String? file}) async {
     try {
-      await AppConstants.individualTasksCollection.doc(docId).update({
-        'status': status,
-      });
+      await AppConstants.individualTasksCollection
+          .doc(docId)
+          .update({'status': status, 'file': file ?? ""});
       return 'done';
     } catch (e) {
       return 'error';

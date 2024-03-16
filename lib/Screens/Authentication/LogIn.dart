@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:genius/Screens/Employ/EmployeeNavBar.dart';
 import 'package:genius/Widget/AppDialog.dart';
 import 'package:genius/Widget/AppSize.dart';
 import 'package:genius/Widget/AppText.dart';
@@ -16,7 +17,6 @@ import '../../Widget/AppRoutes.dart';
 import '../../Widget/AppTextFields.dart';
 import '../../Widget/AppValidator.dart';
 import '../Admin/NavBarAdmin.dart';
-import '../Employ/EmployHome.dart';
 import '../Sppurt/Sppurt.dart';
 
 class Login extends StatefulWidget {
@@ -130,9 +130,10 @@ class _LoginState extends State<Login> {
                           Navigator.pop(context);
                           for (var element in value.docs) {
                             print('responses is: $v');
+                            color_print('typpe is: ${element.data()['type']}');
                             if (element.data()['type'] == AppConstants.employ) {
                               AppRoutes.pushReplacementTo(
-                                  context, const EmployHome());
+                                  context, const EmployeeNavBar());
                             } else if (element.data()['type'] ==
                                 AppConstants.spurt) {
                               AppRoutes.pushReplacementTo(
