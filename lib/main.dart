@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
         )
       ],
       child: ScreenUtilInit(
+        //df
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, __) => MaterialApp(
