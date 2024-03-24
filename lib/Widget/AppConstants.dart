@@ -28,7 +28,6 @@ class AppConstants {
   static const int complaintsId = 13;
   static const int logOutId = 14;
 
-
   ///=====================================
   static const int profileIdEm = 0;
   static const int taskIdEm = 1;
@@ -37,6 +36,7 @@ class AppConstants {
   static const int administrativeRequestsIdEm = 4;
   static const int endOfServiceCalculatorIdEm = 5;
   static const int complaintsIdEm = 6;
+
   ///
   static CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
@@ -48,6 +48,8 @@ class AppConstants {
       FirebaseFirestore.instance.collection('individualTasks');
   static CollectionReference administrativeCircularCollection =
       FirebaseFirestore.instance.collection('administrativeCircular');
+  static CollectionReference employeeRequest =
+      FirebaseFirestore.instance.collection('employeeRequest');
   static List<String> sectionListEn = [
     'Personnel Department',
     'Employee Relations',

@@ -33,4 +33,5 @@ class AppIcons {
   static IconData empContracts = FluentIcons.document_contract_16_regular;
   static IconData calender = FluentIcons.calendar_32_regular;
   static IconData sections = FluentIcons.people_list_32_regular;
+  static IconData replay = FluentIcons.replay_20_filled;
  }

@@ -433,4 +433,23 @@ class Database {
       return 'error';
     }
   }
+
+  ///==================================================================================================================
+  static Future<String> addEmployeeRequest({
+    required String text,
+    required String title,
+  }) async {
+    try {
+      await AppConstants.employeeRequest.add({
+        'text': text,
+        'title': title,
+        'createdOn': FieldValue.serverTimestamp(),
+        'status':AppConstants.newStatus,
+        'replay':'',
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }

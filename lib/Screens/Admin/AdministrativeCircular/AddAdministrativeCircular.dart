@@ -2,29 +2,19 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:math';
 import 'package:path/path.dart' as path;
-import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:genius/Widget/AppConstants.dart';
-import 'package:genius/Widget/AppDropList.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppButtons.dart';
-import '../../../Widget/AppColor.dart';
 import '../../../Widget/AppDialog.dart';
 import '../../../Widget/AppMessage.dart';
-import '../../../Widget/AppRoutes.dart';
-import '../../../Widget/AppSize.dart';
-import '../../../Widget/AppText.dart';
 import '../../../Widget/AppTextFields.dart';
 import '../../../Widget/AppValidator.dart';
 import '../../../Widget/GeneralWidget.dart';
 
 class AddAdministrativeCircular extends StatefulWidget {
-
   const AddAdministrativeCircular({super.key});
 
   @override
@@ -73,12 +63,11 @@ class _AddAdministrativeCircularState extends State<AddAdministrativeCircular> {
                       validator: (v) => AppValidator.validatorEmpty(v),
                       controller: titleController,
                       labelText: AppMessage.title,
-
                     ),
                     SizedBox(
                       height: 10.h,
                     ),
- //text=============================================================================
+                    //text=============================================================================
                     AppTextFields(
                       key: _key2,
                       onTap: () {

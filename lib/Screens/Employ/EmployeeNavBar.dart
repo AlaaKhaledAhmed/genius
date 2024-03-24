@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:genius/Screens/Employ/AdministrativeCircularEmp.dart';
-import 'package:genius/Widget/AppDrawerEmployee.dart';
+ import 'package:genius/Widget/AppDrawerEmployee.dart';
 import 'package:provider/provider.dart';
-
 import '../../BackEnd/provider_class.dart';
+import 'AdministrativeRequestsEmp/AdministrativeRequestsEmp.dart';
 import 'EmployeeTasks/EmployeeTasks.dart';
 
 class EmployeeNavBar extends StatefulWidget {
@@ -21,6 +21,7 @@ class _EmployeeNavBarState extends State<EmployeeNavBar> {
     const EmployeeTask(),
     const EmployeeTask(),
     const AdministrativeCircularEmp(),
+    const AdministrativeRequestsEmp()
   ];
 
   @override

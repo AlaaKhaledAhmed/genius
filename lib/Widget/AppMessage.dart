@@ -15,6 +15,7 @@ class AppMessage {
   static String projectPrice = 'تكلفة المشروع';
   static String text = 'النص';
   static String title = 'الموضوع';
+  static String noReplay = 'لا توجد ردود';
   static String notCompleteStatus = 'غير مكتمل';
   static String completeStatus = 'مكتمل';
 
@@ -47,8 +48,10 @@ class AppMessage {
   static String endDate = "تاريخ النهاية";
   static String status = "الحالة";
   static String action = "الاجراء";
+  static String replay = "الردود";
   static String addTask = "اضافة مهمة";
   static String addAdministrativeCircular = "اضافة تعميم";
+  static String addRequest = "اضافة طلب";
   static String manageUsers = "ادارة الموظفين";
   static String section = "القسم";
   static String nationalities = "الجنسية";
