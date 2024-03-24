@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:genius/Screens/Employ/AdministrativeRequestsEmp/AddAdministrativeRequestsEmp.dart';
+import '../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppColor.dart';
 import '../../../Widget/AppConstants.dart';
@@ -99,7 +100,9 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                                               color: AppColor.black,
                                               fontWeight: FontWeight.normal),
                                           alignment: Alignment.center,
-                                          width: 120.w,
+                                          width: e == AppMessage.action
+                                              ? 140.w
+                                              : 120.w,
                                         ))
                                     .toList(),
                                 rows: List.generate(data.length, (index) {
@@ -263,6 +266,52 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                                                         color:
                                                             AppColor.mainColor,
                                                       ))),
+//update======================================================================================================================================================
+                                              IconButton(
+                                                onPressed: data[index]
+                                                            .data()['status'] !=
+                                                        AppConstants.newStatus
+                                                    ? () {
+                                                        AppLoading.show(
+                                                          context,
+                                                          AppMessage.delete,
+                                                          AppMessage.noDelete,
+                                                        );
+                                                      }
+                                                    : () {
+                                                        AppLoading.show(
+                                                          context,
+                                                          AppMessage.delete,
+                                                          AppMessage.confirm,
+                                                          showButtom: true,
+                                                          noFunction: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          yesFunction:
+                                                              () async {
+                                                            Navigator.pop(
+                                                                context);
+
+                                                            await Database
+                                                                .delete(
+                                                              collection:
+                                                                  'employeeRequest',
+                                                              docId: snapshot
+                                                                  .data
+                                                                  .docs[index]
+                                                                  .id,
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                icon: Icon(
+                                                  AppIcons.delete,
+                                                  size: AppSize.iconsSize + 10,
+                                                  color: AppColor.errorColor,
+                                                ),
+                                              ),
+                                              SizedBox(width: 5.w),
                                             ],
                                           )),
                                     ],

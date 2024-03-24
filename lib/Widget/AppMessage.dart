@@ -84,6 +84,7 @@ class AppMessage {
 
   static String sections = "الاقسام";
   static String noUpdate = "لايمكنك تعديل الطلب الا اذا كانت حالة الطلب جديد";
+  static String noDelete = "لايمكنك حذف الطلب الا اذا كانت حالة الطلب جديد";
   static String calender = "المواعيد";
   static String empContracts = "عقود الموظفين";
   static String projectsContracts = "عقود المشاريع";

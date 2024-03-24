@@ -240,7 +240,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                             CrossAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          // delete
+// delete==========================================================================================
                                           IconButton(
                                             onPressed: () {
                                               AppLoading.show(
@@ -274,7 +274,7 @@ class _ProjectsMainState extends State<ProjectsMain> {
                                             ),
                                           ),
                                           SizedBox(width: 5.w),
-                                          // update
+// update==================================================================================================================================
                                           IconButton(
                                             onPressed: () {
                                               AppRoutes.pushTo(
