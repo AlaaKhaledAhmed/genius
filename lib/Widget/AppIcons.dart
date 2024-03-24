@@ -27,11 +27,13 @@ class AppIcons {
   static IconData file = FluentIcons.document_32_regular;
   static IconData view = FluentIcons.eye_12_regular;
 
-
   static IconData endOfServiceCalculator = FluentIcons.calculator_24_regular;
-  static IconData projectsContracts = FluentIcons.projection_screen_dismiss_28_filled;
+  static IconData projectsContracts =
+      FluentIcons.projection_screen_dismiss_28_filled;
   static IconData empContracts = FluentIcons.document_contract_16_regular;
   static IconData calender = FluentIcons.calendar_32_regular;
   static IconData sections = FluentIcons.people_list_32_regular;
-  static IconData replay =  FluentIcons.chat_12_regular;
- }
+  static IconData replay = FluentIcons.chat_12_regular;
+  static IconData accept = Icons.check_circle_outlined;
+  static IconData reject = Icons.close;
+}

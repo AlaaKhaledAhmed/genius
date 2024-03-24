@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, __) => MaterialApp(
-                initialRoute: EmployeeNavBar.route,
+                initialRoute: NavBarAdmin.route,
                 routes: <String, WidgetBuilder>{
                   Login.route: (_) => const Login(),
                   NavBarAdmin.route: (_) => const NavBarAdmin(),

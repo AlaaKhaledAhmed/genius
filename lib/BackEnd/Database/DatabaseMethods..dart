@@ -483,4 +483,15 @@ class Database {
       return 'error';
     }
   }
+
+  ///==================================================================================================================
+  static Future<String> updateRequestStatus(
+      {required String docId, required int status}) async {
+    try {
+      await AppConstants.employeeRequest.doc(docId).update({'status': status});
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }

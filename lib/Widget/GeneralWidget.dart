@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import '../generated/assets.dart';
+import 'AppButtons.dart';
 import 'AppColor.dart';
 import 'AppIcons.dart';
 import 'AppMessage.dart';
@@ -251,13 +253,17 @@ class GeneralWidget {
 
   ///===============================================================================
   static Future<List<DateTime?>?> showDateRangDialog(
-      {required BuildContext context, DateTime? startDate,bool showRange=false}) async {
+      {required BuildContext context,
+      DateTime? startDate,
+      bool showRange = false}) async {
     List<DateTime?>? results = await showCalendarDatePicker2Dialog(
       context: context,
       config: CalendarDatePicker2WithActionButtonsConfig(
         currentDate: DateTime.now(),
         firstDate: startDate ?? DateTime.now(),
-        calendarType: showRange?CalendarDatePicker2Type.range:CalendarDatePicker2Type.single,
+        calendarType: showRange
+            ? CalendarDatePicker2Type.range
+            : CalendarDatePicker2Type.single,
         selectedDayTextStyle:
             TextStyle(color: AppColor.white, fontWeight: FontWeight.w700),
         selectedDayHighlightColor: AppColor.mainColor,
@@ -358,6 +364,99 @@ class GeneralWidget {
           GeneralWidget.imageError(),
       fit: BoxFit.contain,
     ).image;
+  }
+
+  ///=================================================================================
+  static FutureOr<bool?> confirmDialog({
+    required BuildContext context,
+    required String title,
+    required onPressedYes,
+    required onPressedNo,
+    String? content,
+    String? yesText,
+    String? noText,
+    Color? yesColor,
+    Color? noColor,
+    Color? yesTextColor,
+    Color? noTextColor,
+    TextAlign? align,
+    EdgeInsetsGeometry? actionsPadding,
+    Widget? contentWidget,
+    CrossAxisAlignment? crossAxisAlignment,
+  }) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext buildContext) {
+        return AlertDialog(
+          backgroundColor: AppColor.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.spMin))),
+          titlePadding: EdgeInsets.zero,
+          actionsPadding: actionsPadding,
+          title: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.all(15.spMin),
+            decoration: BoxDecoration(
+                color: AppColor.mainColor.withOpacity(0.80),
+                borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(10),
+                    topLeft: Radius.circular(10))),
+            child: Center(
+              child: AppText(
+                fontSize: AppSize.labelSize,
+                text: title,
+                fontWeight: FontWeight.bold,
+                color: AppColor.white,
+              ),
+            ),
+          ),
+          content: Column(
+            crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: AppText(
+                  fontSize: AppSize.subTextSize,
+                  text: content ?? AppMessage.text,
+                  align: align,
+                ),
+              ),
+              contentWidget ?? const SizedBox(),
+            ],
+          ),
+          actions: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: AppButtons(
+                    textStyleColor: yesTextColor,
+                    height: 40.h,
+                    onPressed: onPressedYes,
+                    text: yesText ?? AppMessage.yes,
+                    backgroundColor: yesColor ?? AppColor.errorColor,
+                  ),
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Flexible(
+                  child: AppButtons(
+                    textStyleColor: noTextColor,
+                    height: 40.h,
+                    onPressed: onPressedNo,
+                    text: noText ?? AppMessage.no,
+                    backgroundColor: noColor ?? AppColor.lightGrey,
+                  ),
+                )
+              ],
+            )
+          ],
+        );
+      },
+    );
   }
 
   /// ==============================================================================================================================================================

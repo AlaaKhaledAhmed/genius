@@ -11,6 +11,7 @@ class AppMessage {
   static String yes = 'نعم';
   static String noFile = 'لايوجد ملف مرفق لعرضه';
   static String file = 'الملف';
+  static String send = 'ارسال';
   static String attachment = 'مرفق';
   static String projectName = 'اسم المشروع';
   static String projectPrice = 'تكلفة المشروع';
@@ -52,7 +53,7 @@ class AppMessage {
   static String endDate = "تاريخ النهاية";
   static String status = "الحالة";
   static String action = "الاجراء";
-  static String replay = "الردود";
+  static String replay = "ارسال رد";
   static String addTask = "اضافة مهمة";
   static String addAdministrativeCircular = "اضافة تعميم";
   static String addRequest = "اضافة طلب";
@@ -74,6 +75,8 @@ class AppMessage {
   static String done = "تمت العملية بنجاح";
   static String emailAlreadyInUse = "البريد الالكتروني مستخدم مسبقا";
   static String delete = "حذف";
+  static String accept = "قبول الطلب";
+  static String reject = "رفض الطلب";
   static String indTask = "المهام الفردية";
   static String prTask = "مهام المشاريع";
   static String onlyDigits = "الرجاء ادخال ارقام فقط";
