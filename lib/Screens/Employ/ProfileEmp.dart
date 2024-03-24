@@ -38,6 +38,7 @@ class _ProfileState extends State<ProfileEmp> {
       drawer: const AppDrawer(),
       appBar: AppBarWidget(
         text: AppMessage.profile,
+        isEmp: true,
       ),
       body: GeneralWidget.body(
         child: Padding(

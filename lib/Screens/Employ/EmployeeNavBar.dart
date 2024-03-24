@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../BackEnd/provider_class.dart';
 import 'AdministrativeRequestsEmp/AdministrativeRequestsEmp.dart';
 import 'EmployeeTasks/EmployeeTasks.dart';
+import 'ProfileEmp.dart';
 
 class EmployeeNavBar extends StatefulWidget {
   static String route = '/NavBarEmp';
@@ -17,7 +18,7 @@ class EmployeeNavBar extends StatefulWidget {
 
 class _EmployeeNavBarState extends State<EmployeeNavBar> {
   List<Widget> pages = [
-    const EmployeeTask(),
+    const ProfileEmp(),
     const EmployeeTask(),
     const EmployeeTask(),
     const AdministrativeCircularEmp(),

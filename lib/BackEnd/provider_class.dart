@@ -7,7 +7,7 @@ class ProviderClass extends ChangeNotifier {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<ScaffoldState> scaffoldKeyEmp = GlobalKey<ScaffoldState>();
   int currentPageIndex = 2;
-  int currentPageIndexEmp = 0;
+  int currentPageIndexEmp = 1;
   PageController? pageController;
 
   ///update page index==========================================================================

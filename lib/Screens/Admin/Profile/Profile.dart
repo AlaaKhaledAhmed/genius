@@ -34,6 +34,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       drawer: const AppDrawer(),
       appBar: AppBarWidget(
         text: AppMessage.profile,
