@@ -6,6 +6,7 @@ import 'package:genius/Screens/Admin/Projects/AddProject.dart';
 import 'package:genius/Screens/Admin/Projects/Tasks/AdminTask.dart';
 import 'package:genius/Screens/Authentication/LogIn.dart';
 import 'package:genius/Screens/Employ/EmployeeNavBar.dart';
+import 'package:genius/Screens/Employ/ProfileEmp.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -58,12 +59,12 @@ class _MyAppState extends State<MyApp> {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, __) => MaterialApp(
-                initialRoute: Profile.route,
+                initialRoute: ProfileEmp.route,
                 routes: <String, WidgetBuilder>{
-                  Login.route: (_) => const Login(),
-                  NavBarAdmin.route: (_) => const NavBarAdmin(),
-                  Profile.route: (_) => const Profile(),
-                  EmployeeNavBar.route: (_) => const EmployeeNavBar(),
+                  ProfileEmp.route: (_) => const ProfileEmp(),
+                  // NavBarAdmin.route: (_) => const NavBarAdmin(),
+                  // Profile.route: (_) => const Profile(),
+                  // EmployeeNavBar.route: (_) => const EmployeeNavBar(),
                 },
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
