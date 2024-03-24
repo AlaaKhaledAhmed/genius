@@ -5,6 +5,10 @@ class AppMessage {
   static String selectDate = 'اختر التاريخ';
   static String selectDateRequest = 'تاريخ الاستحقاق';
   static String resend = 'اعادة الارسال';
+  static String admin = 'الادارة';
+  static String oldPass = 'كلمة المرور القديمة';
+  static String confirmPass = 'تاكيد كلمة المرور';
+  static String newPass = 'كلمة المرور الجديدة';
   static String selectEmployee = 'اختر الموظف';
 
   static String mandatoryTx = 'حقل اجباري';

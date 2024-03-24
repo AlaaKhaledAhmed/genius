@@ -11,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'BackEnd/provider_class.dart';
 import 'Screens/Admin/IndividualTasks/AdminIndividualTasks.dart';
+import 'Screens/Admin/Profile/Profile.dart';
 import 'Screens/Admin/Projects/ProjectsMain.dart';
 import 'Widget/AppColor.dart';
 import 'firebase_options.dart';
@@ -57,10 +58,11 @@ class _MyAppState extends State<MyApp> {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, __) => MaterialApp(
-                initialRoute: NavBarAdmin.route,
+                initialRoute: Profile.route,
                 routes: <String, WidgetBuilder>{
                   Login.route: (_) => const Login(),
                   NavBarAdmin.route: (_) => const NavBarAdmin(),
+                  Profile.route: (_) => const Profile(),
                   EmployeeNavBar.route: (_) => const EmployeeNavBar(),
                 },
                 localizationsDelegates: context.localizationDelegates,

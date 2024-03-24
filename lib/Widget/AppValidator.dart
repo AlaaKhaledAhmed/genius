@@ -74,4 +74,15 @@ class AppValidator {
       }
     }
   }
+  //valid Password data==============================================================
+  static String? validatorPassword(pass) {
+    if (pass.isEmpty) {
+      return AppMessage.mandatoryTx ;
+    }
+    if (pass.length < 10) {
+      return 'المطلوب 10 خانات على الاقل';
+    } else {
+      return null;
+    }
+  }
 }
