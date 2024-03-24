@@ -40,6 +40,7 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
   List<String> header = [
     AppMessage.title,
     AppMessage.text,
+    AppMessage.selectDateRequest,
     AppMessage.status,
     AppMessage.action,
   ];
@@ -121,7 +122,7 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
 
 //text======================================================================================================================================================
                                       TableViewCell(
-                                          alignment: Alignment.centerRight,
+                                          alignment: Alignment.center,
                                           child: InkWell(
                                             onTap: () {
                                               AppLoading.show(
@@ -135,6 +136,24 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                                                   '${data[index].data()?['text']}',
                                               fontSize: AppSize.subTextSize,
                                               overflow: TextOverflow.ellipsis,
+                                            ),
+                                          )),
+//date======================================================================================================================================================
+                                      TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: InkWell(
+                                            onTap: () {
+                                              AppLoading.show(
+                                                context,
+                                                AppMessage.selectDateRequest,
+                                                '${GeneralWidget.convertStringToDate((data[index].data()['startDate']).toDate())}-${GeneralWidget.convertStringToDate((data[index].data()['endDate']).toDate())}',
+                                              );
+                                            },
+                                            child: Icon(
+                                              AppIcons.date,
+                                              size:
+                                              AppSize.iconsSize + 10,
+                                              color: AppColor.mainColor,
                                             ),
                                           )),
 
