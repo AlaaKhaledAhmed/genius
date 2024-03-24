@@ -7,7 +7,6 @@ class AppMessage {
   static String resend = 'اعادة الارسال';
   static String selectEmployee = 'اختر الموظف';
 
-
   static String mandatoryTx = 'حقل اجباري';
   static String yes = 'نعم';
   static String noFile = 'لايوجد ملف مرفق لعرضه';
@@ -55,12 +54,13 @@ class AppMessage {
   static String status = "الحالة";
   static String action = "الاجراء";
   static String sendReplay = "ارسال رد";
-  static String replay = 'الرسائل';
+
   static String addTask = "اضافة مهمة";
   static String addAdministrativeCircular = "اضافة تعميم";
   static String addRequest = "اضافة طلب";
   static String manageUsers = "ادارة الموظفين";
   static String section = "القسم";
+  static String rejectRezone = "سبب الرفض";
   static String nationalities = "الجنسية";
   static String phone = "رقم الجوال";
   static String salary = "الراتب";

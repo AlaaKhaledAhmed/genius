@@ -496,10 +496,14 @@ class Database {
   }
 
   ///==================================================================================================================
-  static Future<String> updateRequestSend(
-      {required String docId, required String text}) async {
+  static Future<String> rejectRequest(
+      {required String docId,
+      required int status,
+      required String text}) async {
     try {
-      await AppConstants.employeeRequest.doc(docId).update({'replay': text});
+      await AppConstants.employeeRequest
+          .doc(docId)
+          .update({'replay': text, 'status': status});
       return 'done';
     } catch (e) {
       return 'error';

@@ -151,8 +151,7 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                                             },
                                             child: Icon(
                                               AppIcons.date,
-                                              size:
-                                              AppSize.iconsSize + 10,
+                                              size: AppSize.iconsSize + 10,
                                               color: AppColor.mainColor,
                                             ),
                                           )),
@@ -224,23 +223,35 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                                             children: [
 //replay======================================================================================================================================================
                                               IconButton(
-                                                  onPressed: () {
-                                                    AppLoading.show(
-                                                      context,
-                                                      AppMessage.replay,
-                                                      data[index]
-                                                              .data()['replay']
-                                                              .isEmpty
-                                                          ? AppMessage.noReplay
-                                                          : data[index]
-                                                              .data()['replay'],
-                                                    );
-                                                  },
+                                                  onPressed: data[index]
+                                                          .data()['replay']
+                                                          .isEmpty
+                                                      ? null
+                                                      : () {
+                                                          AppLoading.show(
+                                                            context,
+                                                            AppMessage
+                                                                .rejectRezone,
+                                                            data[index]
+                                                                    .data()[
+                                                                        'replay']
+                                                                    .isEmpty
+                                                                ? AppMessage
+                                                                    .noReplay
+                                                                : data[index]
+                                                                        .data()[
+                                                                    'replay'],
+                                                          );
+                                                        },
                                                   icon: Icon(
                                                     AppIcons.replay,
                                                     size:
                                                         AppSize.iconsSize + 10,
-                                                    color: AppColor.mainColor,
+                                                    color: data[index]
+                                                            .data()['replay']
+                                                            .isEmpty
+                                                        ? AppColor.lightGrey
+                                                        : AppColor.mainColor,
                                                   )),
                                               SizedBox(
                                                 width: 5.w,

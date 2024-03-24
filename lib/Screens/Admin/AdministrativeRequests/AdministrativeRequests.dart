@@ -28,7 +28,7 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
     AppMessage.title,
     AppMessage.text,
     AppMessage.selectDateRequest,
-    AppMessage.replay,
+    AppMessage.rejectRezone,
     AppMessage.status,
     AppMessage.action,
   ];
@@ -37,7 +37,6 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
     return Scaffold(
       appBar: AppBarWidget(
         text: AppMessage.administrativeRequests,
-        isEmp: true,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -81,7 +80,7 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                               fontWeight: FontWeight.normal),
                                           alignment: Alignment.center,
                                           width: e == AppMessage.action
-                                              ? 200.w
+                                              ? 150.w
                                               : 120.w,
                                         ))
                                     .toList(),
@@ -145,8 +144,7 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                                   onTap: () {
                                                     AppLoading.show(
                                                       context,
-                                                      AppMessage
-                                                          .replay,
+                                                      AppMessage.rejectRezone,
                                                       data[index]
                                                           .data()['replay'],
                                                     );
@@ -271,57 +269,8 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                               SizedBox(
                                                 width: 5.w,
                                               ),
+
 //reject======================================================================================================================================================
-                                              IconButton(
-                                                  onPressed: data[index].data()[
-                                                              'status'] !=
-                                                          AppConstants.newStatus
-                                                      ? null
-                                                      : () {
-                                                          AppLoading.show(
-                                                            context,
-                                                            AppMessage.reject,
-                                                            AppMessage.confirm,
-                                                            showButtom: true,
-                                                            noFunction: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            },
-                                                            yesFunction:
-                                                                () async {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              await Database
-                                                                  .updateRequestStatus(
-                                                                docId: snapshot
-                                                                    .data
-                                                                    .docs[index]
-                                                                    .id,
-                                                                status: AppConstants
-                                                                    .rejectStatus,
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                  icon: CircleAvatar(
-                                                    backgroundColor: data[index]
-                                                                    .data()[
-                                                                'status'] !=
-                                                            AppConstants
-                                                                .newStatus
-                                                        ? AppColor.lightGrey
-                                                        : AppColor.mainColor,
-                                                    radius: 10.r,
-                                                    child: Icon(
-                                                      AppIcons.reject,
-                                                      size: AppSize.iconsSize,
-                                                      color: AppColor.white,
-                                                    ),
-                                                  )),
-                                              SizedBox(
-                                                width: 5.w,
-                                              ),
-//replay======================================================================================================================================================
                                               IconButton(
                                                   onPressed:
                                                       data[index].data()[
@@ -335,7 +284,7 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                                                       context:
                                                                           context,
                                                                       title: AppMessage
-                                                                          .sendReplay,
+                                                                          .reject,
                                                                       yesColor:
                                                                           AppColor
                                                                               .subColor,
@@ -364,7 +313,7 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                                                             controller:
                                                                                 sendController,
                                                                             labelText:
-                                                                                '',
+                                                                                AppMessage.rejectRezone,
                                                                             keyboardType:
                                                                                 TextInputType.multiline,
                                                                             maxLines:
@@ -380,13 +329,10 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                                                           () async {
                                                                         if (formKey.currentState?.validate() ==
                                                                             true) {
-                                                                          await Database
-                                                                              .updateRequestSend(
-                                                                            docId:
-                                                                                snapshot.data.docs[index].id,
-                                                                            text:
-                                                                                sendController.text,
-                                                                          );
+                                                                          await Database.rejectRequest(
+                                                                              docId: snapshot.data.docs[index].id,
+                                                                              text: sendController.text,
+                                                                              status: AppConstants.rejectStatus);
                                                                           if (!mounted) {
                                                                             return;
                                                                           }
@@ -404,16 +350,20 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                                                             .clear();
                                                                       });
                                                             },
-                                                  icon: Icon(
-                                                    AppIcons.sendReplay,
-                                                    size:
-                                                        AppSize.iconsSize + 10,
-                                                    color: data[index].data()[
+                                                  icon: CircleAvatar(
+                                                    backgroundColor: data[index]
+                                                                    .data()[
                                                                 'status'] !=
                                                             AppConstants
                                                                 .newStatus
                                                         ? AppColor.lightGrey
                                                         : AppColor.mainColor,
+                                                    radius: 10.r,
+                                                    child: Icon(
+                                                      AppIcons.reject,
+                                                      size: AppSize.iconsSize,
+                                                      color: AppColor.white,
+                                                    ),
                                                   )),
                                               SizedBox(
                                                 width: 5.w,
