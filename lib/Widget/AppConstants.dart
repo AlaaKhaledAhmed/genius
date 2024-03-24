@@ -7,6 +7,8 @@ class AppConstants {
   static String admin = 'admin';
   static String spurt = 'spurt';
   static int newStatus = 0;
+  static int acceptStatus = 1;
+  static int rejectStatus = 2;
 
   static const Duration timeOut = Duration(seconds: 15);
 

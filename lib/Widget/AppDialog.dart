@@ -21,8 +21,8 @@ class AppLoading {
         context: context,
         builder: (context) {
           return AlertDialog(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.r))),
             titlePadding: EdgeInsets.zero,
             elevation: 0,
 
@@ -42,7 +42,8 @@ class AppLoading {
                     height: 40.h,
                     child: Center(
                       child: AppText(
-                        fontSize: AppSize.textSize,
+                        fontSize: AppSize.subTextSize,
+                        fontWeight: FontWeight.bold,
                         text: title,
                         color: AppColor.white,
                       ),
@@ -89,7 +90,7 @@ class AppLoading {
                                   // yes bottoms-------------------------------------------------------------------
                                   Expanded(
                                       child: AppButtons(
-                                        height: 30.h,
+                                    height: 30.h,
                                     onPressed: yesFunction,
                                     text: AppMessage.yes,
                                     backgroundColor: AppColor.subColor,
@@ -134,7 +135,8 @@ class AppLoading {
                               Navigator.pop(context);
                             },
                             icon: Icon(Icons.clear,
-                                color: AppColor.black, size: 35.sp)),
+                                color: AppColor.black,
+                                size: AppSize.iconsSize)),
                       ),
                     )
                   : const SizedBox()

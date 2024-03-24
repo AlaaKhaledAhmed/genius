@@ -13,11 +13,14 @@ class AppMessage {
   static String attachment = 'مرفق';
   static String projectName = 'اسم المشروع';
   static String projectPrice = 'تكلفة المشروع';
-  static String text = 'النص';
+  static String text = 'تفاصيل';
   static String title = 'الموضوع';
   static String noReplay = 'لا توجد ردود';
   static String notCompleteStatus = 'غير مكتمل';
   static String completeStatus = 'مكتمل';
+  static String newStatus = 'جديد';
+  static String acceptStatus = 'مقبول';
+  static String rejectStatus = 'مرفوض';
 
   static String RSA = 'ريال';
   static String projectManagement = 'ادارة المشاريع';

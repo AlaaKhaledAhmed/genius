@@ -32,13 +32,14 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
     AppMessage.title,
     AppMessage.text,
     AppMessage.status,
-    AppMessage.replay,
+    AppMessage.action,
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
         text: AppMessage.administrativeRequests,
+        isEmp: true,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -108,12 +109,21 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
 
 //text======================================================================================================================================================
                                       TableViewCell(
-                                          alignment: Alignment.center,
-                                          child: AppText(
-                                            text:
-                                                '${data[index].data()?['text']}',
-                                            fontSize: AppSize.subTextSize,
-                                            overflow: TextOverflow.ellipsis,
+                                          alignment: Alignment.centerRight,
+                                          child: InkWell(
+                                            onTap: () {
+                                              AppLoading.show(
+                                                context,
+                                                AppMessage.text,
+                                                data[index].data()['text'],
+                                              );
+                                            },
+                                            child: AppText(
+                                              text:
+                                                  '${data[index].data()?['text']}',
+                                              fontSize: AppSize.subTextSize,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
                                           )),
 
 //status======================================================================================================================================================
@@ -130,46 +140,106 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                                               radius: 5,
                                               color: data[index]
                                                           .data()['status'] ==
-                                                      0
-                                                  ? AppColor.errorColor
+                                                      AppConstants.newStatus
+                                                  ? AppColor.subColor
                                                       .withOpacity(0.2)
-                                                  : AppColor.successColor
-                                                      .withOpacity(0.3),
+                                                  : data[index].data()[
+                                                              'status'] ==
+                                                          AppConstants
+                                                              .acceptStatus
+                                                      ? AppColor.successColor
+                                                          .withOpacity(0.2)
+                                                      : AppColor.errorColor
+                                                          .withOpacity(0.3),
                                             ),
+                                            constraints:
+                                                BoxConstraints(minWidth: 90.w),
                                             child: AppText(
+                                              align: TextAlign.center,
                                               text: data[index]
                                                           .data()['status'] ==
-                                                      0
-                                                  ? AppMessage.notCompleteStatus
-                                                  : AppMessage.completeStatus,
+                                                      AppConstants.newStatus
+                                                  ? AppMessage.newStatus
+                                                  : data[index].data()[
+                                                              'status'] ==
+                                                          AppConstants
+                                                              .acceptStatus
+                                                      ? AppMessage.acceptStatus
+                                                      : AppMessage.rejectStatus,
                                               fontSize: AppSize.smallSubText,
                                               color: data[index]
                                                           .data()['status'] ==
-                                                      0
-                                                  ? AppColor.errorColor
-                                                  : AppColor.successColor,
+                                                      AppConstants.newStatus
+                                                  ? AppColor.subColor
+                                                  : data[index].data()[
+                                                              'status'] ==
+                                                          AppConstants
+                                                              .acceptStatus
+                                                      ? AppColor.successColor
+                                                      : AppColor.errorColor,
                                               overflow: TextOverflow.ellipsis,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         ),
                                       ),
-//replay======================================================================================================================================================
+//action======================================================================================================================================================
                                       TableViewCell(
                                           alignment: Alignment.center,
-                                          child: IconButton(
-                                              onPressed: () {
-                                                AppLoading.show(
-                                                  context,
-                                                  AppMessage.replay,
-                                                  data[index].data()['replay'].isEmpty?AppMessage.noReplay:data[index].data()['replay'],
-                                                );
-                                              },
-                                              icon: Icon(
-                                                AppIcons.replay,
-                                                size: AppSize.iconsSize + 10,
-                                                color: AppColor.errorColor,
-                                              ))),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+//replay======================================================================================================================================================
+                                              IconButton(
+                                                  onPressed: () {
+                                                    AppLoading.show(
+                                                      context,
+                                                      AppMessage.replay,
+                                                      data[index]
+                                                              .data()['replay']
+                                                              .isEmpty
+                                                          ? AppMessage.noReplay
+                                                          : data[index]
+                                                              .data()['replay'],
+                                                    );
+                                                  },
+                                                  icon: Icon(
+                                                    AppIcons.replay,
+                                                    size:
+                                                        AppSize.iconsSize + 10,
+                                                    color: AppColor.mainColor,
+                                                  )),
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+//update======================================================================================================================================================
+                                              TableViewCell(
+                                                  alignment: Alignment.center,
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        AppRoutes.pushTo(
+                                                            context,
+                                                            UpdateAdministrativeRequestsEmp(
+                                                              docId: snapshot
+                                                                  .data
+                                                                  .docs[index]
+                                                                  .id,
+                                                              data: data[index]
+                                                                  .data(),
+                                                            ));
+                                                      },
+                                                      icon: Icon(
+                                                        AppIcons.update,
+                                                        size:
+                                                            AppSize.iconsSize +
+                                                                10,
+                                                        color:
+                                                            AppColor.mainColor,
+                                                      ))),
+                                            ],
+                                          )),
                                     ],
                                   );
                                 }),
