@@ -76,6 +76,7 @@ class AppTextFields extends StatelessWidget {
     return TextFormField(
       readOnly: readOnly == null ? false : true,
       enabled: enable ?? true,
+
       minLines: minLines ?? 1,
       maxLines: maxLines ?? 1,
       onTap: onTap,

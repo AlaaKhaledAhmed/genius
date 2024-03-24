@@ -437,12 +437,21 @@ class Database {
   ///==================================================================================================================
   static Future<String> addEmployeeRequest({
     required String text,
-    required String title, required String userId,
+    required String title,
+    required String userId,
+    required String employNumber,
+    required String name,
+    required DateTime startDate,
+    required DateTime endDate,
   }) async {
     try {
       await AppConstants.employeeRequest.add({
+        'name': name,
+        'employNumber': employNumber,
         'text': text,
         'title': title,
+        'startDate': startDate,
+        'endDate': endDate,
         'createdOn': FieldValue.serverTimestamp(),
         'status': AppConstants.newStatus,
         'userId': userId,
@@ -459,11 +468,15 @@ class Database {
     required String text,
     required String title,
     required String docId,
+    required DateTime startDate,
+    required DateTime endDate,
   }) async {
     try {
       await AppConstants.employeeRequest.doc(docId).update({
         'text': text,
         'title': title,
+        'startDate': startDate,
+        'endDate': endDate,
       });
       return 'done';
     } catch (e) {

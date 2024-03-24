@@ -3,6 +3,7 @@ class AppMessage {
 
   static String noData = 'لاتوجد بيانات لعرضها';
   static String selectDate = 'اختر التاريخ';
+  static String selectDateRequest = 'تاريخ الاستحقاق';
   static String resend = 'اعادة الارسال';
   static String selectEmployee = 'اختر الموظف';
 
