@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
- import 'dart:io';
+import 'dart:io';
 import 'dart:math';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -13,7 +13,9 @@ import '../../../Widget/AppValidator.dart';
 import '../../../Widget/GeneralWidget.dart';
 
 class AddAdministrativeRequestsEmp extends StatefulWidget {
-  const AddAdministrativeRequestsEmp({Key? key}) : super(key: key);
+  final String userId;
+  const AddAdministrativeRequestsEmp({Key? key, required this.userId})
+      : super(key: key);
 
   @override
   State<AddAdministrativeRequestsEmp> createState() =>
@@ -89,6 +91,7 @@ class _AddAdministrativeRequestsEmpState
                         if (formKey.currentState?.validate() == true) {
                           AppLoading.show(context, '', 'lode');
                           Database.addEmployeeRequest(
+                            userId: widget.userId,
                             title: titleController.text,
                             text: textController.text,
                           ).then((v) {
@@ -96,15 +99,11 @@ class _AddAdministrativeRequestsEmpState
                             if (v == "done") {
                               Navigator.pop(context);
                               Navigator.pop(context);
-                              AppLoading.show(
-                                  context,
-                                  AppMessage.addRequest,
+                              AppLoading.show(context, AppMessage.addRequest,
                                   AppMessage.done);
                             } else {
                               Navigator.pop(context);
-                              AppLoading.show(
-                                  context,
-                                  AppMessage.addRequest,
+                              AppLoading.show(context, AppMessage.addRequest,
                                   AppMessage.serverText);
                             }
                           });

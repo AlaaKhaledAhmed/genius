@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:genius/Screens/Employ/EmployeeTasks/UplodeFile.dart';
-import '../../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../../Widget/AppColor.dart';
 
 import '../../../../Widget/GeneralWidget.dart';
@@ -13,7 +12,6 @@ import '../../../../Widget/AppText.dart';
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppMessage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:genius/Widget/AppDialog.dart';
 import 'package:genius/Widget/AppRoutes.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 

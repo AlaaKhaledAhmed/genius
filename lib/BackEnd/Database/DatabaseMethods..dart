@@ -437,7 +437,7 @@ class Database {
   ///==================================================================================================================
   static Future<String> addEmployeeRequest({
     required String text,
-    required String title,
+    required String title, required String userId,
   }) async {
     try {
       await AppConstants.employeeRequest.add({
@@ -445,6 +445,7 @@ class Database {
         'title': title,
         'createdOn': FieldValue.serverTimestamp(),
         'status': AppConstants.newStatus,
+        'userId': userId,
         'replay': '',
       });
       return 'done';

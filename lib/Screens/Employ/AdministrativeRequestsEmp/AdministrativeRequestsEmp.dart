@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:genius/Screens/Employ/AdministrativeRequestsEmp/AddAdministrativeRequestsEmp.dart';
-
-import '../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppColor.dart';
 import '../../../Widget/AppConstants.dart';
@@ -16,7 +14,6 @@ import 'package:scrollable_table_view/scrollable_table_view.dart';
 import '../../../Widget/AppSize.dart';
 import '../../../Widget/AppText.dart';
 import '../../../Widget/GeneralWidget.dart';
-import '../../Admin/PDFView.dart';
 import '../../Employ/AdministrativeRequestsEmp/UpdateAdministrativeRequestsEmp.dart';
 
 class AdministrativeRequestsEmp extends StatefulWidget {
@@ -28,6 +25,17 @@ class AdministrativeRequestsEmp extends StatefulWidget {
 }
 
 class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
+  late String? userId;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    setState(() {
+      userId = FirebaseAuth.instance.currentUser?.uid;
+    });
+  }
+
   List<String> header = [
     AppMessage.title,
     AppMessage.text,
@@ -51,7 +59,7 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
               child: AppButtons(
                 onPressed: () {
                   AppRoutes.pushTo(
-                      context, const AddAdministrativeRequestsEmp());
+                      context, AddAdministrativeRequestsEmp(userId: userId!));
                 },
                 text: AppMessage.addRequest,
                 icon: AppIcons.add,
@@ -61,6 +69,7 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                 flex: 5,
                 child: StreamBuilder(
                   stream: AppConstants.employeeRequest
+                      .where('userId', isEqualTo: userId)
                       .orderBy('createdOn', descending: true)
                       .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
