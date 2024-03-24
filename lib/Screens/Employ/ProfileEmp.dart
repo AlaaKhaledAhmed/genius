@@ -161,7 +161,7 @@ class _ProfileState extends State<ProfileEmp> {
                   onPressed: () async {
                     if (formKey.currentState?.validate() == true) {
                       AppLoading.show(context, '', 'lode');
-                      await Database.changePassword(
+                      await Database.changPassword(
                         currentUser: currentUser,
                         email: currentUser!.email!,
                         oldPass: oldPasswordController.text,
