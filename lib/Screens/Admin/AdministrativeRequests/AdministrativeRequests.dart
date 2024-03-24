@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:genius/Screens/Employ/AdministrativeRequestsEmp/AddAdministrativeRequestsEmp.dart';
-
 import '../../../BackEnd/Database/DatabaseMethods..dart';
 import '../../../Widget/AppBar.dart';
 import '../../../Widget/AppColor.dart';
@@ -8,17 +6,13 @@ import '../../../Widget/AppConstants.dart';
 import '../../../Widget/AppIcons.dart';
 import '../../../Widget/AppMessage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:genius/Widget/AppButtons.dart';
 import 'package:genius/Widget/AppDialog.dart';
-import 'package:genius/Widget/AppRoutes.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 import '../../../Widget/AppSize.dart';
 import '../../../Widget/AppText.dart';
 import '../../../Widget/AppTextFields.dart';
 import '../../../Widget/AppValidator.dart';
 import '../../../Widget/GeneralWidget.dart';
-import '../../Admin/PDFView.dart';
-import '../../Employ/AdministrativeRequestsEmp/UpdateAdministrativeRequestsEmp.dart';
 
 class AdministrativeRequests extends StatefulWidget {
   const AdministrativeRequests({Key? key}) : super(key: key);
@@ -34,6 +28,7 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
     AppMessage.title,
     AppMessage.text,
     AppMessage.selectDateRequest,
+    AppMessage.replay,
     AppMessage.status,
     AppMessage.action,
   ];
@@ -139,6 +134,30 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                               color: AppColor.mainColor,
                                             ),
                                           )),
+//replay======================================================================================================================================================
+                                      TableViewCell(
+                                          alignment: Alignment.center,
+                                          child: data[index]
+                                                  .data()['replay']
+                                                  .isEmpty
+                                              ? const Text('-')
+                                              : InkWell(
+                                                  onTap: () {
+                                                    AppLoading.show(
+                                                      context,
+                                                      AppMessage
+                                                          .replay,
+                                                      data[index]
+                                                          .data()['replay'],
+                                                    );
+                                                  },
+                                                  child: Icon(
+                                                    AppIcons.replay,
+                                                    size:
+                                                        AppSize.iconsSize + 10,
+                                                    color: AppColor.mainColor,
+                                                  ),
+                                                )),
 
 //status======================================================================================================================================================
                                       TableViewCell(
@@ -304,69 +323,97 @@ class _AdministrativeRequestsState extends State<AdministrativeRequests> {
                                               ),
 //replay======================================================================================================================================================
                                               IconButton(
-                                                  onPressed: () {
-                                                    GeneralWidget.confirmDialog(
-                                                        context: context,
-                                                        title:
-                                                            AppMessage.replay,
-                                                        yesColor:
-                                                            AppColor.subColor,
-                                                        noColor: AppColor
-                                                            .deepLightGrey,
-                                                        yesText:
-                                                            AppMessage.send,
-                                                        content: '',
-                                                        noTextColor:
-                                                            AppColor.black,
-                                                        contentWidget: Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 10.h),
-                                                          child: Form(
-                                                            key: formKey,
-                                                            child:
-                                                                AppTextFields(
-                                                              validator: (v) =>
-                                                                  AppValidator
-                                                                      .validatorEmpty(
-                                                                          v),
-                                                              controller:
-                                                                  sendController,
-                                                              labelText: '',
-                                                              keyboardType:
-                                                                  TextInputType
-                                                                      .multiline,
-                                                              maxLines: 3,
-                                                              minLines: 2,
-                                                              fillColor:
-                                                                  AppColor
-                                                                      .white,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        onPressedYes: () async {
-                                                          if (formKey
-                                                                  .currentState
-                                                                  ?.validate() ==
-                                                              true) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            sendController
-                                                                .clear();
-                                                          }
-                                                        },
-                                                        onPressedNo: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                          sendController
-                                                              .clear();
-                                                        });
-                                                  },
+                                                  onPressed:
+                                                      data[index].data()[
+                                                                  'status'] !=
+                                                              AppConstants
+                                                                  .newStatus
+                                                          ? null
+                                                          : () {
+                                                              GeneralWidget
+                                                                  .confirmDialog(
+                                                                      context:
+                                                                          context,
+                                                                      title: AppMessage
+                                                                          .sendReplay,
+                                                                      yesColor:
+                                                                          AppColor
+                                                                              .subColor,
+                                                                      noColor: AppColor
+                                                                          .deepLightGrey,
+                                                                      yesText:
+                                                                          AppMessage
+                                                                              .send,
+                                                                      content:
+                                                                          '',
+                                                                      noTextColor:
+                                                                          AppColor
+                                                                              .black,
+                                                                      contentWidget:
+                                                                          Padding(
+                                                                        padding:
+                                                                            EdgeInsets.only(top: 10.h),
+                                                                        child:
+                                                                            Form(
+                                                                          key:
+                                                                              formKey,
+                                                                          child:
+                                                                              AppTextFields(
+                                                                            validator: (v) =>
+                                                                                AppValidator.validatorEmpty(v),
+                                                                            controller:
+                                                                                sendController,
+                                                                            labelText:
+                                                                                '',
+                                                                            keyboardType:
+                                                                                TextInputType.multiline,
+                                                                            maxLines:
+                                                                                3,
+                                                                            minLines:
+                                                                                2,
+                                                                            fillColor:
+                                                                                AppColor.white,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      onPressedYes:
+                                                                          () async {
+                                                                        if (formKey.currentState?.validate() ==
+                                                                            true) {
+                                                                          await Database
+                                                                              .updateRequestSend(
+                                                                            docId:
+                                                                                snapshot.data.docs[index].id,
+                                                                            text:
+                                                                                sendController.text,
+                                                                          );
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                          sendController
+                                                                              .clear();
+                                                                        }
+                                                                      },
+                                                                      onPressedNo:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                        sendController
+                                                                            .clear();
+                                                                      });
+                                                            },
                                                   icon: Icon(
-                                                    AppIcons.replay,
+                                                    AppIcons.sendReplay,
                                                     size:
                                                         AppSize.iconsSize + 10,
-                                                    color: AppColor.mainColor,
+                                                    color: data[index].data()[
+                                                                'status'] !=
+                                                            AppConstants
+                                                                .newStatus
+                                                        ? AppColor.lightGrey
+                                                        : AppColor.mainColor,
                                                   )),
                                               SizedBox(
                                                 width: 5.w,

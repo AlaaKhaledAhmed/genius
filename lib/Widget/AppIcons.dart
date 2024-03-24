@@ -26,6 +26,7 @@ class AppIcons {
   static IconData manageUsers = FluentIcons.person_accounts_24_regular;
   static IconData file = FluentIcons.document_32_regular;
   static IconData view = FluentIcons.eye_12_regular;
+  static IconData sendReplay = FluentIcons.send_clock_20_regular;
 
   static IconData endOfServiceCalculator = FluentIcons.calculator_24_regular;
   static IconData projectsContracts =

@@ -494,4 +494,15 @@ class Database {
       return 'error';
     }
   }
+
+  ///==================================================================================================================
+  static Future<String> updateRequestSend(
+      {required String docId, required String text}) async {
+    try {
+      await AppConstants.employeeRequest.doc(docId).update({'replay': text});
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }
