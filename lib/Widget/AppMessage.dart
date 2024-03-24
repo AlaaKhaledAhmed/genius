@@ -78,9 +78,11 @@ class AppMessage {
   static String onlyDigits = "الرجاء ادخال ارقام فقط";
   static String confirm = "هل انت متاكد من اكمال العملية؟";
   static String update = "تعديل البيانات";
+  static String updateRequest = "تعديل الطلب";
   static String updateProject = "تعديل بيانات المشروع";
 
   static String sections = "الاقسام";
+  static String noUpdate = "لايمكنك تعديل الطلب الا اذا كانت حالة الطلب جديد";
   static String calender = "المواعيد";
   static String empContracts = "عقود الموظفين";
   static String projectsContracts = "عقود المشاريع";

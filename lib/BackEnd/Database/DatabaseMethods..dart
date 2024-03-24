@@ -444,8 +444,25 @@ class Database {
         'text': text,
         'title': title,
         'createdOn': FieldValue.serverTimestamp(),
-        'status':AppConstants.newStatus,
-        'replay':'',
+        'status': AppConstants.newStatus,
+        'replay': '',
+      });
+      return 'done';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  ///==================================================================================================================
+  static Future<String> updateEmployeeRequest({
+    required String text,
+    required String title,
+    required String docId,
+  }) async {
+    try {
+      await AppConstants.employeeRequest.doc(docId).update({
+        'text': text,
+        'title': title,
       });
       return 'done';
     } catch (e) {

@@ -218,18 +218,34 @@ class _AdministrativeRequestsEmpState extends State<AdministrativeRequestsEmp> {
                                               TableViewCell(
                                                   alignment: Alignment.center,
                                                   child: IconButton(
-                                                      onPressed: () {
-                                                        AppRoutes.pushTo(
-                                                            context,
-                                                            UpdateAdministrativeRequestsEmp(
-                                                              docId: snapshot
-                                                                  .data
-                                                                  .docs[index]
-                                                                  .id,
-                                                              data: data[index]
-                                                                  .data(),
-                                                            ));
-                                                      },
+                                                      onPressed: data[index]
+                                                                      .data()[
+                                                                  'status'] !=
+                                                              AppConstants
+                                                                  .newStatus
+                                                          ? () {
+                                                              AppLoading.show(
+                                                                context,
+                                                                AppMessage
+                                                                    .update,
+                                                                AppMessage
+                                                                    .noUpdate,
+                                                              );
+                                                            }
+                                                          : () {
+                                                              AppRoutes.pushTo(
+                                                                  context,
+                                                                  UpdateAdministrativeRequestsEmp(
+                                                                    docId: snapshot
+                                                                        .data
+                                                                        .docs[
+                                                                            index]
+                                                                        .id,
+                                                                    data: data[
+                                                                            index]
+                                                                        .data(),
+                                                                  ));
+                                                            },
                                                       icon: Icon(
                                                         AppIcons.update,
                                                         size:
