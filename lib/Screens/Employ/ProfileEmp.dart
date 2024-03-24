@@ -54,7 +54,7 @@ class _ProfileState extends State<ProfileEmp> {
                     builder: (context, AsyncSnapshot snapshot) {
                       var data = snapshot.data.docs;
 
-                      if (snapshot.hasData) {
+                      if (snapshot.hasData ) {
                         return Container(
                           width: double.infinity,
                           padding: EdgeInsets.all(10.spMin),
@@ -161,18 +161,26 @@ class _ProfileState extends State<ProfileEmp> {
                   onPressed: () async {
                     if (formKey.currentState?.validate() == true) {
                       AppLoading.show(context, '', 'lode');
-                      await Database.changPassword(
+                      await Database.changePassword(
                         currentUser: currentUser,
                         email: currentUser!.email!,
                         oldPass: oldPasswordController.text,
                         newPassword: newPasswordController.text,
                       ).then((v) {
+                        print('v: $v');
                         if (v == "done") {
                           Navigator.pop(context);
                           AppLoading.show(
                             context,
                             AppMessage.profile,
                             AppMessage.done,
+                          );
+                        } else if (v == 'wrong_password') {
+                          Navigator.pop(context);
+                          AppLoading.show(
+                            context,
+                            AppMessage.profile,
+                            AppMessage.userNotFound,
                           );
                         } else {
                           Navigator.pop(context);

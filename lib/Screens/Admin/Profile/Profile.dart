@@ -40,7 +40,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: GeneralWidget.body(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Form(
             key: formKey,
             child: Column(
@@ -110,7 +110,7 @@ class _ProfileState extends State<Profile> {
                   onPressed: () async {
                     if (formKey.currentState?.validate() == true) {
                       AppLoading.show(context, '', 'lode');
-                      await Database.changPassword(
+                      await Database.changePassword(
                         currentUser: currentUser,
                         email: currentUser!.email!,
                         oldPass: oldPasswordController.text,
@@ -122,6 +122,13 @@ class _ProfileState extends State<Profile> {
                             context,
                             AppMessage.profile,
                             AppMessage.done,
+                          );
+                        } else if (v == 'wrong_password') {
+                          Navigator.pop(context);
+                          AppLoading.show(
+                            context,
+                            AppMessage.profile,
+                            AppMessage.userNotFound,
                           );
                         } else {
                           Navigator.pop(context);

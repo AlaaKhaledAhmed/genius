@@ -126,21 +126,28 @@ class Database {
   }
 
   //changPassword===================================================================================
-  static Future<String> changPassword(
-      {currentUser,
-      required String email,
-      required String oldPass,
-      required String newPassword}) async {
+
+ static Future<String> changePassword(
+      {User? currentUser,
+        required String email,
+        required String oldPass,
+        required String newPassword}) async {
     try {
       var cred = EmailAuthProvider.credential(email: email, password: oldPass);
-      await currentUser!.reauthenticateWithCredential(cred).then((value) {
-        currentUser!.updatePassword(newPassword);
-      });
+      await currentUser!.reauthenticateWithCredential(cred);
+      await currentUser.updatePassword(newPassword);
       return 'done';
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        return 'wrong_password';
+      } else {
+        return 'error';
+      }
     } catch (e) {
-      return 'error';
+      return  'error';
     }
   }
+
 
   //=======================Delete  method======================================
   static Future<String> delete({
