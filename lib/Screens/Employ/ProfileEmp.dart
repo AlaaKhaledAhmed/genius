@@ -55,7 +55,7 @@ class _ProfileState extends State<ProfileEmp> {
                     builder: (context, AsyncSnapshot snapshot) {
                       var data = snapshot.data.docs;
 
-                      if (snapshot.hasData ) {
+                      if (snapshot.hasData) {
                         return Container(
                           width: double.infinity,
                           padding: EdgeInsets.all(10.spMin),
@@ -212,13 +212,21 @@ class _ProfileState extends State<ProfileEmp> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: AppText(text: cell1, fontSize: AppSize.subTextSize),
+          child: AppText(
+            text: cell1,
+            fontSize: AppSize.subTextSize,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         SizedBox(
           width: 10.w,
         ),
         Expanded(
-          child: AppText(text: cell2, fontSize: AppSize.subTextSize),
+          child: AppText(
+            text: cell2,
+            fontSize: AppSize.subTextSize,
+            overflow: TextOverflow.ellipsis,
+          ),
         )
       ],
     );
