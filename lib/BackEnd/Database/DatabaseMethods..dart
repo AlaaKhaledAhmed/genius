@@ -135,6 +135,7 @@ class Database {
       var cred = EmailAuthProvider.credential(email: email, password: oldPass);
       await currentUser!.reauthenticateWithCredential(cred).then((value) {
         currentUser!.updatePassword(newPassword);
+
       });
       return 'done';
     } catch (e) {

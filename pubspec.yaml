@@ -40,7 +40,7 @@ dependencies:
   lottie: ^2.7.0
   fluentui_system_icons: ^1.1.225
   cached_network_image: ^3.3.1
-  google_fonts: ^6.1.0
+  google_fonts: 6.1.0
   permission_handler:
   easy_localization: ^3.0.3
   flutter_screenutil: ^5.9.0
